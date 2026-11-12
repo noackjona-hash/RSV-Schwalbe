@@ -3,6 +3,16 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.3.0] - 2026-11-12
+### Geändert & Verbessert
+- **Mobile Header-Bar für kleine Smartphones (`320px–360px` wie Galaxy S20 / iPhone SE)**:
+  - Offizielles 2-zeiliges Logo-Lockup (`RSV Schwalbe` / `Ellmendingen` aus Seite 1 des CD-Guides) auf kleinen Bildschirmen implementiert, sodass die Titelzeile niemals rechts abgeschnitten wird.
+  - Taktiler `MENÜ`-Button mit animiertem 2-Balken-Icon (`X` im geöffneten Zustand) sowie 3px Team-Trikot-Akzentstreifen (`#FA006C` + `#FFE940`) am oberen Bildschirmrand.
+- **Charakterstarke Radsport-Buttons & Editorial-Hero (ohne generischen AI-Look)**:
+  - Entfernung des grauen Pill-Badges und der klobigen 100%-Breite-Button-Blöcke, die das Fahrerfeld verdeckt haben.
+  - Neue, kompakte Radsport-Buttons mit scharfer `#0F172A`-Kontur (`1.5px`), **hartem Marken-Offset-Schatten (`3px 3px 0 #FA006C`)** und animiertem Pfeil (`→`), kombiniert mit einem Editorial-Link-CTA (`Training & Ausfahrten →`).
+  - Hero-Inhalt unten links mit `4px` Pink-Akzentbalken positioniert, sodass die RSV-Rennfahrer in den Vereinsfarben im oberen Bildbereich frei und kontrastreich sichtbar bleiben.
+
 ## [2.2.0] - 2026-11-12
 ### Hinzugefügt
 - **Vercel Web Analytics & Speed Insights**: Installation von `@vercel/analytics` und `@vercel/speed-insights` sowie globale Einbindung von `<Analytics />` und `<SpeedInsights />` in `src/layouts/BaseLayout.astro`.
