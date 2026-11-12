@@ -15,14 +15,17 @@ const { Content } = await render(event);
 ---
 
 <BaseLayout title={`${event.data.title} ${event.data.year} | RSV Schwalbe Ellmendingen`}>
-  <article class="article">
-    <h1>{event.data.title} {event.data.year}</h1>
-    <p class="article-meta">{event.data.metaLine}</p>
+  <div class="article-page-wrap">
+    <article class="article">
+      <span class="termin-kicker">Veranstaltung</span>
+      <h1>{event.data.title} {event.data.year}</h1>
+      <p class="article-meta">{event.data.metaLine}</p>
 
-    <div class="article-body">
-      <Content />
-    </div>
+      <div class="article-body">
+        <Content />
+      </div>
 
-    <a href="/veranstaltungen" class="btn-back">&#8592; Alle Veranstaltungen</a>
-  </article>
+      <a href="/veranstaltungen" class="btn-back">Zurück zur Übersicht</a>
+    </article>
+  </div>
 </BaseLayout>
