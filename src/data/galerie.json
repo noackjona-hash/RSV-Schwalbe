@@ -1,0 +1,34 @@
+{
+  "homeTeaser": [
+    {
+      "src": "https://schwalbewebseite.pages.dev/images/Amateure1.webp",
+      "alt": "Amateure im Rennen"
+    },
+    {
+      "src": "https://schwalbewebseite.pages.dev/images/Bellheim.webp",
+      "alt": "Rennen in Bellheim"
+    },
+    {
+      "src": "https://schwalbewebseite.pages.dev/images/Rollentraining-Winter.webp",
+      "alt": "Rollentraining im Winter"
+    }
+  ],
+  "galleryPage": [
+    {
+      "src": "/images/9.jpg",
+      "alt": "Radsport Impression 1"
+    },
+    {
+      "src": "/images/10.jpg",
+      "alt": "Radsport Impression 2"
+    },
+    {
+      "src": "/images/11.jpg",
+      "alt": "Radsport Impression 3"
+    },
+    {
+      "src": "/images/12.jpg",
+      "alt": "Radsport Impression 4"
+    }
+  ]
+}

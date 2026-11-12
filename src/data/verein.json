@@ -1,0 +1,56 @@
+{
+  "name": "RSV „Schwalbe“ Ellmendingen e. V.",
+  "shortName": "RSV Schwalbe Ellmendingen",
+  "founded": 1898,
+  "address": {
+    "street": "Durlacher Str. 72",
+    "zip": "75210",
+    "city": "Keltern"
+  },
+  "email": "rsvellmendingen@googlemail.com",
+  "board": [
+    { "name": "Christian Rupf", "role": "Vorsitzender" },
+    { "name": "Ute Farr", "role": "stv. Vorsitzende" },
+    { "name": "Roland Golderer", "role": "stv. Vorsitzender" }
+  ],
+  "register": {
+    "court": "AG Mannheim",
+    "number": "1440"
+  },
+  "pressResponsible": ["Simon Mayer", "Martin Rupf"],
+  "social": {
+    "facebook": "https://www.facebook.com/RSVEllmendingen/",
+    "instagram": "https://www.instagram.com/rsv_schwalbe_ellmendingen/"
+  },
+  "membership": {
+    "applicationPdfUrl": "#",
+    "applicationPdfLabel": "↓ Beitrittserklärung 2025 (PDF)",
+    "feeRegulationPdfUrl": "https://www.rsv-ellmendingen.de/wp-content/uploads/RSV_Beitragsordnung_03-2015.pdf",
+    "feeRegulationPdfLabel": "↓ Beitragsordnung (PDF)",
+    "annualFees": [
+      { "category": "Familien", "amount": "110,00 €" },
+      { "category": "Erwachsene (ab 19 Jahre)", "amount": "50,00 €" },
+      { "category": "Jugendliche (bis 18 Jahre)", "amount": "30,00 €" },
+      { "category": "Schüler (bis 14 Jahre)", "amount": "25,00 €" }
+    ],
+    "activeSurcharges": [
+      { "category": "Lizenzfahrer Erwachsene", "amount": "26,00 €" },
+      { "category": "Lizenzfahrer Jugend/Schüler", "amount": "15,00 €" },
+      { "category": "Punktekartenfahrer", "amount": "13,00 €" }
+    ]
+  },
+  "externalLinks": [
+    {
+      "label": "Bund Deutscher Radfahrer (rad-net)",
+      "url": "https://www.rad-net.de/"
+    },
+    {
+      "label": "Badischer Radsportverband",
+      "url": "https://www.badischer-radsportverband.de/"
+    },
+    {
+      "label": "Gemeinde Keltern",
+      "url": "https://www.keltern.de/"
+    }
+  ]
+}
