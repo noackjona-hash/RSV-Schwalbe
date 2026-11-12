@@ -229,7 +229,7 @@ button:focus-visible,
 }
 
 /* ============================================================
-   HEADER & NAVIGATION (Exakt nach CD Guide Seite 2, Mobile-First)
+   HEADER & NAVIGATION (100% 320px/360px-sicher + CD Guide Seite 1 & 2)
    ============================================================ */
 .site-header {
   position: sticky;
@@ -238,10 +238,21 @@ button:focus-visible,
   background-color: var(--header-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   height: var(--header-height);
   display: flex;
   align-items: center;
+}
+
+/* Dezenter Team-Trikot Akzentstreifen (Pink #FA006C + Gelb #FFE940) ganz oben */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-primary) 70%, var(--accent-secondary) 70%, var(--accent-secondary) 100%);
 }
 
 .header-inner {
@@ -249,28 +260,29 @@ button:focus-visible,
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
+/* Auf kleinen Handys (< 640px): Offizielles 2-zeiliges Logo-Lockup aus CD Guide Seite 1 */
 .site-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.55rem;
   font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 0.98rem;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   text-decoration: none;
-  white-space: nowrap;
   min-height: var(--tap-target-min);
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .site-logo:hover {
   color: var(--text-primary);
 }
 
-/* Das Schwalbe-Radfahrer-Icon ist laut CD Guide IMMER Pink (#FA006C) */
 .logo-icon {
   display: flex;
   align-items: center;
@@ -284,64 +296,113 @@ button:focus-visible,
 }
 
 .logo-icon svg {
-  height: 1.95rem;
+  height: 1.85rem;
   width: auto;
+}
+
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.08;
+  font-size: 0.88rem;
+}
+
+.logo-line-1,
+.logo-line-2 {
+  display: block;
+  white-space: nowrap;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
-/* CTA Button im Header: Signal-Gelb #FFE940 mit #0F172A Text & Uppercase (CD Guide S. 2) */
+/* Auf schmalen Handys (< 640px) sitzt "Mitglied werden" im Menü & Hero, damit nichts abschneidet */
 .btn-header-cta {
+  display: none;
   background-color: var(--accent-secondary);
   color: var(--text-primary) !important;
-  padding: 0.55rem 0.9rem !important;
-  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.95rem !important;
+  border-radius: 4px;
+  border: 1.5px solid var(--text-primary);
+  box-shadow: 2px 2px 0 var(--accent-primary);
   font-weight: 600 !important;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  letter-spacing: 0.06em;
+  transition: all var(--transition-fast);
   white-space: nowrap;
-  min-height: 2.35rem;
-  display: inline-flex;
+  min-height: 2.25rem;
   align-items: center;
 }
 
 .btn-header-cta:hover {
   background-color: var(--accent-yellow-hover) !important;
   color: var(--text-primary) !important;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--accent-primary);
 }
 
-/* Mobile Menu Button */
+/* Taktiler Editorial Mobile-Menü-Button (Text + 2 animierte Linien) */
 .mobile-menu-toggle {
   display: inline-flex;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  min-width: var(--tap-target-min);
-  min-height: var(--tap-target-min);
-  padding: 0.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-primary);
+  border: 1.5px solid var(--text-primary);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 var(--accent-secondary);
+  min-height: 2.4rem;
+  padding: 0.35rem 0.7rem;
   cursor: pointer;
   color: var(--text-primary);
-  align-items: center;
-  justify-content: center;
+  font-family: 'Zalando Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: all var(--transition-fast);
 }
 
 .mobile-menu-toggle:hover,
 .mobile-menu-toggle[aria-expanded="true"] {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  background: rgba(250, 0, 108, 0.05);
+  background: var(--accent-secondary);
+  box-shadow: 2px 2px 0 var(--accent-primary);
 }
 
-.mobile-menu-toggle svg {
-  width: 1.35rem;
-  height: 1.35rem;
+.menu-bars {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.menu-bars span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .menu-bars span:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .menu-bars span:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+.nav-mobile-cta {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
 }
 
 /* Mobile Navigation Drawer */
@@ -454,18 +515,16 @@ button:focus-visible,
 }
 
 /* ============================================================
-   HERO SECTION (Exakt nach CD Guide Seite 2: Vollbild-Radsportfoto mit LCP-<img>)
+   HERO SECTION & HAND-CRAFTED RADSPORT BUTTONS
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 460px;
-  padding: 5.5rem 0 4.5rem;
+  min-height: 440px;
+  padding: 11rem 0 2.75rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
   background-color: var(--text-primary);
   color: var(--text-inverted);
-  text-align: center;
   overflow: hidden;
 }
 
@@ -475,15 +534,22 @@ button:focus-visible,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 22%;
   z-index: 0;
   pointer-events: none;
 }
 
+/* Natürlicher Verlauf von unten: Fahrer oben im Bild sind klar & farbig sichtbar */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.58) 0%, rgba(15, 23, 42, 0.82) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.08) 0%,
+    rgba(15, 23, 42, 0.25) 38%,
+    rgba(15, 23, 42, 0.84) 72%,
+    rgba(15, 23, 42, 0.95) 100%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -491,112 +557,156 @@ button:focus-visible,
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 233, 64, 0.45);
-  color: var(--accent-secondary);
-  font-size: 0.78rem;
+.hero-editorial-box {
+  max-width: 720px;
+  border-left: 4px solid var(--accent-primary);
+  padding-left: 1.15rem;
+}
+
+.hero-kicker {
+  font-family: 'Zalando Sans', sans-serif;
+  font-size: 0.76rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.4rem 0.95rem;
-  border-radius: 999px;
-  margin-bottom: 1.25rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-secondary);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero-kicker-slash {
+  color: var(--accent-primary);
+  font-weight: 800;
 }
 
 .hero h1 {
-  font-size: clamp(2.1rem, 6vw, 4rem);
-  line-height: 1.1;
+  font-size: clamp(1.95rem, 6vw, 3.75rem);
+  line-height: 1.06;
   letter-spacing: -0.025em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-inverted);
-  text-shadow: 0 4px 24px rgba(15, 23, 42, 0.45);
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.hero p {
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-  color: rgba(255, 255, 255, 0.92);
-  max-width: 660px;
-  margin: 0 auto 2.25rem;
+.hero-lead {
+  font-size: clamp(0.98rem, 2vw, 1.2rem);
+  color: rgba(248, 250, 252, 0.9);
+  max-width: 540px;
+  margin: 0 0 1.5rem;
   font-weight: 400;
-  text-shadow: 0 2px 12px rgba(15, 23, 42, 0.4);
+  line-height: 1.5;
 }
 
-.hero-buttons {
+.hero-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  justify-content: center;
-  align-items: stretch;
-  max-width: 320px;
-  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.35rem;
 }
 
-/* --- Buttons (CD Guide: Zalando Sans SemiBold 600) --- */
+/* --- Charakterstarke Radsport-Buttons (Kein generischer AI-Look!) --- */
 .btn {
-  padding: 0.85rem 1.65rem;
-  min-height: var(--tap-target-min);
-  border-radius: var(--radius-sm);
+  padding: 0.68rem 1.25rem;
+  min-height: 2.65rem;
+  border-radius: 4px;
+  font-family: 'Zalando Sans', sans-serif;
   font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.03em;
-  transition: all var(--transition-fast);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  text-align: center;
+  gap: 0.55rem;
+  width: auto;
   touch-action: manipulation;
   cursor: pointer;
-  border: none;
+  position: relative;
 }
 
-.btn-primary {
-  background-color: var(--accent-text);
-  color: var(--text-inverted) !important;
-  box-shadow: 0 4px 14px rgba(196, 0, 84, 0.28);
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+  font-size: 1.05em;
+  line-height: 1;
 }
 
-.btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: var(--text-inverted) !important;
+.btn:hover .btn-arrow,
+.hero-link-cta:hover .btn-arrow,
+.read-more:hover .btn-arrow,
+.view-all:hover .btn-arrow {
+  transform: translateX(4px);
 }
 
+/* Signal-Gelb (#FFE940) mit scharfer #0F172A Kontur & Pinkem (#FA006C) Offset-Schatten */
 .btn-yellow {
   background-color: var(--accent-secondary);
   color: var(--text-primary) !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.85rem;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  border: 1.5px solid var(--text-primary);
+  box-shadow: 3px 3px 0 var(--accent-primary);
 }
 
 .btn-yellow:hover {
   background-color: var(--accent-yellow-hover);
   color: var(--text-primary) !important;
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0 var(--accent-primary);
 }
 
-.btn-secondary {
-  background-color: rgba(15, 23, 42, 0.72);
+/* Pinker Primär-Button mit dunklem Offset-Schatten */
+.btn-primary {
+  background-color: var(--accent-text);
   color: var(--text-inverted) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1.5px solid var(--text-primary);
+  box-shadow: 3px 3px 0 var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.24);
+.btn-primary:hover {
+  background-color: var(--accent-hover);
   color: var(--text-inverted) !important;
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0 var(--text-primary);
+}
+
+/* Dunkler Kontrast-Button (z. B. auf gelbem Plakat-Banner) mit Pinkem Offset */
+.btn-dark {
+  background-color: var(--text-primary);
+  color: var(--text-inverted) !important;
+  border: 1.5px solid var(--text-primary);
+  box-shadow: 3px 3px 0 var(--accent-primary);
+}
+
+.btn-dark:hover {
+  background-color: #1e293b;
+  color: var(--text-inverted) !important;
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0 var(--accent-primary);
+}
+
+/* Editorial Link-CTA im Hero (statt klobigem grauem Kasten) */
+.hero-link-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-inverted) !important;
+  font-family: 'Zalando Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.45rem 0.1rem;
+  border-bottom: 2px solid var(--accent-secondary);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hero-link-cta:hover {
+  color: var(--accent-secondary) !important;
+  border-color: var(--accent-primary);
 }
 
 /* ============================================================
@@ -1062,30 +1172,32 @@ hr.divider {
   margin-bottom: 1.25rem;
 }
 
-/* Zurück-Button: Exakt Signal-Gelb #FFE940 + Uppercase wie im CD Guide Seite 3 */
+/* Zurück-Button & Download-Button im einheitlichen Radsport-Offset-Design */
 .btn-back {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: var(--tap-target-min);
+  min-height: 2.65rem;
   margin-top: 2rem;
-  padding: 0.8rem 1.6rem;
+  padding: 0.68rem 1.35rem;
   background: var(--accent-secondary);
-  border: none;
-  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--text-primary);
+  border-radius: 4px;
   color: var(--text-primary) !important;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  letter-spacing: 0.06em;
+  box-shadow: 3px 3px 0 var(--accent-primary);
+  transition: all 0.15s ease;
 }
 
 .btn-back:hover {
   background: var(--accent-yellow-hover);
   color: var(--text-primary) !important;
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0 var(--accent-primary);
 }
 
 /* ============================================================
@@ -1404,24 +1516,29 @@ hr.divider {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: 100%;
-  min-height: var(--tap-target-min);
+  width: auto;
+  min-height: 2.65rem;
   margin-top: 0.5rem;
   margin-bottom: 0.75rem;
-  padding: 0.8rem 1.4rem;
+  margin-right: 0.75rem;
+  padding: 0.68rem 1.25rem;
   background-color: var(--accent-secondary);
-  border: none;
-  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--text-primary);
+  border-radius: 4px;
   color: var(--text-primary) !important;
   font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: var(--shadow-sm);
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 3px 3px 0 var(--accent-primary);
+  transition: all 0.15s ease;
 }
 
 .btn-download:hover {
   background-color: var(--accent-yellow-hover);
   color: var(--text-primary) !important;
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0 var(--accent-primary);
 }
 
 /* Links page */
@@ -1785,18 +1902,24 @@ hr.divider {
   }
 }
 
-/* --- ab 640px (Tablets Portrait) --- */
+/* --- ab 640px (Tablets Portrait: 1-zeiliges Logo + Header-CTA sichtbar) --- */
 @media (min-width: 640px) {
   .container {
     padding: 0 1.75rem;
   }
 
-  .site-logo {
-    font-size: 1.1rem;
+  .logo-wordmark {
+    flex-direction: row;
+    gap: 0.35rem;
+    font-size: 1.08rem;
   }
 
   .logo-icon svg {
-    height: 2.15rem;
+    height: 2.1rem;
+  }
+
+  .btn-header-cta {
+    display: inline-flex;
   }
 
   .termine-grid,
@@ -1860,8 +1983,8 @@ hr.divider {
 /* --- ab 768px (Tablets Landscape) --- */
 @media (min-width: 768px) {
   .hero {
-    min-height: 540px;
-    padding: 7.5rem 0 6.5rem;
+    min-height: 520px;
+    padding: 13rem 0 3.75rem;
   }
 
   .section,
@@ -1914,7 +2037,8 @@ hr.divider {
     font-size: 0.8rem;
   }
 
-  .mobile-menu-toggle {
+  .mobile-menu-toggle,
+  .nav-mobile-cta {
     display: none;
   }
 
@@ -1969,8 +2093,8 @@ hr.divider {
   }
 
   .hero {
-    min-height: 600px;
-    padding: 9.5rem 0 8rem;
+    min-height: 580px;
+    padding: 15rem 0 4.5rem;
   }
 
   .section,
@@ -2004,15 +2128,6 @@ hr.divider {
 
 /* --- Hover-Effekte auf Maus-/Trackpad-Geräten --- */
 @media (hover: hover) {
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .btn-yellow:hover,
-  .btn-back:hover,
-  .btn-header-cta:hover,
-  .btn-download:hover {
-    transform: translateY(-2px);
-  }
-
   .news-card:hover,
   .termin-card:hover,
   .sponsor-page-card:hover,

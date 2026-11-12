@@ -12,7 +12,7 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
 ---
 
 <BaseLayout title="RSV Schwalbe Ellmendingen | Der Radsportverein in Baden">
-  <!-- HERO (Exakt nach RSV-Corporate-Design.pdf Seite 2, LCP-optimiertes <img> statt CSS background-image) -->
+  <!-- HERO (Exakt nach RSV-Corporate-Design.pdf Seite 2 — ohne generische AI-Badges/Klötze) -->
   <section class="hero">
     <img
       src="/images/home/hero.webp"
@@ -26,12 +26,23 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
     />
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container hero-content">
-      <span class="hero-badge">RSV Schwalbe Ellmendingen e.&thinsp;V. · Seit 1897</span>
-      <h1>Der Radsportverein in Baden</h1>
-      <p>Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.</p>
-      <div class="hero-buttons">
-        <a href="/mitglied-werden" class="btn btn-yellow">Mitglied werden</a>
-        <a href="/training" class="btn btn-secondary">Training &amp; Ausfahrten</a>
+      <div class="hero-editorial-box">
+        <p class="hero-kicker">
+          <span class="hero-kicker-slash" aria-hidden="true">//</span>
+          Seit 1897 in Keltern-Ellmendingen
+        </p>
+        <h1>Der Radsportverein in Baden</h1>
+        <p class="hero-lead">Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.</p>
+        <div class="hero-actions">
+          <a href="/mitglied-werden" class="btn btn-yellow">
+            <span>Mitglied werden</span>
+            <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/training" class="hero-link-cta">
+            <span>Training &amp; Ausfahrten</span>
+            <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -61,14 +72,18 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
               <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
               <div class="news-meta">{post.data.date}</div>
               <a href={`/blog/${post.slug}`} class="read-more" aria-label={`Weiterlesen: ${post.data.title}`}>
-                Weiterlesen
+                <span>Weiterlesen</span>
+                <span class="btn-arrow" aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </article>
         ))}
       </div>
       <div class="section-footer-action">
-        <a href="/berichte" class="view-all">Alle Vereinsberichte ansehen &rarr;</a>
+        <a href="/berichte" class="view-all">
+          <span>Alle Vereinsberichte</span>
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
@@ -115,7 +130,10 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
         <span class="poster-kicker">14. Mai 2026</span>
         <h2>Radrennen &bdquo;Rund um die Alte Kelter&ldquo;</h2>
         <p>Das traditionsreiche Straßenrennen im Ortskern von Keltern-Ellmendingen – für Schüler, Jugend, Jedermänner und Amateure.</p>
-        <a href="/veranstaltung-detail" class="btn btn-primary">Zum Programm &amp; Zeitplan</a>
+        <a href="/veranstaltung-detail" class="btn btn-dark">
+          <span>Programm &amp; Zeitplan</span>
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
@@ -141,7 +159,10 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
         ))}
       </div>
       <div class="gallery-cta-wrap">
-        <a href="/bilder" class="btn btn-yellow">Alle Bilder ansehen</a>
+        <a href="/bilder" class="btn btn-yellow">
+          <span>Zur Bildergalerie</span>
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
