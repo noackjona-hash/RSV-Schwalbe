@@ -1,7 +1,7 @@
 /* ============================================================
-   RSV Schwalbe Ellmendingen — Corporate Design Stylesheet
-   Architektur: 100 % Mobile-First (min-width Breakpoints)
-   Lokale Schriftarten (DSGVO-konform, keine externen Requests)
+   RSV Schwalbe Ellmendingen — Corporate Design System v2.0
+   100 % Mobile-First · Basierend auf RSV-Corporate-Design.pdf
+   Lokale Schriftarten (DSGVO-konform, 0 externe Requests)
    ============================================================ */
 
 /* --- Lokale @font-face Definitionen --- */
@@ -81,32 +81,42 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* --- Custom Properties --- */
+/* --- Corporate Design Tokens (Exakt nach RSV-Corporate-Design.pdf Seite 1) --- */
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text-primary: #0f172a;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #F1F5F9;
+  --text-primary: #0F172A;
   --text-secondary: #475569;
-  --text-muted: #64748b;
+  --text-muted: #94A3B8;
+  --text-inverted: #FFFFFF;
   --accent-primary: #FA006C;
   --accent-secondary: #FFE940;
-  --accent-hover: #CA005C;
-  --border-color: #e2e8f0;
-  --card-bg: #ffffff;
-  --header-bg: rgba(255, 255, 255, 0.9);
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-  --transition-fast: 0.2s ease;
-  --container-width: 1200px;
-  --header-height: 4.25rem;
-  --tap-target-min: 2.75rem; /* 44px WCAG / Mobile Touch Standard */
+  --accent-hover: #D4005B;
+  --accent-yellow-hover: #F5DC18;
+  --border-color: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --card-bg: #FFFFFF;
+  --header-bg: rgba(255, 255, 255, 0.94);
+
+  /* Moderne, weiche Schatten wie im Design-Guide (Seite 2 & 3) */
+  --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 1px 3px -1px rgba(15, 23, 42, 0.03);
+  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 24px 48px -12px rgba(15, 23, 42, 0.14);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --container-width: 1220px;
+  --header-height: 4.5rem;
+  --tap-target-min: 2.75rem; /* 44px Touch Standard */
 }
 
-/* --- Reset & Mobile-First Base --- */
+/* --- Reset & Base --- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -121,38 +131,43 @@ html {
 
 body {
   font-family: 'Zalando Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.65;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Überschriften: Zalando Sans Expanded SemiBold (600) laut CD Guide */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Zalando Sans Expanded', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
   margin-bottom: 0.85rem;
   color: var(--text-primary);
   overflow-wrap: break-word;
 }
 
-/* Mobile-First Fluid Typography */
-h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); }
-h2 { font-size: clamp(1.4rem, 4vw, 2rem); }
-h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+h1 { font-size: clamp(1.85rem, 5vw, 2.75rem); }
+h2 { font-size: clamp(1.5rem, 3.8vw, 2.15rem); }
+h3 { font-size: clamp(1.15rem, 2.8vw, 1.4rem); }
 
 p {
   margin-bottom: 1rem;
   color: var(--text-secondary);
 }
 
+/* Akzent / Link / Button: Zalando Sans SemiBold (600) laut CD Guide */
 a {
   color: var(--accent-primary);
+  font-weight: 600;
   text-decoration: none;
   transition: color var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
@@ -165,6 +180,7 @@ a:hover {
 button {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  font-family: inherit;
 }
 
 img {
@@ -177,23 +193,22 @@ main {
   flex: 1;
 }
 
-/* Mobile-First Container: 1rem (16px) auf Smartphones */
 .container {
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.15rem;
 }
 
-/* --- Accessibility & Focus --- */
+/* --- Accessibility --- */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 1rem;
   background: var(--accent-primary);
-  color: #ffffff !important;
-  padding: 0.65rem 1.15rem;
-  border-radius: var(--radius-md);
+  color: var(--text-inverted) !important;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   z-index: 9999;
   transition: top var(--transition-fast);
@@ -213,16 +228,16 @@ button:focus-visible,
 }
 
 /* ============================================================
-   HEADER & NAVIGATION (Mobile-First: Drawer als Standard)
+   HEADER & NAVIGATION (Exakt nach CD Guide Seite 2, Mobile-First)
    ============================================================ */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
   background-color: var(--header-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -233,35 +248,42 @@ button:focus-visible,
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .site-logo {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.65rem;
   font-family: 'Zalando Sans Expanded', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   text-decoration: none;
   white-space: nowrap;
   min-height: var(--tap-target-min);
 }
 
 .site-logo:hover {
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
+/* Das Schwalbe-Radfahrer-Icon ist laut CD Guide IMMER Pink (#FA006C) */
 .logo-icon {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  color: var(--accent-primary);
+  transition: transform var(--transition-fast);
+}
+
+.site-logo:hover .logo-icon {
+  transform: translateX(2px);
 }
 
 .logo-icon svg {
-  height: 1.65rem;
+  height: 1.95rem;
   width: auto;
 }
 
@@ -271,14 +293,17 @@ button:focus-visible,
   gap: 0.5rem;
 }
 
+/* CTA Button im Header: Signal-Gelb #FFE940 mit #0F172A Text & Uppercase (CD Guide S. 2) */
 .btn-header-cta {
-  background-color: var(--accent-primary);
-  color: #fff !important;
-  padding: 0.5rem 0.75rem !important;
-  border-radius: var(--radius-md);
+  background-color: var(--accent-secondary);
+  color: var(--text-primary) !important;
+  padding: 0.55rem 0.9rem !important;
+  border-radius: var(--radius-sm);
   font-weight: 600 !important;
-  font-size: 0.82rem;
-  transition: background-color var(--transition-fast);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   white-space: nowrap;
   min-height: 2.35rem;
   display: inline-flex;
@@ -286,16 +311,16 @@ button:focus-visible,
 }
 
 .btn-header-cta:hover {
-  background-color: var(--accent-hover) !important;
-  color: #fff !important;
+  background-color: var(--accent-yellow-hover) !important;
+  color: var(--text-primary) !important;
 }
 
-/* Mobile Menu Button: Auf Smartphones standardmäßig sichtbar */
+/* Mobile Menu Button */
 .mobile-menu-toggle {
   display: inline-flex;
-  background: none;
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   min-width: var(--tap-target-min);
   min-height: var(--tap-target-min);
   padding: 0.5rem;
@@ -303,21 +328,22 @@ button:focus-visible,
   color: var(--text-primary);
   align-items: center;
   justify-content: center;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .mobile-menu-toggle:hover,
 .mobile-menu-toggle[aria-expanded="true"] {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
+  background: rgba(250, 0, 108, 0.05);
 }
 
 .mobile-menu-toggle svg {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
-/* Mobile Navigation Drawer (Standard auf Smartphones) */
+/* Mobile Navigation Drawer */
 .site-nav {
   display: none;
   position: absolute;
@@ -329,8 +355,8 @@ button:focus-visible,
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-lg);
-  padding: 0.75rem 1rem 1.25rem;
-  z-index: 90;
+  padding: 0.85rem 1.15rem 1.5rem;
+  z-index: 95;
 }
 
 .site-nav.is-open {
@@ -341,7 +367,7 @@ button:focus-visible,
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.15rem;
+  gap: 0.2rem;
   list-style: none;
 }
 
@@ -351,10 +377,12 @@ button:focus-visible,
 
 .site-nav a,
 .site-nav .nav-toggle {
-  color: var(--text-secondary);
-  font-weight: 500;
-  font-size: 1rem;
-  padding: 0.7rem 0.25rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 0.5rem;
   min-height: var(--tap-target-min);
   width: 100%;
   cursor: pointer;
@@ -364,19 +392,23 @@ button:focus-visible,
   gap: 0.35rem;
   background: none;
   border: none;
+  border-radius: var(--radius-sm);
   font-family: inherit;
   touch-action: manipulation;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .nav-caret {
-  width: 0.95em;
-  height: 0.95em;
+  width: 0.85em;
+  height: 0.85em;
   flex-shrink: 0;
   transition: transform var(--transition-fast);
+  opacity: 0.7;
 }
 
 .site-nav > ul > li.open > .nav-toggle .nav-caret {
   transform: rotate(180deg);
+  opacity: 1;
 }
 
 .site-nav a:hover,
@@ -392,9 +424,9 @@ button:focus-visible,
   position: static;
   background: var(--bg-secondary);
   border-left: 3px solid var(--accent-primary);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   margin: 0.15rem 0 0.5rem 0.5rem;
-  padding: 0.25rem 0;
+  padding: 0.35rem 0;
   list-style: none;
 }
 
@@ -407,204 +439,198 @@ button:focus-visible,
   align-items: center;
   padding: 0.65rem 1rem;
   min-height: 2.5rem;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
-.site-nav .dropdown li a:hover {
+.site-nav .dropdown li a:hover,
+.site-nav .dropdown li a.active {
   background-color: var(--bg-tertiary);
   color: var(--accent-primary);
 }
 
 /* ============================================================
-   HERO & BUTTONS (Mobile-First)
+   HERO SECTION (Exakt nach CD Guide Seite 2: Vollbild-Radsportfoto)
    ============================================================ */
 .hero {
   position: relative;
-  padding: 3.75rem 0 3.25rem;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1a0014 100%);
-  color: white;
+  min-height: 460px;
+  padding: 5.5rem 0 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--text-primary);
+  background-image:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.48) 0%, rgba(15, 23, 42, 0.76) 100%),
+    url('/images/home/Amateure1.webp');
+  background-size: cover;
+  background-position: center 35%;
+  color: var(--text-inverted);
   text-align: center;
   overflow: hidden;
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--accent-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+
 .hero h1 {
-  font-size: clamp(1.9rem, 6.5vw, 3.5rem);
+  font-size: clamp(2.1rem, 6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   margin-bottom: 1rem;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--text-inverted);
+  text-shadow: 0 4px 24px rgba(15, 23, 42, 0.45);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero p {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: #f8fafc;
-  max-width: 600px;
-  margin: 0 auto 2rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 660px;
+  margin: 0 auto 2.25rem;
+  font-weight: 400;
+  text-shadow: 0 2px 12px rgba(15, 23, 42, 0.4);
 }
 
 .hero-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
   justify-content: center;
   align-items: stretch;
   max-width: 320px;
   margin: 0 auto;
 }
 
+/* --- Buttons (CD Guide: Zalando Sans SemiBold 600) --- */
 .btn {
-  padding: 0.8rem 1.5rem;
+  padding: 0.85rem 1.65rem;
   min-height: var(--tap-target-min);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
   transition: all var(--transition-fast);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   text-align: center;
   touch-action: manipulation;
+  cursor: pointer;
+  border: none;
 }
 
 .btn-primary {
   background-color: var(--accent-primary);
-  color: #ffffff;
+  color: var(--text-inverted) !important;
+  box-shadow: 0 4px 14px rgba(250, 0, 108, 0.28);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
-  color: #ffffff;
-}
-
-.btn-secondary {
-  background-color: rgba(255, 255, 255, 0.12);
-  color: white;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.22);
-  color: white;
+  color: var(--text-inverted) !important;
 }
 
 .btn-yellow {
   background-color: var(--accent-secondary);
-  color: #0f172a;
+  color: var(--text-primary) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
 }
 
 .btn-yellow:hover {
-  background-color: #e6d000;
-  color: #0f172a;
+  background-color: var(--accent-yellow-hover);
+  color: var(--text-primary) !important;
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--text-inverted) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.24);
+  color: var(--text-inverted) !important;
 }
 
 /* ============================================================
-   SECTIONS & GRIDS (Mobile-First: 1 Spalte auf Smartphones)
+   SECTIONS (CD Guide Seite 2: Zentrierte Überschriften & klare Ebenen)
    ============================================================ */
 .section {
-  padding: 3rem 0;
+  padding: 3.75rem 0;
+  background-color: var(--bg-primary);
 }
 
 .section-alt {
-  padding: 3rem 0;
+  padding: 3.75rem 0;
   background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
 }
 
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.65rem;
-  margin-bottom: 1.75rem;
-}
-
+.section-header,
 .section-header-center {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2,
+.section-header-center h2 {
+  margin-bottom: 0.5rem;
 }
 
 .section-subtitle {
-  color: var(--text-muted);
-  margin-bottom: 0;
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.section-footer-action {
+  text-align: center;
+  margin-top: 2.25rem;
 }
 
 .view-all {
-  font-weight: 600;
   display: inline-flex;
   align-items: center;
-  min-height: 2.25rem;
-}
-
-/* Termine (Mobile: 1 Spalte) */
-.termine-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.termin-card {
-  display: flex;
-  align-items: center;
-  background: var(--card-bg);
-  padding: 1.15rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  gap: 1.15rem;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-a.termin-card {
-  text-decoration: none;
-  color: inherit;
-}
-
-.termin-card-highlight {
-  border-left: 4px solid var(--accent-secondary);
-}
-
-.termin-date {
-  background: rgba(250, 0, 108, 0.1);
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   color: var(--accent-primary);
-  padding: 0.75rem;
-  border-radius: var(--radius-md);
-  text-align: center;
-  min-width: 72px;
-  flex-shrink: 0;
 }
 
-.termin-date-yellow {
-  background: rgba(255, 233, 64, 0.25);
-  color: #7a6800;
+.view-all:hover {
+  color: var(--accent-hover);
 }
 
-.termin-date .day {
-  display: block;
-  font-size: 1.55rem;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.termin-date .month {
-  display: block;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-top: 0.2rem;
-}
-
-.termin-info h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.2rem;
-}
-
-.termin-info p {
-  margin: 0;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-/* News (Mobile: 1 Spalte) */
+/* ============================================================
+   NEUES AUS DEM VEREIN (Exakt nach CD Guide Seite 2: Media Cards)
+   ============================================================ */
 .news-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -613,141 +639,322 @@ a.termin-card {
 
 .news-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 1.35rem;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  display: flex;
-  flex-direction: column;
+  padding: 1.15rem;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-fast);
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  gap: 1.15rem;
+  align-items: center;
 }
 
-.news-meta {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 0.45rem;
+.news-card-thumb {
+  width: 105px;
+  height: 105px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-tertiary);
+  flex-shrink: 0;
+}
+
+.news-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.news-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .news-card h3 {
-  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
 }
 
 .news-card h3 a {
   color: var(--text-primary);
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 600;
 }
 
 .news-card h3 a:hover {
   color: var(--accent-primary);
 }
 
+.news-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 0.65rem;
+}
+
+.news-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.65rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .read-more {
   margin-top: auto;
   font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--accent-primary);
   display: inline-flex;
   align-items: center;
-  padding-top: 0.75rem;
-  min-height: 2.25rem;
+  gap: 0.25rem;
 }
 
-/* Gallery Home (Mobile: 1 Spalte) */
+/* ============================================================
+   NÄCHSTE VERANSTALTUNGEN (Exakt nach CD Guide Seite 2)
+   ============================================================ */
+.termine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.termin-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--card-bg);
+  padding: 1.6rem 1.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+}
+
+a.termin-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.termin-kicker {
+  font-family: 'Zalando Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-primary);
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.termin-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.termin-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.termin-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.termin-meta-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--accent-primary);
+}
+
+/* Highlight-Banner im Stil des Plakats (CD Guide Seite 6: Gelb #FFE940 + Pink #FA006C) */
+.poster-banner {
+  background: var(--accent-secondary);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  margin-top: 2.5rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-kicker {
+  display: inline-block;
+  color: var(--accent-primary);
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  margin-bottom: 0.25rem;
+}
+
+.poster-banner h2 {
+  color: var(--text-primary);
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  margin-bottom: 0.5rem;
+}
+
+.poster-banner p {
+  color: var(--text-primary);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   BILDER TEASER & SPARTEN BENTO (CD Guide Seite 2)
+   ============================================================ */
 .gallery-home-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.25rem;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .gallery-item {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  aspect-ratio: 16 / 10;
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 1 / 1;
   background-color: var(--bg-tertiary);
+  position: relative;
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gallery-cta-wrap {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 2.25rem;
 }
 
-/* Sponsoren (Home) — Mobile-First: farbig & gut erkennbar auf Touchscreens */
+/* ============================================================
+   UNSERE SPONSOREN (Exakt nach CD Guide Seite 2: Soft Container + Grid)
+   ============================================================ */
 .sponsoren-home {
-  padding: 3rem 0;
+  padding: 2rem 0 4.5rem;
   text-align: center;
-  border-top: 1px solid var(--border-color);
 }
 
-.sponsoren-title {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
+.sponsoren-home h2 {
+  margin-bottom: 2rem;
+}
+
+.sponsoren-showcase {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.25rem;
+  border: 1px solid var(--border-subtle);
 }
 
 .sponsoren-flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   align-items: center;
-  gap: 1.5rem;
 }
 
 .sponsor-box {
-  padding: 0.4rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  height: 82px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .sponsor-box img {
-  max-height: 48px;
-  max-width: 130px;
+  max-height: 52px;
+  max-width: 135px;
   width: auto;
   height: auto;
   object-fit: contain;
 }
 
-/* Banner */
+/* Banner Leidenschaft */
 .banner-leidenschaft {
   background: var(--accent-secondary);
-  padding: 2.75rem 0;
+  padding: 3.5rem 0;
   text-align: center;
 }
 
 .banner-leidenschaft h2 {
-  color: #0f172a;
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--text-primary);
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
   margin-bottom: 0.65rem;
 }
 
 .banner-leidenschaft p {
-  color: #334155;
-  max-width: 560px;
-  margin: 0 auto 1.5rem;
-  font-size: 1rem;
+  color: var(--text-primary);
+  opacity: 0.88;
+  max-width: 580px;
+  margin: 0 auto 1.75rem;
+  font-size: 1.05rem;
 }
 
 /* ============================================================
-   INNER PAGE LAYOUT & FOOTER (Mobile-First)
+   INNER PAGE LAYOUT & ELEVATED CARDS (CD Guide Seite 3)
    ============================================================ */
 .page-body {
-  padding: 2.25rem 0 3rem;
+  padding: 2.5rem 0 4rem;
+  background-color: var(--bg-secondary);
+  min-height: calc(100vh - var(--header-height) - 220px);
+}
+
+/* Moderne erhöhte Inhaltskarte auf Unterseiten (wie im CD Guide Seite 3) */
+.page-body > .container {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
+  padding: 1.75rem 1.35rem;
+  max-width: 1060px;
 }
 
 .page-body h1 {
   margin-bottom: 1.15rem;
+  position: relative;
 }
 
 .page-body h2 {
-  margin-top: 2rem;
+  margin-top: 2.25rem;
   margin-bottom: 0.85rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.page-body h1 + h2,
+.page-body p + h2:first-of-type {
+  border-top: none;
+  padding-top: 0.5rem;
 }
 
 .page-body h3 {
@@ -757,12 +964,12 @@ a.termin-card {
 
 .page-body ul {
   margin-left: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
   color: var(--text-secondary);
 }
 
 .page-body li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 hr.divider {
@@ -772,12 +979,99 @@ hr.divider {
   margin: 2.25rem 0;
 }
 
-/* Footer (Mobile-First: gestapelt) */
-.site-footer {
+/* ============================================================
+   ARTIKEL / BERICHTE DETAILSEITE (Exakt nach CD Guide Seite 3!)
+   ============================================================ */
+.article-page-wrap {
   background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-  padding: 2.75rem 0 1.75rem;
-  margin-top: 3rem;
+  padding: 2.25rem 1rem 4rem;
+}
+
+.article {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
+  padding: 1.75rem 1.35rem;
+}
+
+.article h1 {
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  margin-bottom: 0.4rem;
+}
+
+.article-meta {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+/* 3-Spalten Artikel-Fotogrid wie im CD Guide Seite 3 */
+.article-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.article-photo-item {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.article-photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-body {
+  line-height: 1.75;
+  font-size: 1.04rem;
+}
+
+.article-body p {
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+/* Zurück-Button: Exakt Signal-Gelb #FFE940 + Uppercase wie im CD Guide Seite 3 */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--tap-target-min);
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  background: var(--accent-secondary);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-back:hover {
+  background: var(--accent-yellow-hover);
+  color: var(--text-primary) !important;
+}
+
+/* ============================================================
+   FOOTER (Exakt nach CD Guide Seite 2)
+   ============================================================ */
+.site-footer {
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 3rem 0 2rem;
 }
 
 .footer-grid {
@@ -786,43 +1080,49 @@ hr.divider {
   align-items: flex-start;
   gap: 2rem;
   margin-bottom: 2.25rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-brand {
   font-family: 'Zalando Sans Expanded', sans-serif;
   font-weight: 600;
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--text-primary);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
 .footer-text {
-  color: var(--text-muted);
-  max-width: 320px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  max-width: 360px;
   margin-bottom: 0;
+  line-height: 1.55;
 }
 
 .footer-nav-group {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(120px, 1fr));
-  gap: 1.5rem 2rem;
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
 }
 
 .footer-links h4 {
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer-links ul {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
 }
 
 .footer-links a {
   color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.88rem;
   display: inline-flex;
   align-items: center;
   min-height: 2rem;
@@ -835,14 +1135,14 @@ hr.divider {
 .footer-copy {
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border-subtle);
   padding-top: 1.5rem;
   margin-bottom: 0;
 }
 
 /* ============================================================
-   SPECIFIC PAGE STYLES (Mobile-First)
+   SPECIFIC PAGE COMPONENTS (Mobile-First)
    ============================================================ */
 
 /* Kontakt */
@@ -850,45 +1150,52 @@ hr.divider {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 500px;
+  max-width: 540px;
   margin-top: 1.5rem;
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
 }
 
 .contact-form label {
   display: block;
   margin-bottom: 0.35rem;
   font-weight: 600;
+  font-size: 0.92rem;
   color: var(--text-primary);
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.75rem 0.9rem;
   min-height: var(--tap-target-min);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: inherit;
-  font-size: 1rem; /* 16px verhindert Auto-Zoom unter iOS Safari */
+  font-size: 1rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  outline: 2px solid var(--accent-primary);
-  border-color: transparent;
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(250, 0, 108, 0.12);
 }
 
 .btn-submit {
   background: var(--accent-primary);
   color: white;
-  padding: 0.8rem 1.5rem;
+  padding: 0.85rem 1.75rem;
   min-height: var(--tap-target-min);
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   align-self: stretch;
   font-family: inherit;
@@ -899,46 +1206,55 @@ hr.divider {
   background: var(--accent-hover);
 }
 
-/* Fahrer (Mobile: 1 Spalte, ab 480px 2 Spalten) */
+/* Fahrer */
 .fahrer-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
   margin-top: 1.25rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .fahrer-card {
   background: var(--bg-secondary);
-  padding: 1.25rem;
+  padding: 1.35rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-primary);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .fahrer-card h4 {
   margin-bottom: 0.25rem;
+  font-size: 1.05rem;
 }
 
 .fahrer-card p {
-  font-size: 0.875rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   margin: 0;
 }
 
-/* Sponsoren (dedicated page — Mobile: 2 kompakte Spalten) */
+/* Sponsoren (dedicated page) */
 .sponsoren-page-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1.75rem;
   align-items: center;
+  background: var(--bg-secondary);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
 }
 
 .sponsor-page-card {
-  background: #fff;
+  background: var(--bg-primary);
   padding: 1rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -948,12 +1264,12 @@ hr.divider {
 }
 
 .sponsor-page-card img {
-  max-height: 75px;
+  max-height: 72px;
   max-width: 100%;
   object-fit: contain;
 }
 
-/* Bilder (Gallery page — Mobile: 1 Spalte) */
+/* Bilder (Gallery page) */
 .gallery-page-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -964,34 +1280,23 @@ hr.divider {
 .gallery-page-item {
   border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-tertiary);
+  box-shadow: var(--shadow-sm);
 }
 
 .gallery-page-item img {
   width: 100%;
-  height: 210px;
+  height: 240px;
   object-fit: cover;
   display: block;
 }
 
-.gallery-page-caption {
-  padding: 0.85rem 1rem;
-}
-
-.gallery-page-caption p {
-  margin: 0;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--text-primary);
-}
-
-/* Social / Instagram Callout Card (Mobile-First) */
+/* Social Callout */
 .social-callout {
-  margin-top: 2.25rem;
-  padding: 1.5rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  margin-top: 2.5rem;
+  padding: 1.65rem;
+  background: var(--accent-secondary);
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
@@ -1002,10 +1307,13 @@ hr.divider {
 .social-callout h3 {
   margin-top: 0;
   margin-bottom: 0.25rem;
+  color: var(--text-primary);
 }
 
 .social-callout p {
   margin-bottom: 0;
+  color: var(--text-primary);
+  opacity: 0.88;
 }
 
 .social-callout .btn {
@@ -1029,57 +1337,29 @@ hr.divider {
   font-size: 0.95rem;
 }
 
-/* Blog post / Artikel (Mobile-First) */
-.article {
-  max-width: 800px;
-  margin: 2.25rem auto;
-  padding: 0 1rem;
-}
-
-.article-meta {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-.article-body {
-  line-height: 1.75;
-}
-
-.btn-back {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap-target-min);
-  margin-top: 2.25rem;
-  padding: 0.65rem 1.25rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.btn-back:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-}
-
 /* Mitglied werden */
 .beitrags-tabelle {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   border-collapse: collapse;
   margin: 0.75rem 0 1.75rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .beitrags-tabelle tr {
   border-bottom: 1px solid var(--border-color);
 }
 
+.beitrags-tabelle tr:last-child {
+  border-bottom: none;
+}
+
 .beitrags-tabelle td {
-  padding: 0.65rem 0.35rem;
+  padding: 0.8rem 1rem;
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.94rem;
 }
 
 .beitrags-tabelle td:last-child {
@@ -1087,7 +1367,6 @@ hr.divider {
   font-weight: 600;
   color: var(--text-primary);
   white-space: nowrap;
-  padding-left: 0.75rem;
 }
 
 .btn-download {
@@ -1099,19 +1378,20 @@ hr.divider {
   min-height: var(--tap-target-min);
   margin-top: 0.5rem;
   margin-bottom: 0.75rem;
-  padding: 0.7rem 1.25rem;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
+  padding: 0.8rem 1.4rem;
+  background-color: var(--accent-secondary);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary) !important;
   font-weight: 600;
-  font-size: 0.92rem;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .btn-download:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
+  background-color: var(--accent-yellow-hover);
+  color: var(--text-primary) !important;
 }
 
 /* Links page */
@@ -1121,22 +1401,23 @@ hr.divider {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 560px;
+  max-width: 600px;
 }
 
 .links-list li a {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
   min-height: var(--tap-target-min);
-  padding: 0.85rem 1.1rem;
+  padding: 0.95rem 1.25rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-weight: 600;
   font-size: 0.95rem;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
 }
 
 .links-list li a:hover {
@@ -1149,15 +1430,15 @@ hr.divider {
    ============================================================ */
 .article-gallery {
   position: relative;
-  margin: 1.75rem 0;
-  border-radius: var(--radius-lg);
+  margin: 1.5rem 0 2rem;
+  border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--bg-tertiary);
   user-select: none;
   -webkit-user-select: none;
   touch-action: pan-y pinch-zoom;
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1187,12 +1468,11 @@ hr.divider {
   pointer-events: none;
 }
 
-/* Touch-optimierte Buttons (44x44px Mindestgröße auf Smartphones) */
 .gallery-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.65);
   color: #fff;
   border: none;
   width: var(--tap-target-min);
@@ -1202,29 +1482,27 @@ hr.divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  transition: background var(--transition-fast);
   z-index: 2;
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .gallery-btn:hover,
 .gallery-btn:active {
-  background: rgba(250, 0, 108, 0.9);
+  background: var(--accent-primary);
 }
 
-.gallery-btn-prev { left: 0.5rem; }
-.gallery-btn-next { right: 0.5rem; }
+.gallery-btn-prev { left: 0.65rem; }
+.gallery-btn-next { right: 0.65rem; }
 
 .gallery-btn svg {
   width: 1.2rem;
   height: 1.2rem;
-  flex-shrink: 0;
 }
 
 .gallery-dots {
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.6rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1232,7 +1510,7 @@ hr.divider {
   z-index: 2;
   padding: 0.25rem 0.5rem;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(4px);
 }
 
@@ -1259,7 +1537,7 @@ hr.divider {
 }
 
 .gallery-dot.is-active::after {
-  background: #fff;
+  background: var(--accent-secondary);
   transform: scale(1.3);
 }
 
@@ -1277,25 +1555,25 @@ hr.divider {
   z-index: 2;
 }
 
-/* Blockquote (used in articles) */
+/* Blockquote */
 .article-body blockquote {
-  border-left: 3px solid var(--accent-primary);
-  margin: 1.5rem 0;
-  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--accent-primary);
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
   background: var(--bg-secondary);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 .article-body blockquote p {
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .article-body blockquote p:last-child {
   margin-bottom: 0;
 }
 
-/* --- Berichte Overview List (Mobile-First: gestapelte Karten) --- */
+/* --- Berichte Overview List --- */
 .berichte-list {
   display: flex;
   flex-direction: column;
@@ -1306,11 +1584,10 @@ hr.divider {
 .bericht-row {
   display: grid;
   grid-template-columns: 1fr;
-  background: var(--card-bg);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   text-decoration: none;
   color: inherit;
@@ -1331,7 +1608,7 @@ hr.divider {
 }
 
 .bericht-content {
-  padding: 1.15rem 1.25rem 1.25rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
 }
@@ -1340,6 +1617,8 @@ hr.divider {
   font-size: 1.2rem;
   margin-bottom: 0.45rem;
   margin-top: 0.2rem;
+  padding-top: 0;
+  border-top: none;
 }
 
 .bericht-content h2 a {
@@ -1351,12 +1630,12 @@ hr.divider {
 }
 
 .bericht-content p {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   margin-bottom: 0;
   flex: 1;
 }
 
-/* --- Lightbox (Mobile-First Vollbild-Ansicht) --- */
+/* --- Lightbox --- */
 .gallery-lightbox-trigger {
   padding: 0;
   cursor: zoom-in;
@@ -1373,8 +1652,8 @@ hr.divider {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.94);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -1448,7 +1727,7 @@ hr.divider {
    PROGRESSIVE ENHANCEMENT BREAKPOINTS (min-width Mobile-First)
    ============================================================ */
 
-/* --- ab 480px (Große Smartphones / Phablets) --- */
+/* --- ab 480px --- */
 @media (min-width: 480px) {
   .hero-buttons {
     flex-direction: row;
@@ -1470,43 +1749,46 @@ hr.divider {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
+
+  .sponsoren-flex {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* --- ab 640px (Tablets Portrait) --- */
 @media (min-width: 640px) {
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1.75rem;
   }
 
   .site-logo {
     font-size: 1.1rem;
-    gap: 0.55rem;
   }
 
   .logo-icon svg {
-    height: 1.85rem;
+    height: 2.15rem;
   }
 
   .termine-grid,
-  .news-grid,
-  .gallery-home-grid,
   .gallery-page-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .gallery-home-grid {
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
   .sponsoren-page-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
+    padding: 2rem;
   }
 
   .sponsor-page-card {
-    height: 140px;
+    height: 135px;
     padding: 1.5rem;
-  }
-
-  .sponsor-page-card img {
-    max-height: 90px;
   }
 
   .bericht-row {
@@ -1526,7 +1808,7 @@ hr.divider {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 2rem 2.25rem;
   }
 
   .social-callout .btn {
@@ -1534,32 +1816,41 @@ hr.divider {
     white-space: nowrap;
   }
 
+  .page-body > .container,
   .article {
-    margin: 3.5rem auto;
-    padding: 0 1.5rem;
+    padding: 2.5rem 2.5rem;
+  }
+
+  .article-photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }
 
-/* --- ab 768px (Tablets Landscape & kleine Laptops) --- */
+/* --- ab 768px (Tablets Landscape) --- */
 @media (min-width: 768px) {
   .hero {
-    padding: 6rem 0 5rem;
+    min-height: 540px;
+    padding: 7.5rem 0 6.5rem;
   }
 
   .section,
   .section-alt {
-    padding: 4.5rem 0;
+    padding: 4.75rem 0;
   }
 
-  .section-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 2.5rem;
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
-  .page-body {
-    padding: 3.5rem 0 4rem;
+  .sponsoren-showcase {
+    padding: 2.75rem 2.5rem;
+  }
+
+  .sponsoren-flex {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
   }
 
   .footer-grid {
@@ -1568,52 +1859,29 @@ hr.divider {
     align-items: flex-start;
   }
 
-  .footer-nav-group {
-    display: flex;
-    width: auto;
-    gap: 3rem;
+  .poster-banner {
+    padding: 3rem 2.5rem;
   }
-
-  .sponsoren-flex {
-    gap: 2.5rem;
-  }
-
-  .sponsor-box img {
-    max-height: 60px;
-    max-width: 160px;
-  }
-
-  .lightbox-backdrop {
-    padding: 2rem;
-  }
-
-  .lightbox-close {
-    top: 1.25rem;
-    right: 1.5rem;
-  }
-
-  .lightbox-prev { left: 1.5rem; }
-  .lightbox-next { right: 1.5rem; }
 }
 
-/* --- ab 960px (Desktop: Horizontale Navigation & 3-Spalten-Grids) --- */
+/* --- ab 960px (Desktop: Exaktes CD-Guide Layout Seite 2) --- */
 @media (min-width: 960px) {
   :root {
-    --header-height: 5rem;
+    --header-height: 5.25rem;
   }
 
   .site-logo {
-    font-size: 1.2rem;
-    gap: 0.6rem;
+    font-size: 1.22rem;
+    gap: 0.75rem;
   }
 
   .logo-icon svg {
-    height: 2rem;
+    height: 2.35rem;
   }
 
   .btn-header-cta {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem !important;
+    font-size: 0.8rem;
   }
 
   .mobile-menu-toggle {
@@ -1629,20 +1897,21 @@ hr.divider {
     border-bottom: none;
     box-shadow: none;
     padding: 0;
+    margin-left: auto;
+    margin-right: 1rem;
   }
 
   .site-nav > ul {
     flex-direction: row;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 
   .site-nav a,
   .site-nav .nav-toggle {
     width: auto;
     min-height: 0;
-    font-weight: 400;
-    font-size: 0.95rem;
+    font-size: 0.82rem;
     padding: 0.5rem 0;
     justify-content: flex-start;
   }
@@ -1650,102 +1919,89 @@ hr.divider {
   .site-nav .dropdown {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -0.75rem;
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    min-width: 190px;
+    box-shadow: var(--shadow-card-hover);
+    min-width: 200px;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     z-index: 100;
   }
 
   .site-nav .dropdown li a {
-    padding: 0.5rem 1rem;
+    padding: 0.55rem 0.85rem;
     min-height: 0;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    border-radius: var(--radius-sm);
     white-space: nowrap;
   }
 
-  .site-nav .dropdown li a:hover {
-    background-color: var(--bg-secondary);
-  }
-
   .hero {
-    padding: 8rem 0 6rem;
+    min-height: 600px;
+    padding: 9.5rem 0 8rem;
   }
 
   .section,
   .section-alt {
-    padding: 5rem 0;
+    padding: 5.5rem 0;
   }
 
-  .section-header {
-    margin-bottom: 3rem;
+  .news-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
   }
 
-  .termine-grid,
-  .news-grid,
-  .gallery-home-grid,
   .gallery-page-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .news-grid {
-    gap: 2rem;
-  }
-
-  .news-card {
-    padding: 2rem;
+  .sponsoren-flex {
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .fahrer-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 1.5rem;
+  }
+
+  .page-body > .container,
+  .article {
+    padding: 3.25rem 3.5rem;
   }
 }
 
-/* --- Hover-Effekte nur auf Geräten mit Maus/Trackpad (verhindert Sticky-Hover auf Touchscreens) --- */
+/* --- Hover-Effekte auf Maus-/Trackpad-Geräten --- */
 @media (hover: hover) {
   .btn-primary:hover,
   .btn-secondary:hover,
-  .btn-yellow:hover {
+  .btn-yellow:hover,
+  .btn-back:hover,
+  .btn-header-cta:hover,
+  .btn-download:hover {
     transform: translateY(-2px);
   }
 
+  .news-card:hover,
   .termin-card:hover,
   .sponsor-page-card:hover,
+  .sponsor-box:hover,
   .gallery-lightbox-trigger:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .news-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-card-hover);
   }
 
   .bericht-row:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
   }
 
+  .news-card:hover .news-card-thumb img,
   .gallery-item:hover img,
   .bericht-row:hover .bericht-thumb img,
   .gallery-lightbox-trigger:hover img {
-    transform: scale(1.04);
-  }
-
-  .sponsor-box {
-    filter: grayscale(100%);
-    opacity: 0.7;
-  }
-
-  .sponsor-box:hover {
     transform: scale(1.05);
-    filter: grayscale(0%);
-    opacity: 1;
   }
 }
 

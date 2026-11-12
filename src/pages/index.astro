@@ -9,108 +9,128 @@ const sortedTermine = allTermine.sort((a, b) => a.data.date.localeCompare(b.data
 
 const allBerichte = await getCollection('berichte', ({ data }) => data.showOnHome);
 const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.data.date));
-
-const homeSponsoren = sponsoren.filter((s) => s.showOnHome);
 ---
 
-<BaseLayout title="Startseite | RSV Schwalbe Ellmendingen">
+<BaseLayout title="RSV Schwalbe Ellmendingen | Der Radsportverein in Baden">
+  <!-- HERO (Exakt nach RSV-Corporate-Design.pdf Seite 2) -->
   <section class="hero">
     <div class="container">
-      <h1>RSV &ldquo;Schwalbe&rdquo; Ellmendingen</h1>
-      <p>Tradition, Radsport und Vereinsleben in Keltern seit über 125 Jahren. Entdecke unsere Leidenschaft für das Radfahren!</p>
+      <span class="hero-badge">RSV Schwalbe Ellmendingen e.&thinsp;V. · Seit 1897</span>
+      <h1>Der Radsportverein in Baden</h1>
+      <p>Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.</p>
       <div class="hero-buttons">
-        <a href="/mitglied-werden" class="btn btn-primary">Mitglied werden</a>
-        <a href="/verein" class="btn btn-secondary">Über den Verein</a>
+        <a href="/mitglied-werden" class="btn btn-yellow">Mitglied werden</a>
+        <a href="/training" class="btn btn-secondary">Training &amp; Ausfahrten</a>
       </div>
     </div>
   </section>
 
+  <!-- 1. NEUES AUS DEM VEREIN (Exakt nach RSV-Corporate-Design.pdf Seite 2) -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <div>
-          <h2>Nächste Termine</h2>
-          <p class="section-subtitle">Verpasse keine unserer kommenden Veranstaltungen und Ausfahrten.</p>
-        </div>
-        <a href="/veranstaltungen" class="view-all">Alle Termine &rarr;</a>
-      </div>
-      <div class="termine-grid">
-        {sortedTermine.map((termin) => (
-          <a href={termin.data.detailUrl} class="termin-card">
-            <div class="termin-date">
-              <span class="day">{termin.data.day}</span>
-              <span class="month">{termin.data.month}</span>
-            </div>
-            <div class="termin-info">
-              <h3>{termin.data.title}</h3>
-              <p>{termin.data.subtitle}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section-alt">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <h2>Aktuelle Berichte</h2>
-          <p class="section-subtitle">Neuigkeiten aus dem Vereinsleben und von den Rennstrecken.</p>
-        </div>
-        <a href="/berichte" class="view-all">Alle Berichte &rarr;</a>
+      <div class="section-header-center">
+        <h2>Neues aus dem Verein</h2>
       </div>
       <div class="news-grid">
         {sortedBerichte.map((post) => (
           <article class="news-card">
-            <div class="news-meta">
-              {post.data.dateDisplay}{post.data.category ? ` · ${post.data.category}` : ''}
+            {post.data.thumbnail && (
+              <a href={`/blog/${post.slug}`} class="news-card-thumb" tabindex="-1" aria-hidden="true">
+                <img src={post.data.thumbnail} alt={post.data.title} loading="lazy" decoding="async" />
+              </a>
+            )}
+            <div class="news-card-body">
+              <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+              <div class="news-meta">{post.data.date}</div>
+              <a href={`/blog/${post.slug}`} class="read-more">Weiterlesen</a>
             </div>
-            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
-            <p>{post.data.homeExcerpt || post.data.excerpt}</p>
-            <a href={`/blog/${post.slug}`} class="read-more">Weiterlesen &rarr;</a>
           </article>
         ))}
       </div>
+      <div class="section-footer-action">
+        <a href="/berichte" class="view-all">Alle Vereinsberichte ansehen &rarr;</a>
+      </div>
     </div>
   </section>
 
+  <!-- 2. NÄCHSTE VERANSTALTUNGEN (Exakt nach RSV-Corporate-Design.pdf Seite 2 & 6) -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-header-center">
+        <h2>Nächste Veranstaltungen</h2>
+      </div>
+      <div class="termine-grid">
+        {sortedTermine.map((termin) => (
+          <a href={termin.data.detailUrl} class="termin-card">
+            <div>
+              <span class="termin-kicker">
+                {termin.data.highlight ? 'Radrennen · Highlight' : 'Veranstaltung'}
+              </span>
+              <h3>{termin.data.title}</h3>
+            </div>
+            <div class="termin-meta-row">
+              <span class="termin-meta-item">
+                <svg class="termin-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                {termin.data.date}
+              </span>
+              <span class="termin-meta-item">
+                <svg class="termin-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                {termin.data.subtitle}
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Plakat-Highlight im Corporate Design (Seite 6 des Design-Guides) -->
+      <div class="poster-banner">
+        <span class="poster-kicker">14. Mai 2026</span>
+        <h2>Radrennen &bdquo;Rund um die Alte Kelter&ldquo;</h2>
+        <p>Das traditionsreiche Straßenrennen im Ortskern von Keltern-Ellmendingen – für Schüler, Jugend, Jedermänner und Amateure.</p>
+        <a href="/veranstaltung-detail" class="btn btn-primary">Zum Programm &amp; Zeitplan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BILDER (Exakt nach RSV-Corporate-Design.pdf Seite 2) -->
   <section class="section">
     <div class="container">
       <div class="section-header-center">
-        <h2>Radsport in Bildern</h2>
-        <p class="section-subtitle">Eindrücke von unseren Rennen, Ausfahrten und dem Training.</p>
+        <h2>Bilder</h2>
       </div>
       <div class="gallery-home-grid">
         {galerie.homeTeaser.map((img) => (
-          <div class="gallery-item">
+          <a href="/bilder" class="gallery-item" aria-label={img.alt}>
             <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-          </div>
+          </a>
         ))}
       </div>
       <div class="gallery-cta-wrap">
-        <a href="/bilder" class="btn btn-primary">Zur Bildergalerie</a>
+        <a href="/bilder" class="btn btn-yellow">Alle Bilder ansehen</a>
       </div>
     </div>
   </section>
 
-  <section class="banner-leidenschaft">
-    <div class="container">
-      <h2>Mit Leidenschaft dabei!</h2>
-      <p>Ob Rennrad, Nachwuchstraining oder gesellige Wandergruppe – beim RSV Schwalbe Ellmendingen findet jeder seinen Platz.</p>
-      <a href="/mitglied-werden" class="btn btn-primary">Mitglied werden</a>
-    </div>
-  </section>
-
+  <!-- 4. UNSERE SPONSOREN (Exakt nach RSV-Corporate-Design.pdf Seite 2) -->
   <section class="sponsoren-home">
     <div class="container">
-      <p class="sponsoren-title">Unsere Partner &amp; Sponsoren</p>
-      <div class="sponsoren-flex">
-        {homeSponsoren.map((sponsor) => (
-          <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-box">
-            <img src={sponsor.logo} alt={sponsor.name} loading="lazy" decoding="async" />
-          </a>
-        ))}
+      <h2>Unsere Sponsoren</h2>
+      <div class="sponsoren-showcase">
+        <div class="sponsoren-flex">
+          {sponsoren.map((sponsor) => (
+            <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-box" title={sponsor.name}>
+              <img src={sponsor.logo} alt={sponsor.name} loading="lazy" decoding="async" />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </section>

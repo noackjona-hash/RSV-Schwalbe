@@ -64,3 +64,4 @@ jobs:
           local-dir: ./dist/
           server-dir: ${{ secrets.FTP_TARGET_DIR || './' }}
           protocol: ftps
+
