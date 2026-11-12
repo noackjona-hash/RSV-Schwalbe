@@ -19,3 +19,4 @@
 /weihnachtsfeier-2026.html /weihnachtsfeier-2026    301
 /veranstaltung-detail.html /veranstaltung-detail    301
 /blog/*.html              /blog/:splat              301
+

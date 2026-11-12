@@ -3,6 +3,15 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.0.0] - 2026-11-12
+### Geändert & Neu gestaltet (Corporate Design v2.0)
+- **Exakte Umsetzung der visuellen Entwürfe aus `RSV-Corporate-Design.pdf` (Seiten 1, 2, 3 & 6) kombiniert mit modernem 2026 Radsport-UI/UX**:
+  - **Header & Branding (CD Guide Seite 1 & 2)**: Schwalbe-Radfahrer-Signet in leuchtendem Marken-Pink (`#FA006C`), Uppercase-Navigation in `Zalando Sans SemiBold` (`START`, `VEREIN`, `RADSPORT`, `VERANSTALTUNGEN`, `MEHR`) und Signal-Gelber CTA-Button `MITGLIED WERDEN` (`#FFE940` mit `#0F172A` Text).
+  - **Vollbild-Action-Hero (CD Guide Seite 2)**: Großflächiges Radsport-Peloton-Foto (`/images/home/Amateure1.webp`) mit abgedunkeltem Kontrast-Overlay, Headline *„Der Radsportverein in Baden"* in `Zalando Sans Expanded SemiBold` und Unterzeile *„Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren."*
+  - **Neues aus dem Verein (CD Guide Seite 2)**: Moderne horizontale Media-Cards mit quadratischem abgerundetem Vorschaubild links, Titel in `Zalando Sans Expanded`, Datum in `#94A3B8` und pinkem `Weiterlesen`-Link (`#FA006C`).
+  - **Nächste Veranstaltungen & Plakat-Banner (CD Guide Seite 2 & 6)**: Erhöhte Veranstaltungskarten mit pinker Uppercase-Dachzeile (`VERANSTALTUNG` / `RADRENNEN · HIGHLIGHT`), Datum-/Ort-Icons sowie ein Signal-Gelbes Plakat-Highlight (`#FFE940` + `#FA006C`) nach Seite 6 des Design-Guides.
+  - **Sponsoren-Showcase & Artikel-Karten (CD Guide Seite 2 & 3)**: Sponsoren-Grid in abgerundetem `#F8FAFC`-Showcase mit weißen Logo-Kacheln; Berichte- und Event-Detailseiten in erhöhten weißen Content-Cards (`border-radius: 1.75rem`) mit 3er-Fotogrid und gelbem `ZURÜCK ZUR ÜBERSICHT`-Button.
+
 ## [1.3.0] - 2026-11-12
 ### Geändert & Optimiert
 - Vollständige Umstellung von `src/styles/global.css` auf eine **100 % Mobile-First-Architektur** (Basis-Styles für Smartphones ab 320px, progressive Erweiterung über `@media (min-width: 480px | 640px | 768px | 960px)` ohne Desktop-First-Overrides).
