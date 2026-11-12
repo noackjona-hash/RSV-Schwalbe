@@ -11,7 +11,7 @@ import verein from '../data/verein.json';
       <p>Du möchtest Mitglied werden? Dann füll einfach unsere Beitrittserklärung aus und schick sie uns zu.</p>
       <p><a href={verein.membership.applicationPdfUrl} class="btn-download">{verein.membership.applicationPdfLabel}</a></p>
 
-      <h3>Jahresbeiträge</h3>
+      <h2>Jahresbeiträge</h2>
       <table class="beitrags-tabelle">
         <tbody>
           {verein.membership.annualFees.map((fee) => (
@@ -23,7 +23,7 @@ import verein from '../data/verein.json';
         </tbody>
       </table>
 
-      <h3>Zusatzbeiträge für Aktive</h3>
+      <h2>Zusatzbeiträge für Aktive</h2>
       <p>Für Mitglieder, die an lizenzierten Rennen oder Punktekartenrennen teilnehmen, fallen folgende Zusatzbeiträge an:</p>
       <table class="beitrags-tabelle">
         <tbody>
@@ -36,7 +36,7 @@ import verein from '../data/verein.json';
         </tbody>
       </table>
 
-      <h3>Versicherungsschutz</h3>
+      <h2>Versicherungsschutz</h2>
       <p>Die Pflichtunfallversicherung des Badischen Radsportverbandes ist in unseren Beiträgen enthalten. Dieser Schutz gilt für alle Fahrten mit dem Fahrrad – ob auf dem Weg zur Arbeit, beim Training oder bei Freizeitausfahrten.</p>
 
       <p><a href={verein.membership.feeRegulationPdfUrl} class="btn-download">{verein.membership.feeRegulationPdfLabel}</a></p>

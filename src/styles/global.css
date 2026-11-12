@@ -81,18 +81,19 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* --- Corporate Design Tokens (Exakt nach RSV-Corporate-Design.pdf Seite 1) --- */
+/* --- Corporate Design Tokens (Exakt nach RSV-Corporate-Design.pdf Seite 1 + WCAG AA Kontrast) --- */
 :root {
   --bg-primary: #FFFFFF;
   --bg-secondary: #F8FAFC;
   --bg-tertiary: #F1F5F9;
   --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
+  --text-secondary: #334155;
+  --text-muted: #475569;
   --text-inverted: #FFFFFF;
   --accent-primary: #FA006C;
+  --accent-text: #C40054; /* 5.8:1 Kontrast auf Weiß & #F8FAFC für 100% WCAG AA Barrierefreiheit */
   --accent-secondary: #FFE940;
-  --accent-hover: #D4005B;
+  --accent-hover: #9E0043;
   --accent-yellow-hover: #F5DC18;
   --border-color: #E2E8F0;
   --border-subtle: #F1F5F9;
@@ -166,7 +167,7 @@ p {
 
 /* Akzent / Link / Button: Zalando Sans SemiBold (600) laut CD Guide */
 a {
-  color: var(--accent-primary);
+  color: var(--accent-text);
   font-weight: 600;
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -453,7 +454,7 @@ button:focus-visible,
 }
 
 /* ============================================================
-   HERO SECTION (Exakt nach CD Guide Seite 2: Vollbild-Radsportfoto)
+   HERO SECTION (Exakt nach CD Guide Seite 2: Vollbild-Radsportfoto mit LCP-<img>)
    ============================================================ */
 .hero {
   position: relative;
@@ -463,24 +464,43 @@ button:focus-visible,
   align-items: center;
   justify-content: center;
   background-color: var(--text-primary);
-  background-image:
-    linear-gradient(180deg, rgba(15, 23, 42, 0.48) 0%, rgba(15, 23, 42, 0.76) 100%),
-    url('/images/home/Amateure1.webp');
-  background-size: cover;
-  background-position: center 35%;
   color: var(--text-inverted);
   text-align: center;
   overflow: hidden;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.58) 0%, rgba(15, 23, 42, 0.82) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 233, 64, 0.45);
   color: var(--accent-secondary);
   font-size: 0.78rem;
   font-weight: 600;
@@ -542,9 +562,9 @@ button:focus-visible,
 }
 
 .btn-primary {
-  background-color: var(--accent-primary);
+  background-color: var(--accent-text);
   color: var(--text-inverted) !important;
-  box-shadow: 0 4px 14px rgba(250, 0, 108, 0.28);
+  box-shadow: 0 4px 14px rgba(196, 0, 84, 0.28);
 }
 
 .btn-primary:hover {
@@ -567,11 +587,11 @@ button:focus-visible,
 }
 
 .btn-secondary {
-  background-color: rgba(255, 255, 255, 0.14);
+  background-color: rgba(15, 23, 42, 0.72);
   color: var(--text-inverted) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 }
 
 .btn-secondary:hover {
@@ -621,7 +641,7 @@ button:focus-visible,
   gap: 0.35rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--accent-primary);
+  color: var(--accent-text);
 }
 
 .view-all:hover {
@@ -709,7 +729,7 @@ button:focus-visible,
   margin-top: auto;
   font-weight: 600;
   font-size: 0.86rem;
-  color: var(--accent-primary);
+  color: var(--accent-text);
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
@@ -751,7 +771,7 @@ a.termin-card {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--accent-primary);
+  color: var(--accent-text);
   margin-bottom: 0.35rem;
   display: block;
 }
@@ -799,11 +819,14 @@ a.termin-card {
 
 .poster-kicker {
   display: inline-block;
-  color: var(--accent-primary);
+  background: var(--text-primary);
+  color: var(--accent-secondary);
   font-family: 'Zalando Sans Expanded', sans-serif;
   font-weight: 600;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
 }
 
 .poster-banner h2 {
@@ -1107,7 +1130,10 @@ hr.divider {
   gap: 2rem 3rem;
 }
 
-.footer-links h4 {
+.footer-links .footer-heading {
+  font-family: 'Zalando Sans Expanded', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
   font-size: 0.92rem;
   margin-bottom: 0.5rem;
 }
@@ -1224,7 +1250,8 @@ hr.divider {
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.fahrer-card h4 {
+.fahrer-card h3 {
+  margin-top: 0;
   margin-bottom: 0.25rem;
   font-size: 1.05rem;
 }
@@ -1304,9 +1331,12 @@ hr.divider {
   gap: 1.25rem;
 }
 
-.social-callout h3 {
+.social-callout h2 {
   margin-top: 0;
   margin-bottom: 0.25rem;
+  padding-top: 0;
+  border-top: none;
+  font-size: 1.35rem;
   color: var(--text-primary);
 }
 
