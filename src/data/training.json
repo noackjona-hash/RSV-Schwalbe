@@ -1,0 +1,28 @@
+{
+  "intro": "Gemeinsam fährt es sich am besten! Unsere Trainingsgruppen treffen sich regelmäßig zu festen Zeiten. Gäste und Schnupperfahrer sind jederzeit herzlich willkommen (Helmpflicht!).",
+  "summer": {
+    "title": "Sommerzeit (April bis September)",
+    "sessions": [
+      {
+        "day": "Dienstag, 18:00 Uhr",
+        "description": "Rennrad-Training (Sportlich & Jugend)"
+      },
+      {
+        "day": "Donnerstag, 18:00 Uhr",
+        "description": "Ausfahrt für Jedermann / Tourenrad"
+      },
+      {
+        "day": "Sonntag, 09:30 Uhr",
+        "description": "Große Sonntagsrunde (Rennrad, versch. Leistungsgruppen)"
+      }
+    ]
+  },
+  "winter": {
+    "title": "Winterzeit (Oktober bis März)",
+    "description": "Im Winter verlagern wir unser Training auf das Hallentraining, Rollentraining im Vereinsheim sowie gemeinsame Mountainbike- und Cross-Ausfahrten am Wochenende."
+  },
+  "meetingPoint": {
+    "title": "Treffpunkt",
+    "description": "Vereinsheim RSV Schwalbe Ellmendingen (Durlacher Str. 72, 75210 Keltern)"
+  }
+}

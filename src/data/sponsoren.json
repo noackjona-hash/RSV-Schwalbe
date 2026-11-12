@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Sparkasse Pforzheim Calw",
+    "url": "https://www.sparkasse-pforzheim-calw.de",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Sparkasse_Pforzheim_Calw.png",
+    "showOnHome": true
+  },
+  {
+    "name": "Speiter",
+    "url": "http://www.speiter.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Speiter.jpg",
+    "showOnHome": true
+  },
+  {
+    "name": "Konstandin GmbH",
+    "url": "https://www.konstandin-gmbh.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Konstandin.jpg",
+    "showOnHome": true
+  },
+  {
+    "name": "Bäckereiuter",
+    "url": "http://www.baeckerei-reuter.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Reuter.png",
+    "showOnHome": false
+  },
+  {
+    "name": "Seeger",
+    "url": "http://www.bestattungen-seeger.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Seeger.png",
+    "showOnHome": false
+  },
+  {
+    "name": "Kieser",
+    "url": "http://www.kieser-ellmendingen.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Kieser.png",
+    "showOnHome": false
+  },
+  {
+    "name": "Regio",
+    "url": "https://www.regio-keltern.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Regio.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Klotz",
+    "url": "http://www.klotz-getraenke.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Klotz.png",
+    "showOnHome": false
+  },
+  {
+    "name": "Weingut",
+    "url": "http://www.weingut-kern.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Weingut_Kern.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Radsport",
+    "url": "http://www.radsport-kritter.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Kritter.jpg",
+    "showOnHome": true
+  },
+  {
+    "name": "Lindenapotheke",
+    "url": "http://www.linden-apotheke-keltern.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Lindenapotheke.png",
+    "showOnHome": false
+  },
+  {
+    "name": "Metzgerei",
+    "url": "http://www.metzgerei-duerr.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Metzgerei_Duerr.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Tengelmann",
+    "url": "http://www.fuchs-bauunternehmung.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Fuchs.jpg",
+    "showOnHome": true
+  },
+  {
+    "name": "Ristorante",
+    "url": "http://www.da-alfredo-keltern.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Da_Alfredo.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Erich",
+    "url": "http://www.erich-schmidt-gmbh.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Schmidt.jpg",
+    "showOnHome": true
+  },
+  {
+    "name": "Kirchenbauer",
+    "url": "http://www.kirchenbauer-dach.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Kirchenbauer.png",
+    "showOnHome": false
+  },
+  {
+    "name": "Hofmann",
+    "url": "http://www.maler-hofmann-keltern.de/",
+    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Hofmann.jpg",
+    "showOnHome": false
+  }
+]
