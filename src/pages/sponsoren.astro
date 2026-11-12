@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import sponsoren from '../data/sponsoren.json';
+---
+
+<BaseLayout title="Unsere Sponsoren | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Unsere Sponsoren</h1>
+      <p>Ein Verein lebt vom Engagement seiner Mitglieder und der tatkräftigen Unterstützung starker Partner aus der Region. Wir bedanken uns herzlich bei allen Sponsoren, Gönnern und Förderern des RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.!</p>
+
+      <div class="sponsoren-page-grid">
+        {sponsoren.map((sponsor) => (
+          <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-page-card">
+            <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
+          </a>
+        ))}
+      </div>
+
+      <h2 style="margin-top: 3rem;">Sie möchten uns unterstützen?</h2>
+      <p>Sie haben Interesse an einer Partnerschaft, Bandenwerbung bei unseren Veranstaltungen oder Trikotsponsoring? Sprechen Sie uns gerne über unsere <a href="/kontakt">Kontaktseite</a> an!</p>
+    </div>
+  </div>
+</BaseLayout>
