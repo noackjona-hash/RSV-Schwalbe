@@ -3,6 +3,11 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.2.0] - 2026-11-12
+### Hinzugefügt
+- **Vercel Web Analytics & Speed Insights**: Installation von `@vercel/analytics` und `@vercel/speed-insights` sowie globale Einbindung von `<Analytics />` und `<SpeedInsights />` in `src/layouts/BaseLayout.astro`.
+- **Vercel Deployment-Konfiguration (`vercel.json`)**: Clean-URLs und 1-Jahres-Cache-Header (`immutable`) für lokale Schriftarten und Bild-Assets.
+
 ## [2.1.0] - 2026-11-12
 ### Optimiert (Lighthouse 100/100 Performance & Barrierefreiheit)
 - **Barrierefreiheit (100/100)**:
