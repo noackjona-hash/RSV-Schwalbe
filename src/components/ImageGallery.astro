@@ -1,0 +1,86 @@
+---
+export interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  id?: string;
+}
+
+const { images = [], id = 'gallery-1' } = Astro.props;
+const total = images.length;
+---
+
+{total > 0 && (
+  <div class="article-gallery" id={id}>
+    <div class="gallery-track">
+      {images.map((img) => (
+        <div class="gallery-slide">
+          <img src={img.src} alt={img.alt} loading="lazy" />
+        </div>
+      ))}
+    </div>
+    {total > 1 && (
+      <>
+        <button class="gallery-btn gallery-btn-prev" aria-label="Vorheriges Bild">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="gallery-btn gallery-btn-next" aria-label="Nächstes Bild">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="gallery-dots">
+          {images.map((_, index) => (
+            <button class={`gallery-dot ${index === 0 ? 'is-active' : ''}`} aria-label={`Bild ${index + 1}`}></button>
+          ))}
+        </div>
+      </>
+    )}
+    <span class="gallery-counter">1 / {total}</span>
+  </div>
+)}
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.article-gallery').forEach(function (gallery) {
+      if (gallery.dataset.initialized === 'true') return;
+      gallery.dataset.initialized = 'true';
+
+      var track = gallery.querySelector('.gallery-track');
+      var slides = gallery.querySelectorAll('.gallery-slide');
+      var dots = gallery.querySelectorAll('.gallery-dot');
+      var counter = gallery.querySelector('.gallery-counter');
+      var prevBtn = gallery.querySelector('.gallery-btn-prev');
+      var nextBtn = gallery.querySelector('.gallery-btn-next');
+      var total = slides.length;
+      if (total <= 1) return;
+
+      var current = 0;
+
+      function goTo(n) {
+        current = ((n % total) + total) % total;
+        if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function (d, i) { d.classList.toggle('is-active', i === current); });
+        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+      dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
+
+      var touchStartX = 0;
+      gallery.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      gallery.addEventListener('touchend', function (e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+
+      goTo(0);
+    });
+  });
+</script>

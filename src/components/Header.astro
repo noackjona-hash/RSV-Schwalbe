@@ -1,0 +1,163 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const currentPath = Astro.url.pathname;
+
+const rawSvg = fs.readFileSync(path.resolve('./public/Logo.svg'), 'utf-8')
+  .replace(/<\?xml[^>]*\?>\s*/i, '')
+  .replace(/fill:\s*#231f20;/g, 'fill: currentColor;');
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/' || currentPath === '/index.html';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="site-logo">
+      <span class="logo-icon" aria-hidden="true" set:html={rawSvg} />
+      RSV Schwalbe Ellmendingen
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="/" class={isActive('/') ? 'active' : ''}>Start</a></li>
+        <li>
+          <span class="nav-toggle" role="button" tabindex="0" aria-expanded="false">
+            Verein
+            <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <ul class="dropdown">
+            <li><a href="/verein" class={isActive('/verein') ? 'active' : ''}>Der Verein</a></li>
+            <li><a href="/sponsoren" class={isActive('/sponsoren') ? 'active' : ''}>Sponsoren</a></li>
+            <li><a href="/wandergruppe" class={isActive('/wandergruppe') ? 'active' : ''}>Wandergruppe</a></li>
+            <li><a href="/kontakt" class={isActive('/kontakt') ? 'active' : ''}>Kontakt</a></li>
+          </ul>
+        </li>
+        <li>
+          <span class="nav-toggle" role="button" tabindex="0" aria-expanded="false">
+            Radsport
+            <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <ul class="dropdown">
+            <li><a href="/fahrer" class={isActive('/fahrer') ? 'active' : ''}>Fahrer</a></li>
+            <li><a href="/rsv-kids" class={isActive('/rsv-kids') ? 'active' : ''}>RSV-Kids</a></li>
+            <li><a href="/training" class={isActive('/training') ? 'active' : ''}>Training &amp; Ausfahrten</a></li>
+          </ul>
+        </li>
+        <li><a href="/veranstaltungen" class={isActive('/veranstaltungen') ? 'active' : ''}>Veranstaltungen</a></li>
+        <li>
+          <span class="nav-toggle" role="button" tabindex="0" aria-expanded="false">
+            Mehr
+            <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <ul class="dropdown">
+            <li><a href="/bilder" class={isActive('/bilder') ? 'active' : ''}>Bilder</a></li>
+            <li><a href="/links" class={isActive('/links') ? 'active' : ''}>Links</a></li>
+            <li><a href="/archiv" class={isActive('/archiv') ? 'active' : ''}>Archive</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="/mitglied-werden" class="btn-header-cta">Mitglied werden</a>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var nav = document.getElementById('site-nav');
+    var mobileBtn = document.getElementById('mobile-menu-toggle');
+    var items = document.querySelectorAll('.site-nav > ul > li');
+
+    if (mobileBtn && nav) {
+      mobileBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = nav.classList.toggle('is-open');
+        mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    items.forEach(function (li) {
+      var toggle = li.querySelector('.nav-toggle');
+      var dropdown = li.querySelector('.dropdown');
+      if (!toggle || !dropdown) return;
+
+      var closeTimer = null;
+
+      function openMenu() {
+        clearTimeout(closeTimer);
+        items.forEach(function (other) {
+          if (other !== li) {
+            other.classList.remove('open');
+            var otherToggle = other.querySelector('.nav-toggle');
+            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+        li.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      function scheduleClose() {
+        if (window.innerWidth <= 900) return;
+        closeTimer = setTimeout(function () {
+          li.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }, 120);
+      }
+
+      li.addEventListener('mouseenter', function () {
+        if (window.innerWidth > 900) openMenu();
+      });
+      li.addEventListener('mouseleave', function () {
+        if (window.innerWidth > 900) scheduleClose();
+      });
+
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (li.classList.contains('open')) {
+          li.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        } else {
+          openMenu();
+        }
+      });
+
+      toggle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle.click();
+        }
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      items.forEach(function (li) {
+        li.classList.remove('open');
+        var t = li.querySelector('.nav-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+      if (nav && !nav.contains(e.target) && mobileBtn && !mobileBtn.contains(e.target)) {
+        nav.classList.remove('is-open');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
