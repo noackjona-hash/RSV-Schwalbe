@@ -3,6 +3,15 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [1.3.0] - 2026-11-12
+### Geändert & Optimiert
+- Vollständige Umstellung von `src/styles/global.css` auf eine **100 % Mobile-First-Architektur** (Basis-Styles für Smartphones ab 320px, progressive Erweiterung über `@media (min-width: 480px | 640px | 768px | 960px)` ohne Desktop-First-Overrides).
+- **Touch- & Mobile-UX-Optimierung**: Durchgehende 44×44px Mindest-Tippflächen (`--tap-target-min`), `touch-action: manipulation`, Trennung von Touch- und Maus-Hover-Effekten via `@media (hover: hover)` sowie `prefers-reduced-motion`-Support.
+- **Komponenten-Optimierung (`ImageGallery.astro`, `Header.astro`, `bilder.astro`)**:
+  - `ImageGallery.astro`: Echtzeit-Touch-Swipe (`touchmove`-Mitziehen mit GPU-beschleunigtem `translate3d`), Tastatursteuerung (`ArrowLeft`/`ArrowRight`), ARIA-Carousel-Rollen und priorisiertes Laden des ersten Bildes (`loading="eager"` + `decoding="async"`).
+  - `Header.astro`: Semantische `<button>`-Toggles, `matchMedia('(min-width: 960px)')`-Steuerung und `Escape`-Key-Handling.
+  - `bilder.astro`: Touch-Swipe-Unterstützung in der Vollbild-Lightbox und gebündelte Astro-Client-Scripts.
+
 ## [1.2.0] - 2026-11-12
 ### Hinzugefügt
 - Hosting- & Deployment-Paket (`wrangler.jsonc`, `netlify.toml`, `public/_headers`, `public/_redirects`, `public/.htaccess`) für Cloudflare Pages (0,00 €/Monat), Netlify sowie klassisches Webhosting (Netcup, Hetzner, IONOS).
