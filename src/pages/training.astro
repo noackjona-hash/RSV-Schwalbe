@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import trainingData from '../data/training.json';
+---
+
+<BaseLayout title="Training & Ausfahrten | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Training &amp; Ausfahrten</h1>
+      <p>{trainingData.intro}</p>
+
+      <h2>{trainingData.summer.title}</h2>
+      <ul>
+        {trainingData.summer.sessions.map((session) => (
+          <li><strong>{session.day}:</strong> {session.description}</li>
+        ))}
+      </ul>
+
+      <h2>{trainingData.winter.title}</h2>
+      <p>{trainingData.winter.description}</p>
+
+      <h3>{trainingData.meetingPoint.title}</h3>
+      <p>{trainingData.meetingPoint.description}</p>
+    </div>
+  </div>
+</BaseLayout>
