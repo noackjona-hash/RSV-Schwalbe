@@ -18,19 +18,19 @@ function isActive(href: string) {
   <div class="container header-inner">
     <a href="/" class="site-logo">
       <span class="logo-icon" aria-hidden="true" set:html={rawSvg} />
-      RSV Schwalbe Ellmendingen
+      <span>RSV Schwalbe Ellmendingen</span>
     </a>
 
     <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
       <ul>
         <li><a href="/" class={isActive('/') ? 'active' : ''}>Start</a></li>
         <li>
-          <span class="nav-toggle" role="button" tabindex="0" aria-expanded="false">
-            Verein
+          <button type="button" class="nav-toggle" aria-expanded="false">
+            <span>Verein</span>
             <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true">
               <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
+          </button>
           <ul class="dropdown">
             <li><a href="/verein" class={isActive('/verein') ? 'active' : ''}>Der Verein</a></li>
             <li><a href="/sponsoren" class={isActive('/sponsoren') ? 'active' : ''}>Sponsoren</a></li>
@@ -39,12 +39,12 @@ function isActive(href: string) {
           </ul>
         </li>
         <li>
-          <span class="nav-toggle" role="button" tabindex="0" aria-expanded="false">
-            Radsport
+          <button type="button" class="nav-toggle" aria-expanded="false">
+            <span>Radsport</span>
             <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true">
               <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
+          </button>
           <ul class="dropdown">
             <li><a href="/fahrer" class={isActive('/fahrer') ? 'active' : ''}>Fahrer</a></li>
             <li><a href="/rsv-kids" class={isActive('/rsv-kids') ? 'active' : ''}>RSV-Kids</a></li>
@@ -53,12 +53,12 @@ function isActive(href: string) {
         </li>
         <li><a href="/veranstaltungen" class={isActive('/veranstaltungen') ? 'active' : ''}>Veranstaltungen</a></li>
         <li>
-          <span class="nav-toggle" role="button" tabindex="0" aria-expanded="false">
-            Mehr
+          <button type="button" class="nav-toggle" aria-expanded="false">
+            <span>Mehr</span>
             <svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true">
               <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </span>
+          </button>
           <ul class="dropdown">
             <li><a href="/bilder" class={isActive('/bilder') ? 'active' : ''}>Bilder</a></li>
             <li><a href="/links" class={isActive('/links') ? 'active' : ''}>Links</a></li>
@@ -70,8 +70,8 @@ function isActive(href: string) {
 
     <div class="header-actions">
       <a href="/mitglied-werden" class="btn-header-cta">Mitglied werden</a>
-      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
@@ -81,56 +81,67 @@ function isActive(href: string) {
   </div>
 </header>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    var nav = document.getElementById('site-nav');
-    var mobileBtn = document.getElementById('mobile-menu-toggle');
-    var items = document.querySelectorAll('.site-nav > ul > li');
+<script>
+  function initHeaderNav() {
+    const nav = document.getElementById('site-nav');
+    const mobileBtn = document.getElementById('mobile-menu-toggle');
+    const items = document.querySelectorAll<HTMLLIElement>('.site-nav > ul > li');
+    const desktopQuery = window.matchMedia('(min-width: 960px)');
 
-    if (mobileBtn && nav) {
-      mobileBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var isOpen = nav.classList.toggle('is-open');
-        mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    function closeAllDropdowns(except?: HTMLLIElement) {
+      items.forEach((li) => {
+        if (li !== except) {
+          li.classList.remove('open');
+          li.querySelector('.nav-toggle')?.setAttribute('aria-expanded', 'false');
+        }
       });
     }
 
-    items.forEach(function (li) {
-      var toggle = li.querySelector('.nav-toggle');
-      var dropdown = li.querySelector('.dropdown');
+    function closeMobileMenu() {
+      nav?.classList.remove('is-open');
+      mobileBtn?.setAttribute('aria-expanded', 'false');
+      mobileBtn?.setAttribute('aria-label', 'Menü öffnen');
+    }
+
+    mobileBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = nav?.classList.toggle('is-open') ?? false;
+      mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileBtn.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+      if (!isOpen) closeAllDropdowns();
+    });
+
+    items.forEach((li) => {
+      const toggle = li.querySelector<HTMLButtonElement>('.nav-toggle');
+      const dropdown = li.querySelector<HTMLElement>('.dropdown');
       if (!toggle || !dropdown) return;
 
-      var closeTimer = null;
+      let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
       function openMenu() {
-        clearTimeout(closeTimer);
-        items.forEach(function (other) {
-          if (other !== li) {
-            other.classList.remove('open');
-            var otherToggle = other.querySelector('.nav-toggle');
-            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
+        if (closeTimer) clearTimeout(closeTimer);
+        closeAllDropdowns(li);
         li.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
+        toggle!.setAttribute('aria-expanded', 'true');
       }
 
       function scheduleClose() {
-        if (window.innerWidth <= 900) return;
-        closeTimer = setTimeout(function () {
+        if (!desktopQuery.matches) return;
+        closeTimer = setTimeout(() => {
           li.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
+          toggle!.setAttribute('aria-expanded', 'false');
         }, 120);
       }
 
-      li.addEventListener('mouseenter', function () {
-        if (window.innerWidth > 900) openMenu();
-      });
-      li.addEventListener('mouseleave', function () {
-        if (window.innerWidth > 900) scheduleClose();
+      li.addEventListener('mouseenter', () => {
+        if (desktopQuery.matches) openMenu();
       });
 
-      toggle.addEventListener('click', function (e) {
+      li.addEventListener('mouseleave', () => {
+        if (desktopQuery.matches) scheduleClose();
+      });
+
+      toggle.addEventListener('click', (e) => {
         e.stopPropagation();
         if (li.classList.contains('open')) {
           li.classList.remove('open');
@@ -139,25 +150,23 @@ function isActive(href: string) {
           openMenu();
         }
       });
-
-      toggle.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggle.click();
-        }
-      });
     });
 
-    document.addEventListener('click', function (e) {
-      items.forEach(function (li) {
-        li.classList.remove('open');
-        var t = li.querySelector('.nav-toggle');
-        if (t) t.setAttribute('aria-expanded', 'false');
-      });
-      if (nav && !nav.contains(e.target) && mobileBtn && !mobileBtn.contains(e.target)) {
-        nav.classList.remove('is-open');
-        mobileBtn.setAttribute('aria-expanded', 'false');
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      closeAllDropdowns();
+      if (nav && !nav.contains(target) && mobileBtn && !mobileBtn.contains(target)) {
+        closeMobileMenu();
       }
     });
-  });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllDropdowns();
+        closeMobileMenu();
+      }
+    });
+  }
+
+  initHeaderNav();
 </script>
