@@ -23,9 +23,9 @@
     "instagram": "https://www.instagram.com/rsv_schwalbe_ellmendingen/"
   },
   "membership": {
-    "applicationPdfUrl": "#",
+    "applicationPdfUrl": "/downloads/RSV_Beitrittserklaerung_2025.pdf",
     "applicationPdfLabel": "↓ Beitrittserklärung 2025 (PDF)",
-    "feeRegulationPdfUrl": "https://www.rsv-ellmendingen.de/wp-content/uploads/RSV_Beitragsordnung_03-2015.pdf",
+    "feeRegulationPdfUrl": "/downloads/RSV_Beitragsordnung_03-2015.pdf",
     "feeRegulationPdfLabel": "↓ Beitragsordnung (PDF)",
     "annualFees": [
       { "category": "Familien", "amount": "110,00 €" },
@@ -54,3 +54,4 @@
     }
   ]
 }
+

@@ -3,6 +3,23 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [1.2.0] - 2026-11-12
+### Hinzugefügt
+- Hosting- & Deployment-Paket (`wrangler.jsonc`, `netlify.toml`, `public/_headers`, `public/_redirects`, `public/.htaccess`) für Cloudflare Pages (0,00 €/Monat), Netlify sowie klassisches Webhosting (Netcup, Hetzner, IONOS).
+- GitHub Actions CI/CD-Workflow (`.github/workflows/deploy.yml`) für automatischen Astro-Build und optionalen FTPS-Upload.
+- Detailliertes Hosting-Konzept & Preisvergleich (`HOSTING-KONZEPT.md`) inklusive technischer DNS-Analyse der bestehenden IONOS-Infrastruktur (`rsv-ellmendingen.de`) und E-Mail-Vorlage für Simon Mayer & Martin Rupf.
+
+## [1.1.5] - 2026-11-12
+### Hinzugefügt
+- Vollständige SEO-, OpenGraph- und Schema.org-Integration (`SportsOrganization` JSON-LD) sowie barrierefreier `.skip-link` in `BaseLayout.astro`.
+- Eigene Fehlerseite (`src/pages/404.astro`), `public/robots.txt` und dynamisch generierte XML-Sitemap (`src/pages/sitemap.xml.ts`).
+- Interaktive Vollbild-Lightbox mit Tastaturnavigation (`Escape`, `ArrowLeft`, `ArrowRight`) auf der Galerie-Seite (`src/pages/bilder.astro`).
+
+## [1.1.0] - 2026-11-12
+### Hinzugefügt
+- Alle 11 originalen Sponsoren-Logos von der bestehenden Vereinswebsite lokal unter `public/images/sponsoren/` eingebunden (Behebung fehlerhafter externer Platzhalter-URLs aus dem HTML-Entwurf).
+- Lokale WebP-Vorschaubilder für die Startseite (`public/images/home/`) sowie offizielle Vereins-PDFs (`RSV_Beitrittserklaerung_2025.pdf`, `RSV_Beitragsordnung_03-2015.pdf`) unter `public/downloads/` hinterlegt.
+
 ## [1.0.0] - 2026-11-12
 ### Hinzugefügt
 - Produktionsreifer Astro-Prototyp (`v1.0.0`) mit 26 statisch generierten Seiten.

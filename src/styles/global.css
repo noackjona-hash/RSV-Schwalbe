@@ -1297,3 +1297,126 @@ a.termin-card {
     font-size: 0.82rem;
   }
 }
+
+/* --- Polish: Accessibility, Focus & Lightbox --- */
+html {
+  scroll-behavior: smooth;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--accent-primary);
+  color: #ffffff !important;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  z-index: 9999;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.gallery-lightbox-trigger {
+  padding: 0;
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gallery-lightbox-trigger:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.gallery-lightbox-trigger img {
+  transition: transform 0.4s ease;
+}
+
+.gallery-lightbox-trigger:hover img {
+  transform: scale(1.03);
+}
+
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.lightbox-backdrop.is-open {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.lightbox-close:hover {
+  background: var(--accent-primary);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.lightbox-nav:hover {
+  background: var(--accent-primary);
+}
+
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }

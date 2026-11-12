@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Seite nicht gefunden (404) | RSV Schwalbe Ellmendingen">
+  <div class="page-body" style="text-align: center; padding: 6rem 0;">
+    <div class="container" style="max-width: 600px;">
+      <p style="font-weight: 600; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">Fehler 404</p>
+      <h1>Hier bist du falsch abgebogen</h1>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem;">Die gesuchte Seite existiert leider nicht oder wurde im Zuge der neuen Vereinswebsite verschoben.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary">Zur Startseite</a>
+        <a href="/berichte" class="btn btn-back" style="margin-top: 0;">Aktuelle Berichte</a>
+        <a href="/veranstaltungen" class="btn btn-back" style="margin-top: 0;">Veranstaltungen</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

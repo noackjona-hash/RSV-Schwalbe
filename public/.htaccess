@@ -1,0 +1,49 @@
+# ============================================================
+# RSV Schwalbe Ellmendingen — Apache Konfiguration (.htaccess)
+# Für klassisches Webhosting (Netcup, Hetzner, IONOS)
+# ============================================================
+
+# Eigene 404-Fehlerseite
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTPS erzwingen
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Alte WordPress-Links (?page_id=30 / ?page_id=35) auf neue Seiten umleiten
+  RewriteCond %{QUERY_STRING} (^|&)page_id=(30|35)($|&)
+  RewriteRule ^$ /mitglied-werden/? [L,R=301]
+
+  # .html Endungen sauber auf Verzeichnis-URLs weiterleiten
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1/ [R=301,L]
+</IfModule>
+
+# Sicherheits-Header
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Browser-Caching für optimale Ladezeiten (Schriften & Bilder)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 week"
+</IfModule>
+
+# Komprimierung aktivieren
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
