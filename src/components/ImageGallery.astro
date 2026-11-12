@@ -14,73 +14,161 @@ const total = images.length;
 ---
 
 {total > 0 && (
-  <div class="article-gallery" id={id}>
+  <div
+    class="article-gallery"
+    id={id}
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Bildergalerie"
+    tabindex="0"
+  >
     <div class="gallery-track">
-      {images.map((img) => (
-        <div class="gallery-slide">
-          <img src={img.src} alt={img.alt} loading="lazy" />
+      {images.map((img, index) => (
+        <div
+          class="gallery-slide"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`Bild ${index + 1} von ${total}`}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
         </div>
       ))}
     </div>
     {total > 1 && (
       <>
-        <button class="gallery-btn gallery-btn-prev" aria-label="Vorheriges Bild">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="gallery-btn gallery-btn-prev" aria-label="Vorheriges Bild">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M15 18l-6-6 6-6"/>
           </svg>
         </button>
-        <button class="gallery-btn gallery-btn-next" aria-label="Nächstes Bild">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="gallery-btn gallery-btn-next" aria-label="Nächstes Bild">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 18l6-6-6-6"/>
           </svg>
         </button>
-        <div class="gallery-dots">
+        <div class="gallery-dots" role="tablist" aria-label="Bilder auswählen">
           {images.map((_, index) => (
-            <button class={`gallery-dot ${index === 0 ? 'is-active' : ''}`} aria-label={`Bild ${index + 1}`}></button>
+            <button
+              type="button"
+              role="tab"
+              class={`gallery-dot ${index === 0 ? 'is-active' : ''}`}
+              aria-label={`Bild ${index + 1} anzeigen`}
+              aria-selected={index === 0 ? 'true' : 'false'}
+            />
           ))}
         </div>
       </>
     )}
-    <span class="gallery-counter">1 / {total}</span>
+    <span class="gallery-counter" aria-live="polite">1 / {total}</span>
   </div>
 )}
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.article-gallery').forEach(function (gallery) {
+<script>
+  function initGalleries() {
+    document.querySelectorAll<HTMLElement>('.article-gallery').forEach((gallery) => {
       if (gallery.dataset.initialized === 'true') return;
       gallery.dataset.initialized = 'true';
 
-      var track = gallery.querySelector('.gallery-track');
-      var slides = gallery.querySelectorAll('.gallery-slide');
-      var dots = gallery.querySelectorAll('.gallery-dot');
-      var counter = gallery.querySelector('.gallery-counter');
-      var prevBtn = gallery.querySelector('.gallery-btn-prev');
-      var nextBtn = gallery.querySelector('.gallery-btn-next');
-      var total = slides.length;
-      if (total <= 1) return;
+      const track = gallery.querySelector<HTMLElement>('.gallery-track');
+      const slides = gallery.querySelectorAll<HTMLElement>('.gallery-slide');
+      const dots = gallery.querySelectorAll<HTMLButtonElement>('.gallery-dot');
+      const counter = gallery.querySelector<HTMLElement>('.gallery-counter');
+      const prevBtn = gallery.querySelector<HTMLButtonElement>('.gallery-btn-prev');
+      const nextBtn = gallery.querySelector<HTMLButtonElement>('.gallery-btn-next');
+      const total = slides.length;
+      if (!track || total <= 1) return;
 
-      var current = 0;
+      let current = 0;
+      let startX = 0;
+      let startY = 0;
+      let currentDeltaX = 0;
+      let isDragging = false;
+      let isHorizontalSwipe: boolean | null = null;
 
-      function goTo(n) {
-        current = ((n % total) + total) % total;
-        if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        dots.forEach(function (d, i) { d.classList.toggle('is-active', i === current); });
-        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+      function goTo(index: number) {
+        current = ((index % total) + total) % total;
+        if (track) {
+          track.classList.remove('is-dragging');
+          track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+        }
+        dots.forEach((dot, i) => {
+          const active = i === current;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        if (counter) counter.textContent = `${current + 1} / ${total}`;
       }
 
-      if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
-      if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
-      dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
+      prevBtn?.addEventListener('click', () => goTo(current - 1));
+      nextBtn?.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-      var touchStartX = 0;
-      gallery.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-      gallery.addEventListener('touchend', function (e) {
-        var diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      // Tastatursteuerung (Pfeiltasten)
+      gallery.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          goTo(current - 1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          goTo(current + 1);
+        }
       });
+
+      // Mobile-First Live Touch-Swipe mit Echtzeit-Mitziehen
+      gallery.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        currentDeltaX = 0;
+        isDragging = true;
+        isHorizontalSwipe = null;
+        track.classList.add('is-dragging');
+      }, { passive: true });
+
+      gallery.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        const dx = e.touches[0].clientX - startX;
+        const dy = e.touches[0].clientY - startY;
+
+        if (isHorizontalSwipe === null) {
+          if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+            isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+          }
+        }
+
+        if (isHorizontalSwipe) {
+          currentDeltaX = dx;
+          const width = gallery.clientWidth || 1;
+          const percentOffset = (dx / width) * 100;
+          track.style.transform = `translate3d(calc(-${current * 100}% + ${percentOffset}%), 0, 0)`;
+        }
+      }, { passive: true });
+
+      const finishTouch = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        const threshold = Math.min(50, (gallery.clientWidth || 300) * 0.15);
+        if (isHorizontalSwipe && Math.abs(currentDeltaX) > threshold) {
+          goTo(current + (currentDeltaX < 0 ? 1 : -1));
+        } else {
+          goTo(current);
+        }
+        currentDeltaX = 0;
+        isHorizontalSwipe = null;
+      };
+
+      gallery.addEventListener('touchend', finishTouch, { passive: true });
+      gallery.addEventListener('touchcancel', finishTouch, { passive: true });
 
       goTo(0);
     });
-  });
+  }
+
+  initGalleries();
+  document.addEventListener('astro:page-load', initGalleries);
 </script>
