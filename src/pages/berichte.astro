@@ -17,7 +17,7 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
           <article class="bericht-row">
             {post.data.thumbnail && (
               <a href={`/blog/${post.slug}`} class="bericht-thumb" tabindex="-1" aria-hidden="true">
-                <img src={post.data.thumbnail} alt="" loading="lazy" decoding="async" />
+                <img src={post.data.thumbnail} alt="" width="220" height="220" loading="lazy" decoding="async" />
               </a>
             )}
             <div class="bericht-content">

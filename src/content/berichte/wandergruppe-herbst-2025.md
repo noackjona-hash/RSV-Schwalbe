@@ -5,7 +5,7 @@ dateDisplay: "29. September 2026"
 category: "Wandergruppe"
 excerpt: "Anlässlich des Kelterfestes startete die Wandergruppe an der Alten Kelter in Dietlingen – hinauf in die sonnenverwöhnten Weinberge und zum Ausklang bei Kaffee, Kuchen und Blasmusik."
 homeExcerpt: "Anlässlich des Kelterfestes startete die Wandergruppe an der Alten Kelter in Dietlingen – hinauf in die sonnenverwöhnten Weinberge mit weiter Aussicht."
-thumbnail: "/blog/images/1.jpg"
+thumbnail: "/blog/images/thumb-1.webp"
 images:
   - src: "/blog/images/1.jpg"
     alt: "Wandergruppe beim Kelterfest in Dietlingen, Bild 1"

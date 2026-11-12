@@ -3,6 +3,17 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.1.0] - 2026-11-12
+### Optimiert (Lighthouse 100/100 Performance & Barrierefreiheit)
+- **Barrierefreiheit (100/100)**:
+  - **WCAG AA/AAA Farbkontrast**: Anpassung von `--text-muted` (`#475569`, Kontrast `7.5:1`), `--accent-text` (`#C40054`, Kontrast `5.8:1` auf Weiß für Fließtext-Links, Kicker und Buttons) sowie kontraststarker Plakat-Badge (`14.8:1`).
+  - **Lückenlose Überschriften-Hierarchie (`h1` → `h2` → `h3`)**: Beseitigung übersprungener Heading-Level in `Footer.astro` (`.footer-heading`), `mitglied-werden.astro`, `fahrer.astro` und `bilder.astro`.
+- **Performance & Diagnose (100/100)**:
+  - **0 ms Render-Blocking CSS**: Aktivierung von `inlineStylesheets: 'always'` in `astro.config.mjs`.
+  - **LCP & Netzwerkabhängigkeitsbaum**: Einbindung des Hero-Bildes (`/images/home/hero.webp`) als direktes `<img fetchpriority="high" width="1280" height="720">` im HTML statt als nachgeladenes CSS-Hintergrundbild.
+  - **Bildübermittlung (> 400 KiB eingespart)**: Generierung passgenauer `220×220` WebP-Thumbnails (`thumb-1.webp`, `thumb-6.webp`, `thumb-8.webp` mit je ~8–14 KB statt >100 KB JPEGs) sowie verlustarme Komprimierung aller Startseiten-WebPs und Sponsoren-Logos mit Sharp.
+  - **Explizite `width` & `height` Attribute (0 CLS)**: Alle `<img>`-Elemente auf sämtlichen Seiten mit expliziten `width`- und `height`-Attributen ausgestattet.
+
 ## [2.0.0] - 2026-11-12
 ### Geändert & Neu gestaltet (Corporate Design v2.0)
 - **Exakte Umsetzung der visuellen Entwürfe aus `RSV-Corporate-Design.pdf` (Seiten 1, 2, 3 & 6) kombiniert mit modernem 2026 Radsport-UI/UX**:

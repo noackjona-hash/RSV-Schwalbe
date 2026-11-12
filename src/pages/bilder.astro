@@ -23,6 +23,8 @@ import verein from '../data/verein.json';
             <img
               src={img.src}
               alt={img.alt}
+              width="600"
+              height="400"
               loading={index < 3 ? 'eager' : 'lazy'}
               decoding="async"
             />
@@ -32,7 +34,7 @@ import verein from '../data/verein.json';
 
       <div class="social-callout">
         <div>
-          <h3>Noch mehr Bilder auf Instagram</h3>
+          <h2>Noch mehr Bilder auf Instagram</h2>
           <p>Aktuelle Impressionen von Rennen, Ausfahrten und dem Vereinsleben teilen wir regelmäßig auf unserem Instagram-Kanal.</p>
         </div>
         <a href={verein.social.instagram} target="_blank" rel="noopener" class="btn btn-primary">@rsv_schwalbe_ellmendingen &rarr;</a>
@@ -43,7 +45,7 @@ import verein from '../data/verein.json';
   <div class="lightbox-backdrop" id="lightbox" aria-hidden="true" role="dialog" aria-label="Bildansicht">
     <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Schließen">&times;</button>
     <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Vorheriges Bild">&#10094;</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="" decoding="async" />
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" width="1200" height="800" decoding="async" />
     <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Nächstes Bild">&#10095;</button>
   </div>
 
