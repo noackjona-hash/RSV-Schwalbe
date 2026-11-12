@@ -5,7 +5,7 @@ export default defineConfig({
   site: 'https://www.rsv-ellmendingen.de',
   compressHTML: true,
   build: {
-    format: 'directory'
+    format: 'directory',
+    inlineStylesheets: 'always'
   }
 });
-

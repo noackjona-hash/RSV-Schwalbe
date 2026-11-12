@@ -28,7 +28,7 @@ const { Content } = await render(post);
           <div class="article-photo-grid">
             {post.data.images.slice(0, 3).map((img) => (
               <div class="article-photo-item">
-                <img src={img.src} alt={img.alt} loading="eager" decoding="async" />
+                <img src={img.src} alt={img.alt} width="400" height="400" loading="eager" decoding="async" />
               </div>
             ))}
           </div>

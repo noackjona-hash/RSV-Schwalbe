@@ -5,7 +5,7 @@ dateDisplay: "14. Oktober 2026"
 category: "Radsport"
 excerpt: "Fünf Rennen in sieben Tagen gegen internationale Konkurrenz bis auf UCI-ProTeam-Niveau – und am Ende Platz 21 in der Gesamtwertung mit nur 1:09 Minuten Rückstand."
 homeExcerpt: "Fünf Rennen in sieben Tagen gegen internationale Konkurrenz – und am Ende Platz 21 in der Gesamtwertung mit nur 1:09 Minuten Rückstand."
-thumbnail: "/blog/images/6.jpg"
+thumbnail: "/blog/images/thumb-6.webp"
 images:
   - src: "/blog/images/6.jpg"
     alt: "Paul Kuhn und das Embrace-The-World-Team beim Grand Prix d'Alger, Bild 1"

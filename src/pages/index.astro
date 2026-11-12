@@ -12,9 +12,20 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
 ---
 
 <BaseLayout title="RSV Schwalbe Ellmendingen | Der Radsportverein in Baden">
-  <!-- HERO (Exakt nach RSV-Corporate-Design.pdf Seite 2) -->
+  <!-- HERO (Exakt nach RSV-Corporate-Design.pdf Seite 2, LCP-optimiertes <img> statt CSS background-image) -->
   <section class="hero">
-    <div class="container">
+    <img
+      src="/images/home/hero.webp"
+      alt=""
+      width="1280"
+      height="720"
+      fetchpriority="high"
+      decoding="async"
+      class="hero-bg-img"
+      aria-hidden="true"
+    />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container hero-content">
       <span class="hero-badge">RSV Schwalbe Ellmendingen e.&thinsp;V. · Seit 1897</span>
       <h1>Der Radsportverein in Baden</h1>
       <p>Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.</p>
@@ -36,13 +47,22 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
           <article class="news-card">
             {post.data.thumbnail && (
               <a href={`/blog/${post.slug}`} class="news-card-thumb" tabindex="-1" aria-hidden="true">
-                <img src={post.data.thumbnail} alt={post.data.title} loading="lazy" decoding="async" />
+                <img
+                  src={post.data.thumbnail}
+                  alt={post.data.title}
+                  width="220"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
               </a>
             )}
             <div class="news-card-body">
               <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
               <div class="news-meta">{post.data.date}</div>
-              <a href={`/blog/${post.slug}`} class="read-more">Weiterlesen</a>
+              <a href={`/blog/${post.slug}`} class="read-more" aria-label={`Weiterlesen: ${post.data.title}`}>
+                Weiterlesen
+              </a>
             </div>
           </article>
         ))}
@@ -109,7 +129,14 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
       <div class="gallery-home-grid">
         {galerie.homeTeaser.map((img) => (
           <a href="/bilder" class="gallery-item" aria-label={img.alt}>
-            <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+            <img
+              src={img.src}
+              alt={img.alt}
+              width="480"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
           </a>
         ))}
       </div>
@@ -127,7 +154,14 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
         <div class="sponsoren-flex">
           {sponsoren.map((sponsor) => (
             <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-box" title={sponsor.name}>
-              <img src={sponsor.logo} alt={sponsor.name} loading="lazy" decoding="async" />
+              <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                width="160"
+                height="60"
+                loading="lazy"
+                decoding="async"
+              />
             </a>
           ))}
         </div>
