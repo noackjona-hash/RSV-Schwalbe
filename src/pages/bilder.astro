@@ -11,10 +11,17 @@ import verein from '../data/verein.json';
       <p>Eindrücke von unseren Rennen, Trainingsausfahrten und dem Vereinsleben rund um den RSV &ldquo;Schwalbe&rdquo; Ellmendingen.</p>
 
       <div class="gallery-page-grid">
-        {galerie.galleryPage.map((img) => (
-          <div class="gallery-page-item">
+        {galerie.galleryPage.map((img, index) => (
+          <button
+            type="button"
+            class="gallery-page-item gallery-lightbox-trigger"
+            data-index={index}
+            data-src={img.src}
+            data-alt={img.alt}
+            aria-label={`${img.alt} vergrößern`}
+          >
             <img src={img.src} alt={img.alt} loading="lazy" />
-          </div>
+          </button>
         ))}
       </div>
 
@@ -27,4 +34,58 @@ import verein from '../data/verein.json';
       </div>
     </div>
   </div>
+
+  <div class="lightbox-backdrop" id="lightbox" aria-hidden="true" role="dialog" aria-label="Bildansicht">
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Schließen">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Vorheriges Bild">&#10094;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Nächstes Bild">&#10095;</button>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var triggers = Array.from(document.querySelectorAll('.gallery-lightbox-trigger'));
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightbox-img');
+      var closeBtn = document.getElementById('lightbox-close');
+      var prevBtn = document.getElementById('lightbox-prev');
+      var nextBtn = document.getElementById('lightbox-next');
+      if (!lightbox || !lightboxImg || triggers.length === 0) return;
+
+      var currentIndex = 0;
+
+      function showImage(index) {
+        currentIndex = ((index % triggers.length) + triggers.length) % triggers.length;
+        var item = triggers[currentIndex];
+        lightboxImg.src = item.dataset.src || '';
+        lightboxImg.alt = item.dataset.alt || '';
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+      }
+
+      triggers.forEach(function (btn, idx) {
+        btn.addEventListener('click', function () { showImage(idx); });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+      if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); showImage(currentIndex - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); showImage(currentIndex + 1); });
+
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+        if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+      });
+    });
+  </script>
 </BaseLayout>
