@@ -1,0 +1,21 @@
+# Kompatibilitäts-Weiterleitungen (.html -> saubere URLs)
+/index.html               /                         301
+/verein.html              /verein                   301
+/sponsoren.html           /sponsoren                301
+/wandergruppe.html        /wandergruppe             301
+/verwaltung.html          /verwaltung               301
+/kontakt.html             /kontakt                  301
+/mitglied-werden.html     /mitglied-werden          301
+/impressum.html           /impressum                301
+/fahrer.html              /fahrer                   301
+/rsv-kids.html            /rsv-kids                 301
+/training.html            /training                 301
+/veranstaltungen.html     /veranstaltungen          301
+/berichte.html            /berichte                 301
+/bilder.html              /bilder                   301
+/links.html               /links                    301
+/archiv.html              /archiv                   301
+/jhv-2026.html            /jhv-2026                 301
+/weihnachtsfeier-2026.html /weihnachtsfeier-2026    301
+/veranstaltung-detail.html /veranstaltung-detail    301
+/blog/*.html              /blog/:splat              301
