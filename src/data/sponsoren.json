@@ -1,104 +1,68 @@
 [
   {
     "name": "Sparkasse Pforzheim Calw",
-    "url": "https://www.sparkasse-pforzheim-calw.de",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Sparkasse_Pforzheim_Calw.png",
+    "url": "https://www.sparkasse-pforzheim-calw.de/",
+    "logo": "/images/sponsoren/Sparkasse_Pforzheim_Calw.jpg",
     "showOnHome": true
   },
   {
-    "name": "Speiter",
-    "url": "http://www.speiter.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Speiter.jpg",
+    "name": "Altinger Drucktechnik",
+    "url": "https://www.altinger-drucktechnik.de/",
+    "logo": "/images/sponsoren/AltingerHP.jpg",
     "showOnHome": true
   },
   {
-    "name": "Konstandin GmbH",
-    "url": "https://www.konstandin-gmbh.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Konstandin.jpg",
+    "name": "Bike Sport Höhn",
+    "url": "https://www.bike-sport-hoehn.de/",
+    "logo": "/images/sponsoren/LogoRadHoehnHP.jpg",
     "showOnHome": true
   },
   {
-    "name": "Bäckereiuter",
-    "url": "http://www.baeckerei-reuter.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Reuter.png",
-    "showOnHome": false
-  },
-  {
-    "name": "Seeger",
-    "url": "http://www.bestattungen-seeger.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Seeger.png",
-    "showOnHome": false
-  },
-  {
-    "name": "Kieser",
-    "url": "http://www.kieser-ellmendingen.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Kieser.png",
-    "showOnHome": false
-  },
-  {
-    "name": "Regio",
-    "url": "https://www.regio-keltern.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Regio.jpg",
-    "showOnHome": false
-  },
-  {
-    "name": "Klotz",
-    "url": "http://www.klotz-getraenke.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Klotz.png",
-    "showOnHome": false
-  },
-  {
-    "name": "Weingut",
-    "url": "http://www.weingut-kern.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Weingut_Kern.jpg",
-    "showOnHome": false
-  },
-  {
-    "name": "Radsport",
-    "url": "http://www.radsport-kritter.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Kritter.jpg",
+    "name": "OTEC Präzisionsfinish",
+    "url": "https://www.otec.de/",
+    "logo": "/images/sponsoren/OtecHP.jpg",
     "showOnHome": true
   },
   {
-    "name": "Lindenapotheke",
-    "url": "http://www.linden-apotheke-keltern.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Lindenapotheke.png",
-    "showOnHome": false
-  },
-  {
-    "name": "Metzgerei",
-    "url": "http://www.metzgerei-duerr.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Metzgerei_Duerr.jpg",
-    "showOnHome": false
-  },
-  {
-    "name": "Tengelmann",
-    "url": "http://www.fuchs-bauunternehmung.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Fuchs.jpg",
+    "name": "Mister Bike Pforzheim",
+    "url": "https://www.misterbike.com/",
+    "logo": "/images/sponsoren/MB_logo_hp.jpg",
     "showOnHome": true
   },
   {
-    "name": "Ristorante",
-    "url": "http://www.da-alfredo-keltern.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Da_Alfredo.jpg",
-    "showOnHome": false
-  },
-  {
-    "name": "Erich",
-    "url": "http://www.erich-schmidt-gmbh.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Schmidt.jpg",
+    "name": "Gas Schmidt Heizung & Sanitär",
+    "url": "https://www.heizung-sanitaer-pforzheim.de/",
+    "logo": "/images/sponsoren/GasSchmidtHP.jpg",
     "showOnHome": true
   },
   {
-    "name": "Kirchenbauer",
-    "url": "http://www.kirchenbauer-dach.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Kirchenbauer.png",
+    "name": "Containerdienst Birkenfeld",
+    "url": "http://www.containerdienst-birkenfeld.de/",
+    "logo": "/images/sponsoren/ContainerdienstHP.jpg",
     "showOnHome": false
   },
   {
-    "name": "Hofmann",
-    "url": "http://www.maler-hofmann-keltern.de/",
-    "logo": "http://rsv-ellmendingen.de/wordpress/wp-content/sponsoren/Hofmann.jpg",
+    "name": "Drollinger Metallbau",
+    "url": "https://www.drollinger.de/",
+    "logo": "/images/sponsoren/DrollingerHP.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Kaiser Präzision",
+    "url": "https://www.kaiser-praezision.de/",
+    "logo": "/images/sponsoren/LogoKaiserPraezisionHP.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Sport-Tex Haag",
+    "url": "https://www.sport-tex.de/",
+    "logo": "/images/sponsoren/SportTexHaagHP.jpg",
+    "showOnHome": false
+  },
+  {
+    "name": "Gemeinde Keltern",
+    "url": "https://www.keltern.de/",
+    "logo": "/images/sponsoren/Wappen_Keltern.jpg",
     "showOnHome": false
   }
 ]

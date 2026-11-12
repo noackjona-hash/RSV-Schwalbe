@@ -1,15 +1,15 @@
 {
   "homeTeaser": [
     {
-      "src": "https://schwalbewebseite.pages.dev/images/Amateure1.webp",
+      "src": "/images/home/Amateure1.webp",
       "alt": "Amateure im Rennen"
     },
     {
-      "src": "https://schwalbewebseite.pages.dev/images/Bellheim.webp",
+      "src": "/images/home/Bellheim.webp",
       "alt": "Rennen in Bellheim"
     },
     {
-      "src": "https://schwalbewebseite.pages.dev/images/Rollentraining-Winter.webp",
+      "src": "/images/home/Rollentraining-Winter.webp",
       "alt": "Rollentraining im Winter"
     }
   ],
