@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const events = await getCollection('veranstaltungen');
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event }
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+
+<BaseLayout title={`${event.data.title} ${event.data.year} | RSV Schwalbe Ellmendingen`}>
+  <article class="article">
+    <h1>{event.data.title} {event.data.year}</h1>
+    <p class="article-meta">{event.data.metaLine}</p>
+
+    <div class="article-body">
+      <Content />
+    </div>
+
+    <a href="/veranstaltungen" class="btn-back">&#8592; Alle Veranstaltungen</a>
+  </article>
+</BaseLayout>

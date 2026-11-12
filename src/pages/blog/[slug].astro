@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageGallery from '../../components/ImageGallery.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('berichte');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const metaText = post.data.category
+  ? `${post.data.dateDisplay} · ${post.data.category}`
+  : post.data.dateDisplay;
+---
+
+<BaseLayout title={`${post.data.title} | RSV Schwalbe Ellmendingen`} description={post.data.excerpt}>
+  <article class="article">
+    <h1>{post.data.title}</h1>
+    <p class="article-meta">{metaText}</p>
+
+    {post.data.images && post.data.images.length > 0 && (
+      <ImageGallery images={post.data.images} id="gallery-1" />
+    )}
+
+    <div class="article-body">
+      <Content />
+    </div>
+
+    <a href={post.data.showInOverview ? '/berichte' : '/'} class="btn-back">
+      &#8592; {post.data.showInOverview ? 'Alle Berichte' : 'Zurück zur Übersicht'}
+    </a>
+  </article>
+</BaseLayout>

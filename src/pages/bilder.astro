@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import galerie from '../data/galerie.json';
+import verein from '../data/verein.json';
+---
+
+<BaseLayout title="Bilder | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Bilder</h1>
+      <p>Eindrücke von unseren Rennen, Trainingsausfahrten und dem Vereinsleben rund um den RSV &ldquo;Schwalbe&rdquo; Ellmendingen.</p>
+
+      <div class="gallery-page-grid">
+        {galerie.galleryPage.map((img) => (
+          <div class="gallery-page-item">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 3rem; padding: 2rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+        <div>
+          <h3 style="margin-bottom: 0.25rem;">Noch mehr Bilder auf Instagram</h3>
+          <p style="margin-bottom: 0;">Aktuelle Impressionen von Rennen, Ausfahrten und dem Vereinsleben teilen wir regelmäßig auf unserem Instagram-Kanal.</p>
+        </div>
+        <a href={verein.social.instagram} target="_blank" rel="noopener" class="btn btn-primary" style="white-space: nowrap;">@rsv_schwalbe_ellmendingen &rarr;</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

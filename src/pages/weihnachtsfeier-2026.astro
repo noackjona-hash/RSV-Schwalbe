@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('veranstaltungen', 'weihnachtsfeier-2026');
+const { Content } = await render(entry!);
+---
+
+<BaseLayout title="Weihnachtsfeier 2026 | RSV Schwalbe Ellmendingen">
+  <article class="article">
+    <h1>{entry!.data.title} {entry!.data.year}</h1>
+    <p class="article-meta">{entry!.data.metaLine}</p>
+
+    <div class="article-body">
+      <Content />
+    </div>
+
+    <a href="/veranstaltungen" class="btn-back">&#8592; Alle Veranstaltungen</a>
+  </article>
+</BaseLayout>

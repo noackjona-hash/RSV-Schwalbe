@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import verein from '../data/verein.json';
+---
+
+<BaseLayout title="Links | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Links</h1>
+      <p>Weiterführende Links zu Radsportverbänden und unserer Heimatgemeinde.</p>
+
+      <ul class="links-list" style="margin-top: 1.5rem;">
+        {verein.externalLinks.map((link) => (
+          <li>
+            <a href={link.url} target="_blank" rel="noopener">{link.label} &rarr;</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
