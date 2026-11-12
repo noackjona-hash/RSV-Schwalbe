@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import sponsoren from '../data/sponsoren.json';
+import galerie from '../data/galerie.json';
+
+const allTermine = await getCollection('veranstaltungen');
+const sortedTermine = allTermine.sort((a, b) => a.data.date.localeCompare(b.data.date));
+
+const allBerichte = await getCollection('berichte', ({ data }) => data.showOnHome);
+const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+const homeSponsoren = sponsoren.filter((s) => s.showOnHome);
+---
+
+<BaseLayout title="Startseite | RSV Schwalbe Ellmendingen">
+  <section class="hero">
+    <div class="container">
+      <h1>RSV &ldquo;Schwalbe&rdquo; Ellmendingen</h1>
+      <p>Tradition, Radsport und Vereinsleben in Keltern seit über 125 Jahren. Entdecke unsere Leidenschaft für das Radfahren!</p>
+      <div class="hero-buttons">
+        <a href="/mitglied-werden" class="btn btn-primary">Mitglied werden</a>
+        <a href="/verein" class="btn btn-secondary">Über den Verein</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Nächste Termine</h2>
+          <p class="section-subtitle">Verpasse keine unserer kommenden Veranstaltungen und Ausfahrten.</p>
+        </div>
+        <a href="/veranstaltungen" class="view-all">Alle Termine &rarr;</a>
+      </div>
+      <div class="termine-grid">
+        {sortedTermine.map((termin) => (
+          <a href={termin.data.detailUrl} class="termin-card">
+            <div class="termin-date">
+              <span class="day">{termin.data.day}</span>
+              <span class="month">{termin.data.month}</span>
+            </div>
+            <div class="termin-info">
+              <h3>{termin.data.title}</h3>
+              <p>{termin.data.subtitle}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Aktuelle Berichte</h2>
+          <p class="section-subtitle">Neuigkeiten aus dem Vereinsleben und von den Rennstrecken.</p>
+        </div>
+        <a href="/berichte" class="view-all">Alle Berichte &rarr;</a>
+      </div>
+      <div class="news-grid">
+        {sortedBerichte.map((post) => (
+          <article class="news-card">
+            <div class="news-meta">
+              {post.data.dateDisplay}{post.data.category ? ` · ${post.data.category}` : ''}
+            </div>
+            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+            <p>{post.data.homeExcerpt || post.data.excerpt}</p>
+            <a href={`/blog/${post.slug}`} class="read-more">Weiterlesen &rarr;</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header-center">
+        <h2>Radsport in Bildern</h2>
+        <p class="section-subtitle">Eindrücke von unseren Rennen, Ausfahrten und dem Training.</p>
+      </div>
+      <div class="gallery-home-grid">
+        {galerie.homeTeaser.map((img) => (
+          <div class="gallery-item">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="/bilder" class="btn btn-primary">Zur Bildergalerie</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="banner-leidenschaft">
+    <div class="container">
+      <h2>Mit Leidenschaft dabei!</h2>
+      <p>Ob Rennrad, Nachwuchstraining oder gesellige Wandergruppe – beim RSV Schwalbe Ellmendingen findet jeder seinen Platz.</p>
+      <a href="/mitglied-werden" class="btn btn-primary">Mitglied werden</a>
+    </div>
+  </section>
+
+  <section class="sponsoren-home">
+    <div class="container">
+      <p class="sponsoren-title">Unsere Partner &amp; Sponsoren</p>
+      <div class="sponsoren-flex">
+        {homeSponsoren.map((sponsor) => (
+          <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-box">
+            <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
