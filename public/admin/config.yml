@@ -1,0 +1,110 @@
+backend:
+  name: github
+  repo: noackjona-hash/RSV-Schwalbe
+  branch: main
+
+local_backend: true
+locale: 'de'
+
+media_folder: "public/blog/images"
+public_folder: "/blog/images"
+
+collections:
+  - name: "berichte"
+    label: "Vereinsberichte"
+    label_singular: "Bericht"
+    folder: "src/content/berichte"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Sortier-Datum (JJJJ-MM-TT)", name: "date", widget: "string", hint: "Format: 2026-11-02" }
+      - { label: "Anzeige-Datum", name: "dateDisplay", widget: "string", hint: "z. B. 2. November 2026" }
+      - { label: "Kategorie", name: "category", widget: "select", options: ["Radsport", "Wandergruppe", "Verein", "RSV-Kids"], required: false }
+      - { label: "Kurzbeschreibung (Übersicht)", name: "excerpt", widget: "text" }
+      - { label: "Kurzbeschreibung (Startseite)", name: "homeExcerpt", widget: "text", required: false }
+      - { label: "Vorschaubild", name: "thumbnail", widget: "image", required: false }
+      - label: "Bildergalerie im Beitrag"
+        name: "images"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Bild", name: "src", widget: "image" }
+          - { label: "Bildbeschreibung (Alt-Text)", name: "alt", widget: "string" }
+      - { label: "In Berichte-Übersicht anzeigen", name: "showInOverview", widget: "boolean", default: true }
+      - { label: "Auf Startseite anzeigen", name: "showOnHome", widget: "boolean", default: true }
+      - { label: "Beitragstext", name: "body", widget: "markdown" }
+
+  - name: "veranstaltungen"
+    label: "Veranstaltungen & Termine"
+    label_singular: "Veranstaltung"
+    folder: "src/content/veranstaltungen"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Sortier-Datum (JJJJ-MM-TT)", name: "date", widget: "string", hint: "z. B. 2026-05-14" }
+      - { label: "Tag (2-stellig)", name: "day", widget: "string", hint: "z. B. 14" }
+      - { label: "Monat (Kurzform)", name: "month", widget: "string", hint: "z. B. Mai" }
+      - { label: "Jahr", name: "year", widget: "number", default: 2026 }
+      - { label: "Kurzinfo (Ort & Uhrzeit)", name: "subtitle", widget: "string", hint: "z. B. Ortskern Ellmendingen · 10:00 Uhr" }
+      - { label: "Detail-Unterzeile", name: "metaLine", widget: "string", hint: "z. B. Donnerstag, 14. Mai 2026 · 10:00 Uhr · Ortskern Ellmendingen" }
+      - { label: "Hervorheben", name: "highlight", widget: "boolean", default: false }
+      - { label: "Detail-URL", name: "detailUrl", widget: "string", default: "/veranstaltungen/neuer-termin" }
+      - { label: "Beschreibung & Programm", name: "body", widget: "markdown" }
+
+  - name: "stammdaten"
+    label: "Seiteninhalte & Stammdaten"
+    files:
+      - name: "training"
+        label: "Trainingszeiten & Ausfahrten"
+        file: "src/data/training.json"
+        fields:
+          - { label: "Einleitungstext", name: "intro", widget: "text" }
+          - label: "Sommerzeit"
+            name: "summer"
+            widget: "object"
+            fields:
+              - { label: "Überschrift", name: "title", widget: "string" }
+              - label: "Trainingseinheiten"
+                name: "sessions"
+                widget: "list"
+                fields:
+                  - { label: "Tag & Uhrzeit", name: "day", widget: "string" }
+                  - { label: "Beschreibung", name: "description", widget: "string" }
+          - label: "Winterzeit"
+            name: "winter"
+            widget: "object"
+            fields:
+              - { label: "Überschrift", name: "title", widget: "string" }
+              - { label: "Beschreibung", name: "description", widget: "text" }
+          - label: "Treffpunkt"
+            name: "meetingPoint"
+            widget: "object"
+            fields:
+              - { label: "Überschrift", name: "title", widget: "string" }
+              - { label: "Adresse / Ort", name: "description", widget: "string" }
+
+      - name: "verein"
+        label: "Vereinsdaten, Vorstand & Beiträge"
+        file: "src/data/verein.json"
+        fields:
+          - { label: "Vereinsname", name: "name", widget: "string" }
+          - { label: "E-Mail", name: "email", widget: "string" }
+          - label: "Adresse"
+            name: "address"
+            widget: "object"
+            fields:
+              - { label: "Straße", name: "street", widget: "string" }
+              - { label: "PLZ", name: "zip", widget: "string" }
+              - { label: "Ort", name: "city", widget: "string" }
+          - label: "Vorstand"
+            name: "board"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Amt", name: "role", widget: "string" }

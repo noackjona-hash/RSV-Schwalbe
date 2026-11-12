@@ -1,0 +1,18 @@
+{
+  "intro": "Unsere Rennfahrerinnen und Rennfahrer vertreten die Farben des RSV „Schwalbe“ Ellmendingen bei regionalen, nationalen und internationalen Straßen-, Bahn- und Kriteriumsrennen.",
+  "categories": [
+    {
+      "title": "Amateure & Elite",
+      "riders": [
+        { "name": "Max Mustermann", "klasse": "Elite-Amateure" },
+        { "name": "Lukas Beispiel", "klasse": "Amateure" },
+        { "name": "Tim Testfahrer", "klasse": "Masters 2" }
+      ]
+    },
+    {
+      "title": "Nachwuchs (U11 – U19)",
+      "riders": [],
+      "placeholder": "Die aktuelle Kaderliste für die Saison 2026 wird derzeit aktualisiert."
+    }
+  ]
+}

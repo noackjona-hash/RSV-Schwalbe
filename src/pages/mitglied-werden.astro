@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import verein from '../data/verein.json';
+---
+
+<BaseLayout title="Mitglied werden | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Wir haben dein Interesse geweckt?</h1>
+
+      <p>Du möchtest Mitglied werden? Dann füll einfach unsere Beitrittserklärung aus und schick sie uns zu.</p>
+      <p><a href={verein.membership.applicationPdfUrl} class="btn-download">{verein.membership.applicationPdfLabel}</a></p>
+
+      <h3>Jahresbeiträge</h3>
+      <table class="beitrags-tabelle">
+        <tbody>
+          {verein.membership.annualFees.map((fee) => (
+            <tr>
+              <td>{fee.category}</td>
+              <td>{fee.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h3>Zusatzbeiträge für Aktive</h3>
+      <p>Für Mitglieder, die an lizenzierten Rennen oder Punktekartenrennen teilnehmen, fallen folgende Zusatzbeiträge an:</p>
+      <table class="beitrags-tabelle">
+        <tbody>
+          {verein.membership.activeSurcharges.map((fee) => (
+            <tr>
+              <td>{fee.category}</td>
+              <td>{fee.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h3>Versicherungsschutz</h3>
+      <p>Die Pflichtunfallversicherung des Badischen Radsportverbandes ist in unseren Beiträgen enthalten. Dieser Schutz gilt für alle Fahrten mit dem Fahrrad – ob auf dem Weg zur Arbeit, beim Training oder bei Freizeitausfahrten.</p>
+
+      <p><a href={verein.membership.feeRegulationPdfUrl} class="btn-download">{verein.membership.feeRegulationPdfLabel}</a></p>
+    </div>
+  </div>
+</BaseLayout>

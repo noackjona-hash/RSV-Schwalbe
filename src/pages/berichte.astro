@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allBerichte = await getCollection('berichte', ({ data }) => data.showInOverview);
+const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+
+<BaseLayout title="Alle Berichte | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Berichte</h1>
+      <p>Neuigkeiten aus dem Vereinsleben, von den Rennstrecken und unseren Gruppen.</p>
+
+      <div class="berichte-list">
+        {sortedBerichte.map((post) => (
+          <article class="bericht-row">
+            {post.data.thumbnail && (
+              <a href={`/blog/${post.slug}`} class="bericht-thumb" tabindex="-1" aria-hidden="true">
+                <img src={post.data.thumbnail} alt="" loading="lazy" />
+              </a>
+            )}
+            <div class="bericht-content">
+              <div class="news-meta">
+                {post.data.dateDisplay}{post.data.category ? ` · ${post.data.category}` : ''}
+              </div>
+              <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+              <p>{post.data.excerpt}</p>
+              <a href={`/blog/${post.slug}`} class="read-more">Weiterlesen &rarr;</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

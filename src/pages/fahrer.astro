@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fahrerData from '../data/fahrer.json';
+---
+
+<BaseLayout title="Unsere Fahrer | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Unsere Fahrer</h1>
+      <p>{fahrerData.intro}</p>
+
+      {fahrerData.categories.map((cat) => (
+        <>
+          <h2>{cat.title}</h2>
+          {cat.riders && cat.riders.length > 0 ? (
+            <div class="fahrer-grid">
+              {cat.riders.map((rider) => (
+                <div class="fahrer-card">
+                  <h4>{rider.name}</h4>
+                  <p>Klasse: {rider.klasse}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>{cat.placeholder}</p>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
