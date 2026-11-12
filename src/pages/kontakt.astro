@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import verein from '../data/verein.json';
+---
+
+<BaseLayout title="Kontakt | RSV Schwalbe Ellmendingen">
+  <div class="page-body">
+    <div class="container">
+      <h1>Kontakt</h1>
+      <p>Du hast Fragen zum Verein, zum Probetraining oder zu unseren Veranstaltungen? Schreib uns gerne eine Nachricht oder wende dich direkt an unseren Vorstand!</p>
+
+      <h2>Anschrift &amp; Vereinsheim</h2>
+      <p>
+        <strong>RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</strong><br>
+        {verein.address.street}<br>
+        {verein.address.zip} {verein.address.city}
+      </p>
+
+      <h3>E-Mail</h3>
+      <p><a href={`mailto:${verein.email}`}>{verein.email}</a></p>
+
+      <h3>Vorstand</h3>
+      <ul>
+        {verein.board.map((member) => (
+          <li><strong>{member.role}:</strong> {member.name}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
