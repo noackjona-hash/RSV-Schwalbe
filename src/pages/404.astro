@@ -2,16 +2,35 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Seite nicht gefunden (404) | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Seite nicht gefunden (404) | RSV Schwalbe Ellmendingen"
+  description="Die aufgerufene Seite wurde beim RSV Schwalbe Ellmendingen nicht gefunden."
+  noindex={true}
+>
   <div class="page-body" style="text-align: center; padding: 6rem 0;">
-    <div class="container" style="max-width: 600px;">
-      <p style="font-weight: 600; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">Fehler 404</p>
+    <div class="container" style="max-width: 640px;">
+      <p style="font-weight: 600; color: var(--accent-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">Fehler 404</p>
       <h1>Hier bist du falsch abgebogen</h1>
       <p style="font-size: 1.1rem; margin-bottom: 2rem;">Die gesuchte Seite existiert leider nicht oder wurde im Zuge der neuen Vereinswebsite verschoben.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="/" class="btn btn-primary"><span>Zur Startseite</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-        <a href="/berichte" class="btn btn-yellow"><span>Aktuelle Berichte</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-        <a href="/veranstaltungen" class="btn btn-yellow"><span>Veranstaltungen</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+      <div style="display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary">
+          <span>Zur Startseite</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+        <a href="/berichte" class="btn btn-yellow">
+          <span>Aktuelle Berichte</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+        <a href="/veranstaltungen" class="btn btn-outline">
+          <span>Veranstaltungen</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </div>

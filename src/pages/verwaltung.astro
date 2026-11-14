@@ -2,9 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Verwaltung | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Verwaltung | RSV Schwalbe Ellmendingen"
+  description="Vorstand, Gremien und Ansprechpartner der Vereinsverwaltung beim RSV Schwalbe Ellmendingen e. V."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Der Verein', url: '/verein' },
+    { name: 'Verwaltung', url: '/verwaltung' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/verein">Der Verein</a></li>
+          <li aria-current="page">Verwaltung</li>
+        </ol>
+      </nav>
       <h1>Verwaltung</h1>
       <p>Inhalt folgt.</p>
     </div>

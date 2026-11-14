@@ -6,9 +6,22 @@ const allTermine = await getCollection('veranstaltungen');
 const sortedTermine = allTermine.sort((a, b) => a.data.date.localeCompare(b.data.date));
 ---
 
-<BaseLayout title="Veranstaltungen | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Veranstaltungen | RSV Schwalbe Ellmendingen"
+  description="Alle Termine und Veranstaltungen 2026 des RSV Schwalbe Ellmendingen: Großes Preis-Radrennen „Rund um die Alte Kelter“, Jahreshauptversammlung und Weihnachtsfeier."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Veranstaltungen', url: '/veranstaltungen' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Veranstaltungen</li>
+        </ol>
+      </nav>
       <h1>Veranstaltungen &amp; Termine</h1>
       <p>Hier findest du alle anstehenden Vereinsveranstaltungen, Renntermine und Feste des RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</p>
 
@@ -46,7 +59,12 @@ const sortedTermine = allTermine.sort((a, b) => a.data.date.localeCompare(b.data
 
       <h2>Vergangene Veranstaltungen</h2>
       <ul class="links-list">
-        <li><a href="/archiv">Rückblicke &amp; Berichte aus dem Jahr 2025 <span>&rarr;</span></a></li>
+        <li>
+          <a href="/archiv">
+            <span>Rückblicke &amp; Berichte aus dem Jahr 2025</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

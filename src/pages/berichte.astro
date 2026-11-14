@@ -6,9 +6,22 @@ const allBerichte = await getCollection('berichte', ({ data }) => data.showInOve
 const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
-<BaseLayout title="Alle Berichte | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Alle Berichte | RSV Schwalbe Ellmendingen"
+  description="Aktuelle Vereinsberichte, Rennrückblicke, Jugendnachrichten und Meldungen des RSV Schwalbe Ellmendingen e. V."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Berichte', url: '/berichte' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Berichte</li>
+        </ol>
+      </nav>
       <h1>Berichte</h1>
       <p>Neuigkeiten aus dem Vereinsleben, von den Rennstrecken und unseren Gruppen.</p>
 
@@ -26,7 +39,12 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
               </div>
               <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
               <p>{post.data.excerpt}</p>
-              <a href={`/blog/${post.slug}`} class="read-more"><span>Weiterlesen</span> <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+              <a href={`/blog/${post.slug}`} class="read-more">
+                <span>Weiterlesen<span class="sr-only"> zu &bdquo;{post.data.title}&ldquo;</span></span>
+                <span class="btn-arrow" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </a>
             </div>
           </article>
         ))}

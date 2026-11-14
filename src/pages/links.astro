@@ -3,16 +3,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import verein from '../data/verein.json';
 ---
 
-<BaseLayout title="Links | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Links | RSV Schwalbe Ellmendingen"
+  description="Nützliche Links rund um den RSV Schwalbe Ellmendingen: Badischer Radsportverband, Bund Deutscher Radfahrer und Gemeinde Keltern."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Links', url: '/links' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Links</li>
+        </ol>
+      </nav>
       <h1>Links</h1>
       <p>Weiterführende Links zu Radsportverbänden und unserer Heimatgemeinde.</p>
 
       <ul class="links-list" style="margin-top: 1.5rem;">
         {verein.externalLinks.map((link) => (
           <li>
-            <a href={link.url} target="_blank" rel="noopener">{link.label} &rarr;</a>
+            <a href={link.url} target="_blank" rel="noopener">
+              <span>{link.label}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
           </li>
         ))}
       </ul>

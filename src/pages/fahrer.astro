@@ -3,9 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import fahrerData from '../data/fahrer.json';
 ---
 
-<BaseLayout title="Unsere Fahrer | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Unsere Fahrer | RSV Schwalbe Ellmendingen"
+  description="Aktive Rennfahrerinnen und Rennfahrer des RSV Schwalbe Ellmendingen e. V. in den Nachwuchs-, Amateur- und Masters-Klassen."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Unsere Fahrer', url: '/fahrer' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Unsere Fahrer</li>
+        </ol>
+      </nav>
       <h1>Unsere Fahrer</h1>
       <p>{fahrerData.intro}</p>
 

@@ -2,9 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="RSV-Kids | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="RSV-Kids | RSV Schwalbe Ellmendingen"
+  description="RSV-Kids: Nachwuchsförderung und Kindertraining beim RSV Schwalbe Ellmendingen e. V. für junge Radsportbegeisterte in Keltern."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'RSV-Kids', url: '/rsv-kids' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">RSV-Kids</li>
+        </ol>
+      </nav>
       <h1>RSV-Kids</h1>
       <p>Inhalt folgt.</p>
     </div>

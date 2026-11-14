@@ -3,20 +3,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import verein from '../data/verein.json';
 ---
 
-<BaseLayout title="Impressum | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Impressum | RSV Schwalbe Ellmendingen"
+  description="Impressum, gesetzliche Pflichtangaben gemäß § 5 TMG, Vereinsregister, Vertretungsberechtigte und rechtliche Hinweise des RSV Schwalbe Ellmendingen e. V."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Impressum', url: '/impressum' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Impressum</li>
+        </ol>
+      </nav>
       <h1>Impressum</h1>
       <div class="impressum-body" style="max-width: 720px;">
 
-        <h3>Angaben gemäß § 5 TMG:</h3>
+        <h2>Angaben gemäß § 5 TMG:</h2>
         <p>
           RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.<br>
           {verein.address.street}<br>
           {verein.address.zip} {verein.address.city}
         </p>
 
-        <h3>Vertreten durch:</h3>
+        <h2>Vertreten durch:</h2>
         <p>
           {verein.board.map((m, i) => (
             <>
@@ -26,19 +39,19 @@ import verein from '../data/verein.json';
           ))}
         </p>
 
-        <h3>Kontakt:</h3>
+        <h2>Kontakt:</h2>
         <p>
           E-Mail: <a href={`mailto:${verein.email}`}>{verein.email}</a>
         </p>
 
-        <h3>Registereintrag:</h3>
+        <h2>Registereintrag:</h2>
         <p>
           Eintragung im Vereinsregister.<br>
           Registergericht: {verein.register.court}<br>
           Registernummer: {verein.register.number}
         </p>
 
-        <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h3>
+        <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h2>
         <p>
           {verein.pressResponsible.map((person, i) => (
             <>

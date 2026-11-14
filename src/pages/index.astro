@@ -11,7 +11,10 @@ const allBerichte = await getCollection('berichte', ({ data }) => data.showOnHom
 const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
-<BaseLayout title="RSV Schwalbe Ellmendingen | Der Radsportverein in Baden">
+<BaseLayout
+  title="RSV Schwalbe Ellmendingen | Der Radsportverein in Baden"
+  description="RSV „Schwalbe“ Ellmendingen e. V. – Radsport, Straßentraining, Radrennen „Rund um die Alte Kelter“, Kindertraining und Wandergruppe in Keltern seit 1897."
+>
   <!-- HERO (Exakt nach RSV-Corporate-Design.pdf Seite 2 — ohne generische AI-Badges/Klötze) -->
   <section class="hero">
     <img
@@ -36,11 +39,15 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
         <div class="hero-actions">
           <a href="/mitglied-werden" class="btn btn-yellow">
             <span>Mitglied werden</span>
-            <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
           </a>
           <a href="/training" class="btn btn-secondary">
             <span>Training &amp; Ausfahrten</span>
-            <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
           </a>
         </div>
       </div>
@@ -71,9 +78,11 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
             <div class="news-card-body">
               <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
               <div class="news-meta">{post.data.date}</div>
-              <a href={`/blog/${post.slug}`} class="read-more" aria-label={`Weiterlesen: ${post.data.title}`}>
-                <span>Weiterlesen</span>
-                <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+              <a href={`/blog/${post.slug}`} class="read-more">
+                <span>Weiterlesen<span class="sr-only"> zu &bdquo;{post.data.title}&ldquo;</span></span>
+                <span class="btn-arrow" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
               </a>
             </div>
           </article>
@@ -82,7 +91,9 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
       <div class="section-footer-action">
         <a href="/berichte" class="view-all">
           <span>Alle Vereinsberichte</span>
-          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
         </a>
       </div>
     </div>
@@ -124,6 +135,14 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
           </a>
         ))}
       </div>
+      <div class="section-footer-action">
+        <a href="/veranstaltungen" class="view-all">
+          <span>Alle Veranstaltungen</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
 
       <!-- Plakat-Highlight im Corporate Design (Seite 6 des Design-Guides) -->
       <div class="poster-banner">
@@ -132,7 +151,9 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
         <p>Das traditionsreiche Straßenrennen im Ortskern von Keltern-Ellmendingen – für Schüler, Jugend, Jedermänner und Amateure.</p>
         <a href="/veranstaltung-detail" class="btn btn-dark">
           <span>Programm &amp; Zeitplan</span>
-          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
         </a>
       </div>
     </div>
@@ -161,7 +182,9 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
       <div class="gallery-cta-wrap">
         <a href="/bilder" class="btn btn-yellow">
           <span>Zur Bildergalerie</span>
-          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
         </a>
       </div>
     </div>
