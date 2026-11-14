@@ -9,7 +9,7 @@ import verein from '../data/verein.json';
       <h1>Wir haben dein Interesse geweckt?</h1>
 
       <p>Du möchtest Mitglied werden? Dann füll einfach unsere Beitrittserklärung aus und schick sie uns zu.</p>
-      <p><a href={verein.membership.applicationPdfUrl} class="btn-download">{verein.membership.applicationPdfLabel}</a></p>
+      <p><a href={verein.membership.applicationPdfUrl} class="btn-download"><span>{verein.membership.applicationPdfLabel}</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a></p>
 
       <h2>Jahresbeiträge</h2>
       <table class="beitrags-tabelle">
@@ -39,7 +39,7 @@ import verein from '../data/verein.json';
       <h2>Versicherungsschutz</h2>
       <p>Die Pflichtunfallversicherung des Badischen Radsportverbandes ist in unseren Beiträgen enthalten. Dieser Schutz gilt für alle Fahrten mit dem Fahrrad – ob auf dem Weg zur Arbeit, beim Training oder bei Freizeitausfahrten.</p>
 
-      <p><a href={verein.membership.feeRegulationPdfUrl} class="btn-download">{verein.membership.feeRegulationPdfLabel}</a></p>
+      <p><a href={verein.membership.feeRegulationPdfUrl} class="btn-download"><span>{verein.membership.feeRegulationPdfLabel}</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a></p>
     </div>
   </div>
 </BaseLayout>
