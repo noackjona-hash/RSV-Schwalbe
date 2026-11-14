@@ -3,6 +3,16 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.4.0] - 2026-11-14
+### Geändert & Optimiert
+- **Signature Radsport-Button-System („Das gewisse Etwas“)**:
+  - Aerodynamische Pill-Silhouette (`border-radius: 999px`) mit feinem Top-Glanzlicht und integrierter kreisrunder Action-Kapsel (`.btn-arrow` / `.btn-arrow-left` bzw. `::after` bei `.btn-header-cta`), deren Farbe beim Hover dynamisch zwischen den Vereinsfarben (`#0F172A`, `#FA006C`, `#FFE940`) wechselt.
+  - Aufwertung des *Alle Vereinsberichte*-Links (`.view-all`) zu einem dezenten Outline-Pill-Button mit Pink-Badge sowie konsistente `.btn-arrow`-Struktur auf `404.astro`, `bilder.astro` und `berichte.astro`.
+- **Technische & Mobile Optimierung**:
+  - **Touch- vs. Maus-Trennung**: Alle Button-`:hover`-Effekte strikt in `@media (hover: hover)` gekapselt (verhindert Sticky-Hover auf Smartphones) und um ein unmittelbares physisches `:active`-Druckfeedback (`scale(0.97)`) ergänzt.
+  - **Mobile Daumen-Ergonomie (`< 480px`)**: `.hero-actions .btn` und `.btn-download` spannen auf schmalen Smartphones sauber auf `100 %` Breite mit linksbündigem Label und rechtsbündiger Kapsel.
+  - **CSS-Deduplizierung & Payload**: Gemeinsame Basisklassen für `.btn, .btn-back, .btn-download`, Entfernen von totem CSS (`.banner-leidenschaft`, `.hero-buttons`) und Bereinigung des `:focus-visible`-Radius für runde Pill-Buttons.
+
 ## [2.3.1] - 2026-11-14
 ### Geändert & Verbessert
 - **Modernes, einheitliches Button-System (Corporate Design v2.0)**:
