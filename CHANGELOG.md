@@ -3,6 +3,18 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.6.0] - 2026-11-14
+
+### Hinzugefügt
+- **Seiteneinstiege & Editorial Components**: Einheitliche `.page-header`-Sektionen mit Kicker und Einleitung auf allen Unterseiten sowie `.info-card-grid`, `.fact-grid`, `.fee-cards-grid` und `.page-cta-box` für strukturierte Inhaltsblöcke.
+- **Termine & Kalender**: `.termin-date-badge` mit Tag/Monat, strukturierte Termin-Karten mit `.termin-card-action` auf Startseite und `/veranstaltungen` sowie ausgearbeitete Veranstaltungsseiten für JHV und Weihnachtsfeier 2026.
+- **Footer & Navigation**: 4-spaltiger Editorial-Footer mit Vereinsanschrift, E-Mail-Kontakt, Social-Links und kategorisierten Navigationsspalten.
+- **Vollständige Vereinsinhalte**: Ausgearbeitete Seiten für `/rsv-kids`, `/wandergruppe`, `/verwaltung`, `/archiv`, `/verein`, `/kontakt`, `/mitglied-werden`, `/training`, `/sponsoren` sowie bereinigte Fahrerprofile in `src/data/fahrer.json`.
+
+### Geändert & Behoben
+- **UI-Präzision**: Geschärfte Button-Konturen, Inset-Highlights und Hover-Übergänge; eigene Kalender-Layoutspalten (`.termine-grid`) unabhängig von `.gallery-page-grid`; `.footer-grid` sauber auf CSS Grid umgestellt.
+- **SEO & Konsistenz**: Optionales `canonicalPath`-Override in `BaseLayout.astro`, einheitliches „Archiv“-Label in Header und Seite, korrigierte Heading-Hierarchie in `radrennen-2026.md` (`h1` → `h2`), und gefilterte `sitemap.xml.ts` mit `<lastmod>` und `<priority>`.
+
 ## [2.5.0] - 2026-11-14
 
 ### Changed

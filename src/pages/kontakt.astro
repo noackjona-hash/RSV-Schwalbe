@@ -19,25 +19,62 @@ import verein from '../data/verein.json';
           <li aria-current="page">Kontakt</li>
         </ol>
       </nav>
-      <h1>Kontakt</h1>
-      <p>Du hast Fragen zum Verein, zum Probetraining oder zu unseren Veranstaltungen? Schreib uns gerne eine Nachricht oder wende dich direkt an unseren Vorstand!</p>
+      <header class="page-header">
+        <span class="page-kicker">// Vereinsheim &amp; Ansprechpartner</span>
+        <h1>Kontakt</h1>
+        <p class="page-lead">Du hast Fragen zum Verein, zum Probetraining oder zu unseren Veranstaltungen? Schreib uns gerne direkt per E-Mail oder wende dich an unseren Vorstand.</p>
+      </header>
 
-      <h2>Anschrift &amp; Vereinsheim</h2>
-      <p>
-        <strong>RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</strong><br>
-        {verein.address.street}<br>
-        {verein.address.zip} {verein.address.city}
-      </p>
+      <div class="info-card-grid info-card-grid--3">
+        <section class="info-card info-card--accent">
+          <span class="info-card-kicker">Standort</span>
+          <h2>Anschrift &amp; Vereinsheim</h2>
+          <p>
+            <strong>RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</strong><br />
+            {verein.address.street}<br />
+            {verein.address.zip} {verein.address.city}
+          </p>
+        </section>
 
-      <h3>E-Mail</h3>
-      <p><a href={`mailto:${verein.email}`}>{verein.email}</a></p>
+        <section class="info-card info-card--accent">
+          <span class="info-card-kicker">Direkter Draht</span>
+          <h2>E-Mail-Kontakt</h2>
+          <p>Für Mitgliedschaft, Probetraining, Sponsoring und allgemeine Anfragen erreichst du uns direkt per E-Mail.</p>
+          <div class="info-card-actions">
+            <a href={`mailto:${verein.email}`} class="btn btn-primary">
+              <span>E-Mail schreiben</span>
+              <span class="btn-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </section>
 
-      <h3>Vorstand</h3>
-      <ul>
-        {verein.board.map((member) => (
-          <li><strong>{member.role}:</strong> {member.name}</li>
-        ))}
-      </ul>
+        <section class="info-card">
+          <span class="info-card-kicker">Gremium</span>
+          <h2>Vorstand</h2>
+          <ul>
+            {verein.board.map((member) => (
+              <li><strong>{member.role}:</strong> {member.name}</li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Interesse an einer Mitgliedschaft?</h2>
+          <p>Beitrittserklärung, Jahresbeiträge und alle Informationen zum Versicherungsschutz im Überblick.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/mitglied-werden" class="btn btn-yellow">
+            <span>Mitglied werden</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

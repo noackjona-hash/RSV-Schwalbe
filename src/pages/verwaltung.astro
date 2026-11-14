@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import verein from '../data/verein.json';
 ---
 
 <BaseLayout
@@ -20,8 +21,65 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li aria-current="page">Verwaltung</li>
         </ol>
       </nav>
-      <h1>Verwaltung</h1>
-      <p>Inhalt folgt.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Vorstand &amp; Organisation</span>
+        <h1>Verwaltung</h1>
+        <p class="page-lead">Übersicht über den geschäftsführenden Vorstand, die Öffentlichkeitsarbeit sowie die Registerdaten des RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</p>
+      </header>
+
+      <h2>Vorstandschaft</h2>
+      <div class="info-card-grid info-card-grid--3">
+        {verein.board.map((member) => (
+          <div class="info-card info-card--accent">
+            <span class="info-card-kicker">{member.role}</span>
+            <h3>{member.name}</h3>
+            <p>Vertretungsberechtigt gemäß § 26 BGB in der Vereinsführung des RSV Schwalbe Ellmendingen e.&thinsp;V.</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-card-grid">
+        <div class="info-card">
+          <span class="info-card-kicker">Kommunikation</span>
+          <h2>Presse &amp; Öffentlichkeitsarbeit</h2>
+          <p>Verantwortlich für Redaktion, Berichterstattung und Vereinsmedien gemäß § 55 Abs. 2 RStV:</p>
+          <ul>
+            {verein.pressResponsible.map((person) => (
+              <li>{person}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="info-card">
+          <span class="info-card-kicker">Eintragung</span>
+          <h2>Vereinsregister &amp; Sitz</h2>
+          <p>
+            <strong>Registergericht:</strong> {verein.register.court}<br />
+            <strong>Registernummer:</strong> VR {verein.register.number}<br />
+            <strong>Anschrift:</strong> {verein.address.street}, {verein.address.zip} {verein.address.city}
+          </p>
+        </div>
+      </div>
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Anliegen an den Vorstand?</h2>
+          <p>Für Fragen zur Mitgliedschaft, Organisation oder zu Veranstaltungen steht Ihnen die Verwaltung jederzeit per E-Mail zur Verfügung.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/kontakt" class="btn btn-primary">
+            <span>Zum Kontakt</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="/verein" class="btn btn-outline">
+            <span>Über den Verein</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

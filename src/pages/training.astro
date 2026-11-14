@@ -19,21 +19,34 @@ import trainingData from '../data/training.json';
           <li aria-current="page">Training &amp; Ausfahrten</li>
         </ol>
       </nav>
-      <h1>Training &amp; Ausfahrten</h1>
-      <p>{trainingData.intro}</p>
+      <header class="page-header">
+        <span class="page-kicker">// Radsport &amp; Ausfahrten</span>
+        <h1>Training &amp; Ausfahrten</h1>
+        <p class="page-lead">{trainingData.intro}</p>
+      </header>
 
       <h2>{trainingData.summer.title}</h2>
-      <ul>
+      <div class="info-card-grid info-card-grid--3">
         {trainingData.summer.sessions.map((session) => (
-          <li><strong>{session.day}:</strong> {session.description}</li>
+          <div class="info-card info-card--accent">
+            <span class="info-card-kicker">{session.day}</span>
+            <h3>{session.description}</h3>
+          </div>
         ))}
-      </ul>
+      </div>
 
-      <h2>{trainingData.winter.title}</h2>
-      <p>{trainingData.winter.description}</p>
-
-      <h3>{trainingData.meetingPoint.title}</h3>
-      <p>{trainingData.meetingPoint.description}</p>
+      <div class="info-card-grid">
+        <div class="info-card">
+          <span class="info-card-kicker">Saisonale Abweichung</span>
+          <h2>{trainingData.winter.title}</h2>
+          <p>{trainingData.winter.description}</p>
+        </div>
+        <div class="info-card">
+          <span class="info-card-kicker">Abfahrt &amp; Startpunkt</span>
+          <h2>{trainingData.meetingPoint.title}</h2>
+          <p>{trainingData.meetingPoint.description}</p>
+        </div>
+      </div>
 
       <aside class="page-cta-box">
         <div>

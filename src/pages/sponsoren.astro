@@ -19,19 +19,38 @@ import sponsoren from '../data/sponsoren.json';
           <li aria-current="page">Unsere Sponsoren</li>
         </ol>
       </nav>
-      <h1>Unsere Sponsoren</h1>
-      <p>Ein Verein lebt vom Engagement seiner Mitglieder und der tatkräftigen Unterstützung starker Partner aus der Region. Wir bedanken uns herzlich bei allen Sponsoren, Gönnern und Förderern des RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.!</p>
+      <header class="page-header">
+        <span class="page-kicker">// Partner &amp; Förderer</span>
+        <h1>Unsere Sponsoren</h1>
+        <p class="page-lead">Ein Verein lebt vom Engagement seiner Mitglieder und der tatkräftigen Unterstützung starker Partner aus der Region. Wir bedanken uns herzlich bei allen Sponsoren, Gönnern und Förderern des RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.!</p>
+      </header>
 
       <div class="sponsoren-page-grid">
         {sponsoren.map((sponsor) => (
-          <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-page-card">
+          <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="sponsor-page-card">
             <img src={sponsor.logo} alt={sponsor.name} width="180" height="80" loading="lazy" decoding="async" />
+            <span class="sponsor-card-name">
+              <span>{sponsor.name}</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
           </a>
         ))}
       </div>
 
-      <h2 style="margin-top: 3rem;">Sie möchten uns unterstützen?</h2>
-      <p>Sie haben Interesse an einer Partnerschaft, Bandenwerbung bei unseren Veranstaltungen oder Trikotsponsoring? Sprechen Sie uns gerne über unsere <a href="/kontakt">Kontaktseite</a> an!</p>
+      <aside class="page-cta-box">
+        <div>
+          <h2>Sie möchten uns unterstützen?</h2>
+          <p>Ob Partnerschaft, Bandenwerbung bei unserem Radrennen oder Trikotsponsoring – sprechen Sie uns gerne an.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/kontakt" class="btn btn-primary">
+            <span>Sponsoring anfragen</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>
