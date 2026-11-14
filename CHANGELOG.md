@@ -3,6 +3,14 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.3.1] - 2026-11-14
+### Geändert & Verbessert
+- **Modernes, einheitliches Button-System (Corporate Design v2.0)**:
+  - Entfernung der harten `1.5px`-Konturen, eckigen `4px`-Radien und Offset-Schatten (`3px 3px 0`) bei sämtlichen Buttons (`.btn`, `.btn-yellow`, `.btn-primary`, `.btn-dark`, `.btn-header-cta`, `.mobile-menu-toggle`, `.btn-back`, `.btn-download`, `.btn-submit`).
+  - Einführung abgerundeter, sportlich-eleganter Buttons (`border-radius: 0.65rem` bzw. `0.55rem` im Header) mit weichen Ebenen-Schatten, `44px` Mindest-Tippfläche (`--tap-target-min`) und ruhigem `translateY(-2px)` Hover-Lift.
+  - Harmonisierung des Hero-Button-Paars auf `index.astro` durch einen sekundären Glas-Button (`.btn-secondary`) für *Training & Ausfahrten* sowie Spezifitäts-Fix für den mobilen Drawer-CTA (`.site-nav a:not(.btn)`).
+  - Konsistente animierte Richtungspfeile (`→` / `←`) bei Zurück- (`.btn-back`) und Download-Buttons (`.btn-download`).
+
 ## [2.3.0] - 2026-11-12
 ### Geändert & Verbessert
 - **Mobile Header-Bar für kleine Smartphones (`320px–360px` wie Galaxy S20 / iPhone SE)**:
