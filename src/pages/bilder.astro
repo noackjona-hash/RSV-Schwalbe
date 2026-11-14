@@ -20,8 +20,11 @@ import verein from '../data/verein.json';
           <li aria-current="page">Bilder</li>
         </ol>
       </nav>
-      <h1>Bilder</h1>
-      <p>Eindrücke von unseren Rennen, Trainingsausfahrten und dem Vereinsleben rund um den RSV &ldquo;Schwalbe&rdquo; Ellmendingen.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Impressionen &amp; Galerie</span>
+        <h1>Bilder</h1>
+        <p class="page-lead">Eindrücke von unseren Rennen, Trainingsausfahrten und dem Vereinsleben rund um den RSV &ldquo;Schwalbe&rdquo; Ellmendingen.</p>
+      </header>
 
       <div class="gallery-page-grid">
         {galerie.galleryPage.map((img, index) => (

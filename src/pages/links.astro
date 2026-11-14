@@ -19,13 +19,16 @@ import verein from '../data/verein.json';
           <li aria-current="page">Links</li>
         </ol>
       </nav>
-      <h1>Links</h1>
-      <p>Weiterführende Links zu Radsportverbänden und unserer Heimatgemeinde.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Verbände &amp; Gemeinde</span>
+        <h1>Links</h1>
+        <p class="page-lead">Weiterführende Links zu Radsportverbänden und unserer Heimatgemeinde Keltern.</p>
+      </header>
 
       <ul class="links-list" style="margin-top: 1.5rem;">
         {verein.externalLinks.map((link) => (
           <li>
-            <a href={link.url} target="_blank" rel="noopener">
+            <a href={link.url} target="_blank" rel="noopener noreferrer">
               <span>{link.label}</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>

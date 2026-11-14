@@ -1,31 +1,56 @@
 ---
+import verein from '../data/verein.json';
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
+      <div class="footer-brand-col">
         <p class="footer-brand">RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</p>
-        <p class="footer-text">Der Radsportverein in Baden.<br>Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.</p>
+        <p class="footer-text">Der Radsportverein in Baden. Mit Tradition und Leidenschaft f&uuml;r den Radsport seit &uuml;ber 125 Jahren.</p>
+        <address class="footer-address">
+          {verein.address.street} &middot; {verein.address.zip} {verein.address.city}<br />
+          <a href={`mailto:${verein.email}`}>{verein.email}</a>
+        </address>
+        <div class="footer-social">
+          <a href={verein.social.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href={verein.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
       </div>
-      <div class="footer-nav-group">
-        <div class="footer-links">
-          <p class="footer-heading">Links</p>
-          <ul>
-            <li><a href="/impressum">Impressum</a></li>
-            <li><a href="/kontakt">Kontakt</a></li>
-            <li><a href="/sponsoren">Sponsoren</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <p class="footer-heading">Social Media</p>
-          <ul>
-            <li><a href="https://www.facebook.com/RSVEllmendingen/" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a href="https://www.instagram.com/rsv_schwalbe_ellmendingen/" target="_blank" rel="noopener">Instagram</a></li>
-          </ul>
-        </div>
+
+      <div class="footer-links">
+        <p class="footer-heading">Radsport &amp; Gruppen</p>
+        <ul>
+          <li><a href="/training">Training &amp; Ausfahrten</a></li>
+          <li><a href="/fahrer">Unsere Fahrer</a></li>
+          <li><a href="/rsv-kids">RSV-Kids</a></li>
+          <li><a href="/wandergruppe">Wandergruppe</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <p class="footer-heading">Verein &amp; Termine</p>
+        <ul>
+          <li><a href="/verein">Der Verein</a></li>
+          <li><a href="/veranstaltungen">Veranstaltungen</a></li>
+          <li><a href="/berichte">Alle Berichte</a></li>
+          <li><a href="/mitglied-werden">Mitglied werden</a></li>
+          <li><a href="/sponsoren">Unsere Sponsoren</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <p class="footer-heading">Service &amp; Rechtliches</p>
+        <ul>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/verwaltung">Verwaltung</a></li>
+          <li><a href="/bilder">Bilder</a></li>
+          <li><a href="/archiv">Archiv</a></li>
+          <li><a href="/links">Links</a></li>
+          <li><a href="/impressum">Impressum</a></li>
+        </ul>
       </div>
     </div>
-    <p class="footer-copy">© 2026 RSV Schwalbe Ellmendingen e.&thinsp;V.</p>
+    <p class="footer-copy">&copy; 2026 RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V. &middot; Gegr&uuml;ndet 1898</p>
   </div>
 </footer>

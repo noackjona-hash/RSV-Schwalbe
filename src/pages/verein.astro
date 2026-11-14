@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import verein from '../data/verein.json';
 ---
 
 <BaseLayout
@@ -18,20 +19,66 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li aria-current="page">Der Verein</li>
         </ol>
       </nav>
-      <h1>Der Verein</h1>
+      <header class="page-header">
+        <span class="page-kicker">// Seit {verein.founded} in Keltern-Ellmendingen</span>
+        <h1>Der Verein</h1>
+        <p class="page-lead">Tradition trifft modernen Radsport: Vom historischen Radfahrerbund bis zum heutigen Lizenz-, Breiten- und Nachwuchssport in Baden.</p>
+      </header>
+
+      <div class="fact-grid" aria-label="Vereinskennzahlen">
+        <div class="fact-item">
+          <div class="fact-value">{verein.founded}</div>
+          <div class="fact-label">Gründungsjahr</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-value">&gt; 125</div>
+          <div class="fact-label">Jahre Radsport</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-value">4</div>
+          <div class="fact-label">Aktive Sparten</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-value">VR {verein.register.number}</div>
+          <div class="fact-label">{verein.register.court}</div>
+        </div>
+      </div>
 
       <h2 id="geschichte">Vereinsgeschichte</h2>
-      <p>Der Rad- und Kraftfahrerverein „Schwalbe" Ellmendingen e.&thinsp;V. wurde im Jahr 1898 gegründet und blickt auf eine über 125-jährige Vereinsgeschichte zurück. Was einst als Zusammenschluss begeisterter Radfahrer begann, hat sich über Jahrzehnte hinweg zu einer festen Größe im badischen Radsport entwickelt.</p>
-      <p>Von Kunstradfahren und Radball in den frühen Vereinsjahren bis hin zum modernen Straßenrennsport, Breitensport, Nachwuchstraining (RSV-Kids) und einer aktiven Wandergruppe bietet der Verein heute ein vielfältiges Vereinsleben für Jung und Alt in Keltern-Ellmendingen.</p>
+      <p>Der Rad- und Kraftfahrerverein „Schwalbe" Ellmendingen e.&thinsp;V. wurde im Jahr {verein.founded} gegründet und blickt auf eine über 125-jährige Vereinsgeschichte zurück. Was einst als Zusammenschluss begeisterter Radfahrer begann, hat sich über Jahrzehnte hinweg zu einer festen Größe im badischen Radsport entwickelt.</p>
+      <p>Von Kunstradfahren und Radball in den frühen Vereinsjahren bis hin zum modernen Straßenrennsport, Breitensport, Nachwuchstraining (<a href="/rsv-kids">RSV-Kids</a>) und einer aktiven <a href="/wandergruppe">Wandergruppe</a> bietet der Verein heute ein vielfältiges Vereinsleben für Jung und Alt in Keltern-Ellmendingen.</p>
 
-      <h2 id="verwaltung">Verwaltung</h2>
-      <p>Inhalt folgt.</p>
+      <h2 id="verwaltung">Verwaltung &amp; Vorstand</h2>
+      <p>Der Verein wird ehrenamtlich durch den gewählten Vorstand geführt und engagiert sich gemeinsam mit zahlreichen Helfern für den Sport- und Veranstaltungsbetrieb.</p>
+      <div class="info-card-grid info-card-grid--3">
+        {verein.board.map((member) => (
+          <div class="info-card info-card--accent">
+            <span class="info-card-kicker">{member.role}</span>
+            <h3>{member.name}</h3>
+          </div>
+        ))}
+      </div>
+      <p>
+        <a href="/verwaltung" class="read-more">
+          <span>Zur ausführlichen Verwaltungsübersicht &amp; Registereintragung</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </p>
 
-      <h2 id="ehrungen">Ehrungen</h2>
-      <p>Inhalt folgt.</p>
-
-      <h2 id="satzung">Satzung</h2>
-      <p>Inhalt folgt.</p>
+      <div class="info-card-grid">
+        <section class="info-card" id="ehrungen">
+          <span class="info-card-kicker">Verbundenheit</span>
+          <h2>Ehrungen &amp; Tradition</h2>
+          <p>Langjährige Treue und ehrenamtliches Engagement werden beim RSV Schwalbe Ellmendingen im Rahmen der jährlichen Jahreshauptversammlung sowie bei der Weihnachtsfeier feierlich gewürdigt.</p>
+        </section>
+        <section class="info-card" id="satzung">
+          <span class="info-card-kicker">Ordnung &amp; Grundlagen</span>
+          <h2>Satzung &amp; Beitragsordnung</h2>
+          <p>Die aktuelle Beitragsordnung steht auf der Seite <a href="/mitglied-werden">Mitglied werden</a> zum direkten PDF-Download bereit. Die Vereinssatzung kann jederzeit beim Vorstand eingesehen werden.</p>
+        </section>
+      </div>
 
       <aside class="page-cta-box">
         <div>

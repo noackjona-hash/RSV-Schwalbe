@@ -19,26 +19,64 @@ import fahrerData from '../data/fahrer.json';
           <li aria-current="page">Unsere Fahrer</li>
         </ol>
       </nav>
-      <h1>Unsere Fahrer</h1>
-      <p>{fahrerData.intro}</p>
+      <header class="page-header">
+        <span class="page-kicker">// Rennsport &amp; Kader</span>
+        <h1>Unsere Fahrer</h1>
+        <p class="page-lead">{fahrerData.intro}</p>
+      </header>
 
       {fahrerData.categories.map((cat) => (
         <>
           <h2>{cat.title}</h2>
+          {cat.description && <p>{cat.description}</p>}
           {cat.riders && cat.riders.length > 0 ? (
             <div class="fahrer-grid">
               {cat.riders.map((rider) => (
                 <div class="fahrer-card">
                   <h3>{rider.name}</h3>
                   <p>Klasse: {rider.klasse}</p>
+                  {rider.note && <p class="fahrer-note">{rider.note}</p>}
+                  {rider.link && (
+                    <div style="margin-top: 0.35rem;">
+                      <a href={rider.link} class="read-more">
+                        <span>Zum Rennbericht<span class="sr-only"> von {rider.name}</span></span>
+                        <span class="btn-arrow" aria-hidden="true">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           ) : (
-            <p>{cat.placeholder}</p>
+            <div class="info-card">
+              <p>{cat.placeholder}</p>
+            </div>
           )}
         </>
       ))}
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Gemeinsam trainieren &amp; starten</h2>
+          <p>Du fährst Rennrad oder möchtest beim RSV Schwalbe Ellmendingen in den Straßen- und Kriteriumsrennsport einsteigen?</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/training" class="btn btn-primary">
+            <span>Training &amp; Ausfahrten</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="/mitglied-werden" class="btn btn-outline">
+            <span>Mitglied werden</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

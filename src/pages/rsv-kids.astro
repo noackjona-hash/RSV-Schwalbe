@@ -18,8 +18,64 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li aria-current="page">RSV-Kids</li>
         </ol>
       </nav>
-      <h1>RSV-Kids</h1>
-      <p>Inhalt folgt.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Nachwuchs &amp; Jugend</span>
+        <h1>RSV-Kids</h1>
+        <p class="page-lead">Bei den RSV-Kids führen wir Kinder und Jugendliche Schritt für Schritt an sicheres Radfahren, Fahrtechnik und die Freude am gemeinsamen Radsport heran.</p>
+      </header>
+
+      <h2>Was wir bei den RSV-Kids bieten</h2>
+      <div class="info-card-grid info-card-grid--3">
+        <div class="info-card info-card--accent">
+          <span class="info-card-kicker">01 · Grundlagen</span>
+          <h3>Fahrtechnik &amp; Sicherheit</h3>
+          <p>Spielerisches Gleichgewichtstraining, sicheres Bremsen, Kurvenfahren und vorausschauendes Verhalten im Straßenverkehr.</p>
+        </div>
+        <div class="info-card info-card--accent">
+          <span class="info-card-kicker">02 · Gemeinschaft</span>
+          <h3>Gemeinsame Ausfahrten</h3>
+          <p>Altersgerechte Gruppenausfahrten auf verkehrsarmen Wegen und Radwegen rund um Ellmendingen und durchs Pfinztal.</p>
+        </div>
+        <div class="info-card info-card--accent">
+          <span class="info-card-kicker">03 · Perspektive</span>
+          <h3>Einstieg in den Rennsport</h3>
+          <p>Wer möchte, kann bei Jugendrennen wie „Rund um die Alte Kelter“ erste Wettkampfluft in den Klassen U11 bis U19 schnuppern.</p>
+        </div>
+      </div>
+
+      <div class="info-card-grid">
+        <div class="info-card">
+          <span class="info-card-kicker">Trainingszeiten &amp; Treffpunkt</span>
+          <h2>Jugendtraining im Sommer &amp; Winter</h2>
+          <p>In der Sommerzeit (April bis September) findet dienstags ab 18:00 Uhr am Vereinsheim (Durlacher Str. 72) unser Training für Jugend und sportlichen Nachwuchs statt. Im Winter weichen wir in die Halle aus.</p>
+        </div>
+        <div class="info-card">
+          <span class="info-card-kicker">Mitbringen</span>
+          <h2>Ausrüstung &amp; Helmpflicht</h2>
+          <p>Wichtig sind ein verkehrssicheres Fahrrad (Mountainbike, Trekking- oder Jugendrennrad), witterungsgerechte Kleidung, etwas zu trinken sowie ein gut sitzender Fahrradhelm – bei uns gilt strikte Helmpflicht.</p>
+        </div>
+      </div>
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Neugierig geworden?</h2>
+          <p>Kommt einfach mit eurem Kind zum unverbindlichen Schnuppertraining vorbei oder schreibt uns vorab eine kurze Nachricht.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/kontakt" class="btn btn-primary">
+            <span>Schnuppertraining anfragen</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="/mitglied-werden" class="btn btn-outline">
+            <span>Mitglied werden</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

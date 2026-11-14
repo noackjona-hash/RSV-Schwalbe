@@ -22,9 +22,11 @@ const feeRegulationTitle = verein.membership.feeRegulationPdfLabel.replace(/^↓
           <li aria-current="page">Mitglied werden</li>
         </ol>
       </nav>
-      <h1>Wir haben dein Interesse geweckt?</h1>
-
-      <p>Du möchtest Mitglied werden? Dann füll einfach unsere Beitrittserklärung aus und schick sie uns zu.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Mitgliedschaft &amp; Beiträge</span>
+        <h1>Wir haben dein Interesse geweckt?</h1>
+        <p class="page-lead">Du möchtest Mitglied werden? Dann füll einfach unsere Beitrittserklärung aus und schick sie uns zu – inklusive Pflichtunfallversicherung des Badischen Radsportverbandes.</p>
+      </header>
       <div class="download-card-grid">
         <div class="download-card">
           <div class="download-card-info">
@@ -45,33 +47,42 @@ const feeRegulationTitle = verein.membership.feeRegulationPdfLabel.replace(/^↓
         </div>
       </div>
 
-      <h2>Jahresbeiträge</h2>
-      <table class="beitrags-tabelle">
-        <tbody>
-          {verein.membership.annualFees.map((fee) => (
-            <tr>
-              <td>{fee.category}</td>
-              <td>{fee.amount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div class="fee-cards-grid">
+        <section class="fee-card">
+          <h2>Jahresbeiträge</h2>
+          <table class="beitrags-tabelle">
+            <tbody>
+              {verein.membership.annualFees.map((fee) => (
+                <tr>
+                  <td>{fee.category}</td>
+                  <td>{fee.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
 
-      <h2>Zusatzbeiträge für Aktive</h2>
-      <p>Für Mitglieder, die an lizenzierten Rennen oder Punktekartenrennen teilnehmen, fallen folgende Zusatzbeiträge an:</p>
-      <table class="beitrags-tabelle">
-        <tbody>
-          {verein.membership.activeSurcharges.map((fee) => (
-            <tr>
-              <td>{fee.category}</td>
-              <td>{fee.amount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        <section class="fee-card">
+          <h2>Zusatzbeiträge für Aktive</h2>
+          <p>Für Mitglieder mit Teilnahme an lizenzierten Rennen oder Punktekartenrennen:</p>
+          <table class="beitrags-tabelle">
+            <tbody>
+              {verein.membership.activeSurcharges.map((fee) => (
+                <tr>
+                  <td>{fee.category}</td>
+                  <td>{fee.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </div>
 
-      <h2>Versicherungsschutz</h2>
-      <p>Die Pflichtunfallversicherung des Badischen Radsportverbandes ist in unseren Beiträgen enthalten. Dieser Schutz gilt für alle Fahrten mit dem Fahrrad – ob auf dem Weg zur Arbeit, beim Training oder bei Freizeitausfahrten.</p>
+      <div class="info-card info-card--accent" style="margin-bottom: 1.5rem;">
+        <span class="info-card-kicker">Inklusive Leistung</span>
+        <h2>Versicherungsschutz</h2>
+        <p>Die Pflichtunfallversicherung des Badischen Radsportverbandes ist in unseren Beiträgen enthalten. Dieser Schutz gilt für alle Fahrten mit dem Fahrrad – ob auf dem Weg zur Arbeit, beim Training oder bei Freizeitausfahrten.</p>
+      </div>
 
       <div class="download-card-grid">
         <div class="download-card">
