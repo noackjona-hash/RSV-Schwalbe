@@ -6,29 +6,46 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 import verein from '../data/verein.json';
 import '../styles/global.css';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+  schema?: Record<string, unknown>;
 }
 
 const {
   title,
-  description = 'RSV „Schwalbe" Ellmendingen e. V. – Der Radsportverein in Baden. Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.',
-  ogImage = '/images/home/Amateure1.webp'
+  description = 'RSV „Schwalbe“ Ellmendingen e. V. – Der Radsportverein in Baden. Mit Tradition und Leidenschaft für den Radsport seit über 125 Jahren.',
+  ogImage = '/images/home/Amateure1.webp',
+  type = 'website',
+  noindex = false,
+  breadcrumbs,
+  schema
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.rsv-ellmendingen.de');
-const ogImageURL = new URL(ogImage, Astro.site || 'https://www.rsv-ellmendingen.de');
+const siteBase = (Astro.site?.toString() || 'https://www.rsv-ellmendingen.de').replace(/\/$/, '');
+const normalizeUrlPath = (rawPath: string) =>
+  rawPath === '/' ? '/' : `${rawPath.replace(/\/+$/, '')}/`;
 
-const jsonLd = {
-  '@context': 'https://schema.org',
+const canonicalURL = new URL(normalizeUrlPath(Astro.url.pathname), siteBase);
+const ogImageURL = new URL(ogImage, siteBase);
+
+const orgNode = {
   '@type': 'SportsOrganization',
+  '@id': `${siteBase}/#organization`,
   name: verein.name,
   alternateName: verein.shortName,
   foundingDate: String(verein.founded),
-  url: 'https://www.rsv-ellmendingen.de',
-  logo: 'https://www.rsv-ellmendingen.de/Logo.svg',
+  url: `${siteBase}/`,
+  logo: `${siteBase}/Logo.svg`,
   sport: 'Cycling',
   email: verein.email,
   address: {
@@ -43,6 +60,29 @@ const jsonLd = {
     verein.social.instagram
   ]
 };
+
+const graph: Record<string, unknown>[] = [orgNode];
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: new URL(normalizeUrlPath(crumb.url), siteBase).toString()
+    }))
+  });
+}
+
+if (schema) {
+  graph.push(schema);
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': graph
+};
 ---
 
 <!DOCTYPE html>
@@ -52,17 +92,25 @@ const jsonLd = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content={description}>
-  <link rel="canonical" href={canonicalURL}>
+  <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}>
+  {!noindex && <link rel="canonical" href={canonicalURL} />}
   <meta name="theme-color" content="#FA006C">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:locale" content="de_DE">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content={type}>
   <meta property="og:site_name" content="RSV Schwalbe Ellmendingen e. V.">
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
-  <meta property="og:url" content={canonicalURL}>
+  {!noindex && <meta property="og:url" content={canonicalURL} />}
   <meta property="og:image" content={ogImageURL}>
+  <meta property="og:image:alt" content={title}>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImageURL}>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="sitemap" href="/sitemap.xml">

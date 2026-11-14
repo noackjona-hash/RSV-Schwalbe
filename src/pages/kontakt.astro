@@ -3,9 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import verein from '../data/verein.json';
 ---
 
-<BaseLayout title="Kontakt | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Kontakt | RSV Schwalbe Ellmendingen"
+  description="Kontakt zum RSV „Schwalbe“ Ellmendingen e. V.: Vereinsheim-Adresse in Keltern, E-Mail-Kontakt und Ansprechpartner im Vorstand."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Kontakt', url: '/kontakt' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Kontakt</li>
+        </ol>
+      </nav>
       <h1>Kontakt</h1>
       <p>Du hast Fragen zum Verein, zum Probetraining oder zu unseren Veranstaltungen? Schreib uns gerne eine Nachricht oder wende dich direkt an unseren Vorstand!</p>
 

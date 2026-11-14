@@ -13,14 +13,54 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const siteBase = 'https://www.rsv-ellmendingen.de';
+const postImage = post.data.thumbnail || post.data.images?.[0]?.src || '/images/home/Amateure1.webp';
+const postUrl = `${siteBase}/blog/${post.slug}/`;
+
+const articleSchema = {
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.excerpt,
+  datePublished: post.data.date,
+  image: new URL(postImage, siteBase).toString(),
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': postUrl
+  },
+  author: {
+    '@id': `${siteBase}/#organization`
+  },
+  publisher: {
+    '@id': `${siteBase}/#organization`
+  }
+};
 ---
 
-<BaseLayout title={`${post.data.title} | RSV Schwalbe Ellmendingen`} description={post.data.excerpt}>
+<BaseLayout
+  title={`${post.data.title} | RSV Schwalbe Ellmendingen`}
+  description={post.data.excerpt}
+  ogImage={postImage}
+  type="article"
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Berichte', url: '/berichte' },
+    { name: post.data.title, url: `/blog/${post.slug}` }
+  ]}
+  schema={articleSchema}
+>
   <div class="article-page-wrap">
     <article class="article">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/berichte">Berichte</a></li>
+          <li aria-current="page">{post.data.title}</li>
+        </ol>
+      </nav>
+
       <h1>{post.data.title}</h1>
       <p class="article-meta">
-        {post.data.date}{post.data.category ? ` · ${post.data.category}` : ''}
+        {post.data.dateDisplay || post.data.date}{post.data.category ? ` · ${post.data.category}` : ''}
       </p>
 
       {post.data.images && post.data.images.length > 0 && (
@@ -42,10 +82,20 @@ const { Content } = await render(post);
         <Content />
       </div>
 
-      <a href={post.data.showInOverview ? '/berichte' : '/'} class="btn-back">
-        <span class="btn-arrow-left" aria-hidden="true">&larr;</span>
-        <span>Zurück zur Übersicht</span>
-      </a>
+      <footer class="article-footer">
+        <a href={post.data.showInOverview ? '/berichte' : '/'} class="btn-back">
+          <span class="btn-arrow-left" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          </span>
+          <span>{post.data.showInOverview ? 'Alle Berichte' : 'Zur Startseite'}</span>
+        </a>
+        <a href="/mitglied-werden" class="btn-outline">
+          <span>Mitglied werden</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </footer>
     </article>
   </div>
 </BaseLayout>

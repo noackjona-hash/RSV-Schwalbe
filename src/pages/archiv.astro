@@ -2,9 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Archive | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Archiv | RSV Schwalbe Ellmendingen"
+  description="Archiv vergangener Veranstaltungen, Berichte und Rückblicke des RSV Schwalbe Ellmendingen e. V."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Veranstaltungen', url: '/veranstaltungen' },
+    { name: 'Archiv', url: '/archiv' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/veranstaltungen">Veranstaltungen</a></li>
+          <li aria-current="page">Archiv</li>
+        </ol>
+      </nav>
       <h1>Archive</h1>
       <p>Inhalt folgt.</p>
     </div>

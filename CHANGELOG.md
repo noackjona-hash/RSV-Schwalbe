@@ -3,6 +3,20 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.5.0] - 2026-11-14
+
+### Changed
+- **Button-System & UI-Strukturen auf Agentur-Niveau überarbeitet**:
+  - Ersetzt Pill-Gradienten, innere Highlight-Schatten und kreisförmige Unicode-Pfeil-Kapseln durch eine präzise geometrische UI-Architektur (`border-radius: 0.5rem`, klare 1px-Rahmen, dezente Tiefe, gestochen scharfe `16x16` Inline-SVG-Pfeil- und Download-Icons sowie ruhigere Hover-/Active-Übergänge in `src/styles/global.css`, `src/components/Header.astro` und den Seiten-Templates).
+  - `.btn-back` als ruhigen Surface-/Outline-Button innerhalb einer strukturierten `.article-footer`-Aktionsleiste mit sekundärer Kontakt-/Mitglied-Aktion gestaltet.
+  - Auf `src/pages/mitglied-werden.astro` beide PDF-Downloads in strukturierte `.download-card`-Container mit Dokumenten-Icon, Metadaten und Download-SVG-Button eingebettet.
+  - Auf `src/pages/training.astro` und `src/pages/verein.astro` abschließende `.page-cta-box`-Bereiche sowie auf `src/pages/index.astro` den Bereichs-CTA „Alle Veranstaltungen“ ergänzt.
+- **100/100 SEO- & Barrierefreiheits-Architektur**:
+  - `src/layouts/BaseLayout.astro` um `robots`-Meta (`noindex` für 404), konsistente Trailing-Slash-Canonicals/`og:url` passend zu `sitemap.xml`, Twitter-Card-Tags, `og:image:alt` und ein JSON-LD `@graph` (`SportsOrganization`, dynamische `BreadcrumbList` und Seitenschemata) erweitert.
+  - Aussagekräftige Meta-Descriptions und sichtbare `.breadcrumb-nav`-Navigation auf allen Inhaltsseiten ergänzt.
+  - `BlogPosting` JSON-LD auf `src/pages/blog/[slug].astro` und `SportsEvent` JSON-LD auf allen Veranstaltungs-Detailseiten integriert.
+  - Lighthouse-`link-text`-Blocker behoben (`<span class="sr-only">`-Kontext bei „Weiterlesen“- und PDF-Download-Links) sowie `h1 -> h2 -> h3`-Überschriftenhierarchie auf `src/pages/impressum.astro` und Kontrast auf `src/pages/404.astro` korrigiert.
+
 ## [2.4.0] - 2026-11-14
 ### Geändert & Optimiert
 - **Signature Radsport-Button-System („Das gewisse Etwas“)**:
