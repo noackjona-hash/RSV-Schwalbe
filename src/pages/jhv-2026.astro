@@ -17,7 +17,10 @@ const { Content } = await render(entry!);
         <Content />
       </div>
 
-      <a href="/veranstaltungen" class="btn-back">Zurück zur Übersicht</a>
+      <a href="/veranstaltungen" class="btn-back">
+        <span class="btn-arrow-left" aria-hidden="true">&larr;</span>
+        <span>Zurück zur Übersicht</span>
+      </a>
     </article>
   </div>
 </BaseLayout>
