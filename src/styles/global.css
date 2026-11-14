@@ -225,7 +225,6 @@ button:focus-visible,
 .article-gallery:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 /* ============================================================
@@ -323,27 +322,37 @@ button:focus-visible,
 /* Auf schmalen Handys (< 640px) sitzt "Mitglied werden" im Menü & Hero, damit nichts abschneidet */
 .btn-header-cta {
   display: none;
-  background-color: var(--accent-secondary);
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, #FFF05A 0%, var(--accent-secondary) 100%);
   color: var(--text-primary) !important;
-  padding: 0.55rem 1.05rem !important;
-  border-radius: 0.55rem;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.1);
+  padding: 0.35rem 0.4rem 0.35rem 0.95rem !important;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 8px -2px rgba(15, 23, 42, 0.12);
   font-weight: 600 !important;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
   white-space: nowrap;
-  min-height: 2.25rem;
-  align-items: center;
+  min-height: 2.3rem;
 }
 
-.btn-header-cta:hover {
-  background-color: var(--accent-yellow-hover) !important;
-  color: var(--text-primary) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px -3px rgba(15, 23, 42, 0.16);
+.btn-header-cta::after {
+  content: '\2192';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--text-primary);
+  color: var(--accent-secondary);
+  font-size: 0.82rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
 /* Moderner Mobile-Menü-Button (Text + 2 animierte Linien) */
@@ -353,10 +362,9 @@ button:focus-visible,
   gap: 0.5rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 0.55rem;
-  box-shadow: none;
-  min-height: 2.5rem;
-  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  min-height: 2.45rem;
+  padding: 0.38rem 0.85rem;
   cursor: pointer;
   color: var(--text-primary);
   font-family: 'Zalando Sans', sans-serif;
@@ -364,15 +372,13 @@ button:focus-visible,
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
-.mobile-menu-toggle:hover,
 .mobile-menu-toggle[aria-expanded="true"] {
   background: var(--bg-tertiary);
   border-color: var(--accent-primary);
   color: var(--accent-text);
-  box-shadow: none;
 }
 
 .menu-bars {
@@ -609,111 +615,120 @@ button:focus-visible,
 
 .hero-actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.85rem 1rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  max-width: 320px;
 }
 
-/* --- Einheitliches, sportlich-modernes Button-System --- */
-.btn {
-  padding: 0.78rem 1.45rem;
+.hero-actions .btn {
+  width: 100%;
+}
+
+/* --- Signature Radsport-Button-System (Aerodynamische Pill-Silhouette + Action-Kapsel) --- */
+.btn,
+.btn-back,
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
   min-height: var(--tap-target-min);
-  border-radius: 0.65rem;
+  padding: 0.42rem 0.48rem 0.42rem 1.3rem;
+  border-radius: 999px;
   font-family: 'Zalando Sans', sans-serif;
   font-weight: 600;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  width: auto;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn .btn-arrow,
+.btn-back .btn-arrow-left,
+.btn-download .btn-arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  width: auto;
-  touch-action: manipulation;
-  cursor: pointer;
-  position: relative;
-  border: 1px solid transparent;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.btn-arrow,
-.btn-arrow-left {
+.read-more .btn-arrow {
   display: inline-block;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   font-size: 1.05em;
   line-height: 1;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn:hover .btn-arrow,
-.btn-download:hover .btn-arrow,
-.read-more:hover .btn-arrow,
-.view-all:hover .btn-arrow {
-  transform: translateX(4px);
-}
-
-.btn-back:hover .btn-arrow-left {
-  transform: translateX(-4px);
-}
-
-/* Signal-Gelb (#FFE940) mit weichem Ebenen-Schatten */
-.btn-yellow {
-  background-color: var(--accent-secondary);
+/* Signal-Gelb (#FFE940) mit dunkler Action-Kapsel (wechselt bei Hover auf RSV-Pink) */
+.btn-yellow,
+.btn-back,
+.btn-download {
+  background: linear-gradient(180deg, #FFF05A 0%, var(--accent-secondary) 100%);
   color: var(--text-primary) !important;
-  border-color: rgba(15, 23, 42, 0.08);
-  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.12), 0 2px 6px -1px rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 14px -2px rgba(15, 23, 42, 0.12), 0 2px 6px -1px rgba(15, 23, 42, 0.06);
 }
 
-.btn-yellow:hover {
-  background-color: var(--accent-yellow-hover);
-  color: var(--text-primary) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.18), 0 4px 10px -2px rgba(15, 23, 42, 0.08);
+.btn-yellow .btn-arrow,
+.btn-back .btn-arrow-left,
+.btn-download .btn-arrow {
+  background: var(--text-primary);
+  color: var(--accent-secondary);
 }
 
 /* Sekundärer Glas-Button für dunkle Hintergründe (WCAG-kontraststark) */
 .btn-secondary {
-  background-color: rgba(15, 23, 42, 0.72);
+  background: rgba(15, 23, 42, 0.72);
   color: var(--text-inverted) !important;
-  border-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.25);
+  border-color: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 6px 18px -3px rgba(15, 23, 42, 0.35);
 }
 
-.btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.65);
-  color: var(--text-inverted) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.35);
+.btn-secondary .btn-arrow {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-inverted);
 }
 
 /* Pinker Primär-Button (#C40054 WCAG AA) */
 .btn-primary {
-  background-color: var(--accent-text);
+  background: linear-gradient(180deg, #D9005D 0%, var(--accent-text) 100%);
   color: var(--text-inverted) !important;
-  box-shadow: 0 6px 18px -3px rgba(196, 0, 84, 0.3), 0 2px 6px -1px rgba(15, 23, 42, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 6px 18px -3px rgba(196, 0, 84, 0.32), 0 2px 6px -1px rgba(15, 23, 42, 0.08);
 }
 
-.btn-primary:hover {
-  background-color: var(--accent-hover);
-  color: var(--text-inverted) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -4px rgba(196, 0, 84, 0.4), 0 4px 10px -2px rgba(15, 23, 42, 0.1);
+.btn-primary .btn-arrow {
+  background: rgba(15, 23, 42, 0.28);
+  color: var(--text-inverted);
 }
 
-/* Dunkler Kontrast-Button (z. B. auf gelbem Plakat-Banner) */
+/* Dunkler Kontrast-Button (z. B. auf gelbem Plakat-Banner) mit Pinker Action-Kapsel */
 .btn-dark {
-  background-color: var(--text-primary);
+  background: linear-gradient(180deg, #1E293B 0%, var(--text-primary) 100%);
   color: var(--text-inverted) !important;
-  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.25), 0 2px 6px -1px rgba(15, 23, 42, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 8px 20px -4px rgba(15, 23, 42, 0.28), 0 2px 6px -1px rgba(15, 23, 42, 0.12);
 }
 
-.btn-dark:hover {
-  background-color: #1e293b;
-  color: var(--text-inverted) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.35);
+.btn-dark .btn-arrow {
+  background: var(--accent-primary);
+  color: var(--text-inverted);
 }
 
 /* ============================================================
@@ -755,14 +770,34 @@ button:focus-visible,
 .view-all {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.65rem;
+  min-height: var(--tap-target-min);
+  padding: 0.4rem 0.45rem 0.4rem 1.2rem;
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--accent-text);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.view-all:hover {
-  color: var(--accent-hover);
+.view-all .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: rgba(250, 0, 108, 0.1);
+  color: var(--accent-text);
+  font-size: 0.95rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
 /* ============================================================
@@ -1039,27 +1074,6 @@ a.termin-card {
   object-fit: contain;
 }
 
-/* Banner Leidenschaft */
-.banner-leidenschaft {
-  background: var(--accent-secondary);
-  padding: 3.5rem 0;
-  text-align: center;
-}
-
-.banner-leidenschaft h2 {
-  color: var(--text-primary);
-  font-size: clamp(1.65rem, 4vw, 2.35rem);
-  margin-bottom: 0.65rem;
-}
-
-.banner-leidenschaft p {
-  color: var(--text-primary);
-  opacity: 0.88;
-  max-width: 580px;
-  margin: 0 auto 1.75rem;
-  font-size: 1.05rem;
-}
-
 /* ============================================================
    INNER PAGE LAYOUT & ELEVATED CARDS (CD Guide Seite 3)
    ============================================================ */
@@ -1179,32 +1193,11 @@ hr.divider {
   margin-bottom: 1.25rem;
 }
 
-/* Zurück-Button im einheitlichen Button-Design */
+/* Zurück-Button: Linksseitige Action-Kapsel & asymmetrisches Padding */
 .btn-back {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  min-height: var(--tap-target-min);
+  padding: 0.42rem 1.3rem 0.42rem 0.48rem;
   margin-top: 2rem;
-  padding: 0.78rem 1.45rem;
-  background: var(--accent-secondary);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 0.65rem;
-  color: var(--text-primary) !important;
-  font-weight: 600;
-  font-size: 0.84rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.1), 0 2px 6px -1px rgba(15, 23, 42, 0.05);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-}
-
-.btn-back:hover {
-  background: var(--accent-yellow-hover);
-  color: var(--text-primary) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px -4px rgba(15, 23, 42, 0.16);
+  width: auto;
 }
 
 /* ============================================================
@@ -1333,27 +1326,21 @@ hr.divider {
 }
 
 .btn-submit {
-  background: var(--accent-text);
-  color: white;
-  padding: 0.85rem 1.75rem;
+  background: linear-gradient(180deg, #D9005D 0%, var(--accent-text) 100%);
+  color: var(--text-inverted);
+  padding: 0.78rem 1.75rem;
   min-height: var(--tap-target-min);
-  border: none;
-  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   cursor: pointer;
   align-self: stretch;
   font-family: inherit;
-  box-shadow: 0 6px 18px -3px rgba(196, 0, 84, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 6px 18px -3px rgba(196, 0, 84, 0.32), 0 2px 6px -1px rgba(15, 23, 42, 0.08);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-}
-
-.btn-submit:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -4px rgba(196, 0, 84, 0.38);
 }
 
 /* Fahrer */
@@ -1524,33 +1511,8 @@ hr.divider {
 }
 
 .btn-download {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  width: auto;
-  min-height: var(--tap-target-min);
-  margin-top: 0.5rem;
-  margin-bottom: 0.75rem;
-  margin-right: 0.75rem;
-  padding: 0.78rem 1.45rem;
-  background-color: var(--accent-secondary);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 0.65rem;
-  color: var(--text-primary) !important;
-  font-weight: 600;
-  font-size: 0.84rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.1), 0 2px 6px -1px rgba(15, 23, 42, 0.05);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-}
-
-.btn-download:hover {
-  background-color: var(--accent-yellow-hover);
-  color: var(--text-primary) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px -4px rgba(15, 23, 42, 0.16);
+  width: 100%;
+  margin: 0.5rem 0 0.75rem;
 }
 
 /* Links page */
@@ -1888,11 +1850,16 @@ hr.divider {
 
 /* --- ab 480px --- */
 @media (min-width: 480px) {
-  .hero-buttons {
+  .hero-actions {
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
     max-width: none;
-    gap: 1rem;
+    gap: 0.85rem 1rem;
+  }
+
+  .hero-actions .btn {
+    width: auto;
   }
 
   .btn-download {
@@ -2045,8 +2012,8 @@ hr.divider {
   }
 
   .btn-header-cta {
-    padding: 0.65rem 1.25rem !important;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.45rem 0.4rem 1.1rem !important;
+    font-size: 0.78rem;
   }
 
   .mobile-menu-toggle,
@@ -2138,8 +2105,113 @@ hr.divider {
   }
 }
 
-/* --- Hover-Effekte auf Maus-/Trackpad-Geräten --- */
+/* --- Hover-Effekte nur auf Geräten mit Maus/Trackpad (kein Sticky-Hover auf Touchscreens) --- */
 @media (hover: hover) {
+  .btn-header-cta:hover {
+    background: linear-gradient(180deg, #FFEE38 0%, var(--accent-yellow-hover) 100%);
+    color: var(--text-primary) !important;
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 8px 18px -4px rgba(15, 23, 42, 0.2);
+  }
+
+  .btn-header-cta:hover::after {
+    background: var(--accent-primary);
+    color: var(--text-inverted);
+    transform: translateX(2px);
+  }
+
+  .mobile-menu-toggle:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    color: var(--accent-text);
+  }
+
+  .btn:hover,
+  .btn-back:hover,
+  .btn-download:hover,
+  .btn-submit:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-yellow:hover,
+  .btn-back:hover,
+  .btn-download:hover {
+    background: linear-gradient(180deg, #FFEE38 0%, var(--accent-yellow-hover) 100%);
+    color: var(--text-primary) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 12px 26px -4px rgba(15, 23, 42, 0.2), 0 4px 10px -2px rgba(15, 23, 42, 0.08);
+  }
+
+  .btn-yellow:hover .btn-arrow,
+  .btn-download:hover .btn-arrow {
+    background: var(--accent-primary);
+    color: var(--text-inverted);
+    transform: translateX(2px);
+  }
+
+  .btn-back:hover .btn-arrow-left {
+    background: var(--accent-primary);
+    color: var(--text-inverted);
+    transform: translateX(-2px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.72);
+    color: var(--text-inverted) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 26px -4px rgba(15, 23, 42, 0.42);
+  }
+
+  .btn-secondary:hover .btn-arrow {
+    background: var(--accent-secondary);
+    color: var(--text-primary);
+    transform: translateX(2px);
+  }
+
+  .btn-primary:hover,
+  .btn-submit:hover {
+    background: linear-gradient(180deg, #E20063 0%, var(--accent-hover) 100%);
+    color: var(--text-inverted) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 12px 26px -4px rgba(196, 0, 84, 0.42), 0 4px 10px -2px rgba(15, 23, 42, 0.1);
+  }
+
+  .btn-primary:hover .btn-arrow {
+    background: var(--accent-secondary);
+    color: var(--text-primary);
+    transform: translateX(2px);
+  }
+
+  .btn-dark:hover {
+    background: linear-gradient(180deg, #334155 0%, #1E293B 100%);
+    color: var(--text-inverted) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 14px 28px -6px rgba(15, 23, 42, 0.38);
+  }
+
+  .btn-dark:hover .btn-arrow {
+    background: var(--accent-secondary);
+    color: var(--text-primary);
+    transform: translateX(2px);
+  }
+
+  .view-all:hover {
+    background: var(--bg-primary);
+    border-color: var(--accent-primary);
+    color: var(--accent-text);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .view-all:hover .btn-arrow {
+    background: var(--accent-primary);
+    color: var(--text-inverted);
+    transform: translateX(2px);
+  }
+
+  .read-more:hover .btn-arrow,
+  .news-card:hover .read-more .btn-arrow,
+  .bericht-row:hover .read-more .btn-arrow {
+    transform: translateX(4px);
+  }
+
   .news-card:hover,
   .termin-card:hover,
   .sponsor-page-card:hover,
@@ -2160,6 +2232,18 @@ hr.divider {
   .gallery-lightbox-trigger:hover img {
     transform: scale(1.05);
   }
+}
+
+/* --- Taktiles :active Druck-Feedback auf Touch & Desktop --- */
+.btn:active,
+.btn-back:active,
+.btn-download:active,
+.btn-submit:active,
+.btn-header-cta:active,
+.mobile-menu-toggle:active,
+.view-all:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.08s;
 }
 
 /* --- Barrierefreiheit: Reduzierte Bewegung --- */
