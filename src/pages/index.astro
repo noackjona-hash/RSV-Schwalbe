@@ -107,31 +107,39 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
       </div>
       <div class="termine-grid">
         {sortedTermine.map((termin) => (
-          <a href={termin.data.detailUrl} class="termin-card">
-            <div>
+          <a href={termin.data.detailUrl} class={`termin-card${termin.data.highlight ? ' termin-card--highlight' : ''}`}>
+            <div class="termin-date-badge" aria-hidden="true">
+              <span class="termin-date-day">{termin.data.day}</span>
+              <span class="termin-date-month">{termin.data.month}</span>
+            </div>
+            <div class="termin-card-main">
               <span class="termin-kicker">
                 {termin.data.highlight ? 'Radrennen · Highlight' : 'Veranstaltung'}
               </span>
               <h3>{termin.data.title}</h3>
+              <div class="termin-meta-row">
+                <span class="termin-meta-item">
+                  <svg class="termin-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  {termin.data.date}
+                </span>
+                <span class="termin-meta-item">
+                  <svg class="termin-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  {termin.data.subtitle}
+                </span>
+              </div>
             </div>
-            <div class="termin-meta-row">
-              <span class="termin-meta-item">
-                <svg class="termin-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                {termin.data.date}
-              </span>
-              <span class="termin-meta-item">
-                <svg class="termin-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                {termin.data.subtitle}
-              </span>
-            </div>
+            <span class="termin-card-action" aria-hidden="true">
+              <span>Details</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
           </a>
         ))}
       </div>
@@ -196,8 +204,8 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
       <h2>Unsere Sponsoren</h2>
       <div class="sponsoren-showcase">
         <div class="sponsoren-flex">
-          {sponsoren.map((sponsor) => (
-            <a href={sponsor.url} target="_blank" rel="noopener" class="sponsor-box" title={sponsor.name}>
+          {sponsoren.filter((s) => s.showOnHome).map((sponsor) => (
+            <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="sponsor-box" title={sponsor.name}>
               <img
                 src={sponsor.logo}
                 alt={sponsor.name}
@@ -209,6 +217,14 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
             </a>
           ))}
         </div>
+      </div>
+      <div class="section-footer-action">
+        <a href="/sponsoren" class="view-all">
+          <span>Alle Sponsoren &amp; Partner</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </section>

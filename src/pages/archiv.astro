@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allBerichte = await getCollection('berichte', ({ data }) => data.showInOverview);
+const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
 <BaseLayout
@@ -20,8 +24,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li aria-current="page">Archiv</li>
         </ol>
       </nav>
-      <h1>Archive</h1>
-      <p>Inhalt folgt.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Vereinschronik &amp; Rückblicke</span>
+        <h1>Archiv</h1>
+        <p class="page-lead">Chronologische Übersicht vergangener Berichte, Rennrückblicke und Veranstaltungen des RSV &ldquo;Schwalbe&rdquo; Ellmendingen e.&thinsp;V.</p>
+      </header>
+
+      <h2>Veröffentlichte Rückblicke</h2>
+      <ul class="links-list">
+        {sortedBerichte.map((post) => (
+          <li>
+            <a href={`/blog/${post.slug}`}>
+              <span>{post.data.dateDisplay} &middot; {post.data.title}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Aktuelle Saison 2026</h2>
+          <p>Alle kommenden Renntermine und Veranstaltungen sowie aktuelle Berichte findest du in unseren Übersichten.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/berichte" class="btn btn-primary">
+            <span>Alle Berichte</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="/veranstaltungen" class="btn btn-outline">
+            <span>Termine 2026</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

@@ -2,17 +2,28 @@
   "intro": "Unsere Rennfahrerinnen und Rennfahrer vertreten die Farben des RSV „Schwalbe“ Ellmendingen bei regionalen, nationalen und internationalen Straßen-, Bahn- und Kriteriumsrennen.",
   "categories": [
     {
-      "title": "Amateure & Elite",
+      "title": "Elite & Rundfahrten",
+      "description": "Im internationalen und nationalen Renngeschehen ist der RSV Schwalbe Ellmendingen durch Fahrer in Team- und Vereinsfarben vertreten.",
       "riders": [
-        { "name": "Max Mustermann", "klasse": "Elite-Amateure" },
-        { "name": "Lukas Beispiel", "klasse": "Amateure" },
-        { "name": "Tim Testfahrer", "klasse": "Masters 2" }
+        {
+          "name": "Paul Kuhn",
+          "klasse": "Elite / Straße & Rundfahrt",
+          "note": "u. a. 21. Platz Gesamtwertung Grand Prix d’Alger 2026 im Trikot des Embrace-The-World-Cycling-Teams",
+          "link": "/blog/paul-kuhn-grand-prix-alger-2026"
+        }
       ]
     },
     {
-      "title": "Nachwuchs (U11 – U19)",
+      "title": "Amateure, Jedermann & Masters",
+      "description": "Unsere Amateur- und Seniorenfahrer starten regelmäßig bei badischen und süddeutschen Straßenrennen, Kriterien sowie beim heimischen Preis-Radrennen „Rund um die Alte Kelter“.",
       "riders": [],
-      "placeholder": "Die aktuelle Kaderliste für die Saison 2026 wird derzeit aktualisiert."
+      "placeholder": "Die detaillierte Meldeliste der Lizenz- und Jedermannfahrer für die Rennsaison 2026 wird laufend über den Vorstand gepflegt."
+    },
+    {
+      "title": "Nachwuchs & Schüler (U11 – U19)",
+      "description": "Über unsere Jugendgruppe RSV-Kids führen wir Kinder und Jugendliche schrittweise an sicheres Gruppenfahren, Radtechnik und erste Wettkampferfahrungen heran.",
+      "riders": [],
+      "placeholder": "Interessierte Kinder und Jugendliche können jederzeit über die RSV-Kids ins Training einsteigen."
     }
   ]
 }

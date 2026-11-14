@@ -17,6 +17,7 @@ interface Props {
   ogImage?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  canonicalPath?: string;
   breadcrumbs?: BreadcrumbItem[];
   schema?: Record<string, unknown>;
 }
@@ -27,6 +28,7 @@ const {
   ogImage = '/images/home/Amateure1.webp',
   type = 'website',
   noindex = false,
+  canonicalPath,
   breadcrumbs,
   schema
 } = Astro.props;
@@ -35,7 +37,7 @@ const siteBase = (Astro.site?.toString() || 'https://www.rsv-ellmendingen.de').r
 const normalizeUrlPath = (rawPath: string) =>
   rawPath === '/' ? '/' : `${rawPath.replace(/\/+$/, '')}/`;
 
-const canonicalURL = new URL(normalizeUrlPath(Astro.url.pathname), siteBase);
+const canonicalURL = new URL(normalizeUrlPath(canonicalPath || Astro.url.pathname), siteBase);
 const ogImageURL = new URL(ogImage, siteBase);
 
 const orgNode = {

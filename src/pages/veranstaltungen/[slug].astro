@@ -42,10 +42,11 @@ const eventSchema = {
 <BaseLayout
   title={`${pageTitle} | RSV Schwalbe Ellmendingen`}
   description={pageDescription}
+  canonicalPath={event.data.detailUrl}
   breadcrumbs={[
     { name: 'Startseite', url: '/' },
     { name: 'Veranstaltungen', url: '/veranstaltungen' },
-    { name: pageTitle, url: `/veranstaltungen/${event.slug}` }
+    { name: pageTitle, url: event.data.detailUrl }
   ]}
   schema={eventSchema}
 >

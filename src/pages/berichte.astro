@@ -22,8 +22,11 @@ const sortedBerichte = allBerichte.sort((a, b) => b.data.date.localeCompare(a.da
           <li aria-current="page">Berichte</li>
         </ol>
       </nav>
-      <h1>Berichte</h1>
-      <p>Neuigkeiten aus dem Vereinsleben, von den Rennstrecken und unseren Gruppen.</p>
+      <header class="page-header">
+        <span class="page-kicker">// Vereinsleben &amp; Rennsport</span>
+        <h1>Berichte</h1>
+        <p class="page-lead">Neuigkeiten aus dem Vereinsleben, von den Rennstrecken und unseren Gruppen.</p>
+      </header>
 
       <div class="berichte-list">
         {sortedBerichte.map((post) => (
