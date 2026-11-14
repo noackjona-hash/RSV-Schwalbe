@@ -2,9 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Der Verein | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Der Verein | RSV Schwalbe Ellmendingen"
+  description="Über den RSV „Schwalbe“ Ellmendingen e. V.: Gegründet 1898 in Keltern – Vereinsgeschichte, Verwaltung, Ehrungen und Vereinsleben."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Der Verein', url: '/verein' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Der Verein</li>
+        </ol>
+      </nav>
       <h1>Der Verein</h1>
 
       <h2 id="geschichte">Vereinsgeschichte</h2>
@@ -19,6 +32,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <h2 id="satzung">Satzung</h2>
       <p>Inhalt folgt.</p>
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Werde Teil unserer Gemeinschaft</h2>
+          <p>Ob Lizenzrennen, Hobbyausfahrt, Kindertraining oder Wandergruppe – wir freuen uns auf neue Gesichter im Verein.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/mitglied-werden" class="btn btn-yellow">
+            <span>Jetzt Mitglied werden</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="/kontakt" class="btn btn-outline">
+            <span>Kontakt aufnehmen</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

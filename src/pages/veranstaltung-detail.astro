@@ -4,23 +4,74 @@ import { getEntry, render } from 'astro:content';
 
 const entry = await getEntry('veranstaltungen', 'radrennen-2026');
 const { Content } = await render(entry!);
+const pageTitle = `${entry!.data.title} ${entry!.data.year}`;
+const pageDescription = `${pageTitle} beim RSV Schwalbe Ellmendingen: ${entry!.data.metaLine} – Zeitplan, Rennklassen und Streckeninformationen.`;
+const siteBase = 'https://www.rsv-ellmendingen.de';
+
+const eventSchema = {
+  '@type': 'SportsEvent',
+  name: pageTitle,
+  description: pageDescription,
+  startDate: entry!.data.date,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: entry!.data.subtitle,
+    address: {
+      '@type': 'PostalAddress',
+      postalCode: '75210',
+      addressLocality: 'Keltern-Ellmendingen',
+      addressCountry: 'DE'
+    }
+  },
+  organizer: {
+    '@id': `${siteBase}/#organization`
+  }
+};
 ---
 
-<BaseLayout title="Großes Preis-Radrennen 2026 | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title={`${pageTitle} | RSV Schwalbe Ellmendingen`}
+  description={pageDescription}
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Veranstaltungen', url: '/veranstaltungen' },
+    { name: pageTitle, url: '/veranstaltung-detail' }
+  ]}
+  schema={eventSchema}
+>
   <div class="article-page-wrap">
     <article class="article">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/veranstaltungen">Veranstaltungen</a></li>
+          <li aria-current="page">{pageTitle}</li>
+        </ol>
+      </nav>
       <span class="termin-kicker">Radrennen · Highlight</span>
-      <h1>{entry!.data.title} {entry!.data.year}</h1>
+      <h1>{pageTitle}</h1>
       <p class="article-meta">{entry!.data.metaLine}</p>
 
       <div class="article-body">
         <Content />
       </div>
 
-      <a href="/veranstaltungen" class="btn-back">
-        <span class="btn-arrow-left" aria-hidden="true">&larr;</span>
-        <span>Zurück zur Übersicht</span>
-      </a>
+      <footer class="article-footer">
+        <a href="/veranstaltungen" class="btn-back">
+          <span class="btn-arrow-left" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          </span>
+          <span>Alle Veranstaltungen</span>
+        </a>
+        <a href="/kontakt" class="btn-outline">
+          <span>Fragen? Kontakt</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </footer>
     </article>
   </div>
 </BaseLayout>

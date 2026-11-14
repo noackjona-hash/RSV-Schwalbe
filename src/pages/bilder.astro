@@ -4,9 +4,22 @@ import galerie from '../data/galerie.json';
 import verein from '../data/verein.json';
 ---
 
-<BaseLayout title="Bilder | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Bilder | RSV Schwalbe Ellmendingen"
+  description="Bildergalerie des RSV Schwalbe Ellmendingen e. V. – Eindrücke von Radrennen, gemeinsamen Trainingsausfahrten und Vereinsveranstaltungen."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Bilder', url: '/bilder' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Bilder</li>
+        </ol>
+      </nav>
       <h1>Bilder</h1>
       <p>Eindrücke von unseren Rennen, Trainingsausfahrten und dem Vereinsleben rund um den RSV &ldquo;Schwalbe&rdquo; Ellmendingen.</p>
 
@@ -37,7 +50,12 @@ import verein from '../data/verein.json';
           <h2>Noch mehr Bilder auf Instagram</h2>
           <p>Aktuelle Impressionen von Rennen, Ausfahrten und dem Vereinsleben teilen wir regelmäßig auf unserem Instagram-Kanal.</p>
         </div>
-        <a href={verein.social.instagram} target="_blank" rel="noopener" class="btn btn-primary"><span>@rsv_schwalbe_ellmendingen</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        <a href={verein.social.instagram} target="_blank" rel="noopener" class="btn btn-primary">
+          <span>@rsv_schwalbe_ellmendingen</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </div>

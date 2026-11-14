@@ -1,15 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import verein from '../data/verein.json';
+
+const applicationTitle = verein.membership.applicationPdfLabel.replace(/^↓\s*/, '');
+const feeRegulationTitle = verein.membership.feeRegulationPdfLabel.replace(/^↓\s*/, '');
 ---
 
-<BaseLayout title="Mitglied werden | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Mitglied werden | RSV Schwalbe Ellmendingen"
+  description="Mitgliedschaft beim RSV Schwalbe Ellmendingen e. V.: Beitrittserklärung, Jahresbeiträge, Zusatzbeiträge für Lizenzfahrer und inklusive Pflichtunfallversicherung."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Mitglied werden', url: '/mitglied-werden' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Mitglied werden</li>
+        </ol>
+      </nav>
       <h1>Wir haben dein Interesse geweckt?</h1>
 
       <p>Du möchtest Mitglied werden? Dann füll einfach unsere Beitrittserklärung aus und schick sie uns zu.</p>
-      <p><a href={verein.membership.applicationPdfUrl} class="btn-download"><span>{verein.membership.applicationPdfLabel}</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a></p>
+      <div class="download-card-grid">
+        <div class="download-card">
+          <div class="download-card-info">
+            <span class="download-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+            </span>
+            <div>
+              <div class="download-card-title">{applicationTitle}</div>
+              <p class="download-card-meta">Aufnahmeantrag zum Ausfüllen · PDF-Dokument</p>
+            </div>
+          </div>
+          <a href={verein.membership.applicationPdfUrl} class="btn-download" download>
+            <span>PDF herunterladen<span class="sr-only"> ({applicationTitle})</span></span>
+            <span class="btn-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
 
       <h2>Jahresbeiträge</h2>
       <table class="beitrags-tabelle">
@@ -39,7 +73,25 @@ import verein from '../data/verein.json';
       <h2>Versicherungsschutz</h2>
       <p>Die Pflichtunfallversicherung des Badischen Radsportverbandes ist in unseren Beiträgen enthalten. Dieser Schutz gilt für alle Fahrten mit dem Fahrrad – ob auf dem Weg zur Arbeit, beim Training oder bei Freizeitausfahrten.</p>
 
-      <p><a href={verein.membership.feeRegulationPdfUrl} class="btn-download"><span>{verein.membership.feeRegulationPdfLabel}</span><span class="btn-arrow" aria-hidden="true">&rarr;</span></a></p>
+      <div class="download-card-grid">
+        <div class="download-card">
+          <div class="download-card-info">
+            <span class="download-card-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+            </span>
+            <div>
+              <div class="download-card-title">{feeRegulationTitle}</div>
+              <p class="download-card-meta">Offizielle Beitragsordnung des Vereins · PDF-Dokument</p>
+            </div>
+          </div>
+          <a href={verein.membership.feeRegulationPdfUrl} class="btn-download" download>
+            <span>PDF herunterladen<span class="sr-only"> ({feeRegulationTitle})</span></span>
+            <span class="btn-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </BaseLayout>

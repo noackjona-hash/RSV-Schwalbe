@@ -3,9 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import trainingData from '../data/training.json';
 ---
 
-<BaseLayout title="Training & Ausfahrten | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Training & Ausfahrten | RSV Schwalbe Ellmendingen"
+  description="Trainingszeiten und Gruppenausfahrten beim RSV Schwalbe Ellmendingen: Sommertraining, Wintertraining und Treffpunkt in Keltern-Ellmendingen."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Training & Ausfahrten', url: '/training' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Training &amp; Ausfahrten</li>
+        </ol>
+      </nav>
       <h1>Training &amp; Ausfahrten</h1>
       <p>{trainingData.intro}</p>
 
@@ -21,6 +34,27 @@ import trainingData from '../data/training.json';
 
       <h3>{trainingData.meetingPoint.title}</h3>
       <p>{trainingData.meetingPoint.description}</p>
+
+      <aside class="page-cta-box">
+        <div>
+          <h2>Lust auf eine Schnupperausfahrt?</h2>
+          <p>Gäste und Interessierte sind jederzeit herzlich willkommen. Melde dich vorab oder schau einfach am Treffpunkt vorbei.</p>
+        </div>
+        <div class="page-cta-actions">
+          <a href="/kontakt" class="btn btn-primary">
+            <span>Training anfragen</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="/mitglied-werden" class="btn btn-outline">
+            <span>Mitglied werden</span>
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </BaseLayout>

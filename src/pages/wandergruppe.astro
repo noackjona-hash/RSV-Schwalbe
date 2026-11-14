@@ -2,9 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Wandergruppe | RSV Schwalbe Ellmendingen">
+<BaseLayout
+  title="Wandergruppe | RSV Schwalbe Ellmendingen"
+  description="Die Wandergruppe des RSV Schwalbe Ellmendingen e. V. – gemeinsame Touren durch die Natur rund um Keltern, Enzkreis und Nordschwarzwald."
+  breadcrumbs={[
+    { name: 'Startseite', url: '/' },
+    { name: 'Wandergruppe', url: '/wandergruppe' }
+  ]}
+>
   <div class="page-body">
     <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Startseite</a></li>
+          <li aria-current="page">Wandergruppe</li>
+        </ol>
+      </nav>
       <h1>Wandergruppe</h1>
       <p>Inhalt folgt.</p>
     </div>
