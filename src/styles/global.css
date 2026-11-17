@@ -272,7 +272,7 @@ button:focus-visible,
   align-items: center;
 }
 
-/* Dezenter Team-Trikot Akzentstreifen (Pink #FA006C + Gelb #FFE940) ganz oben */
+/* Dezenter Team-Trikot Akzentstreifen (Pink #FA006C + Gelb #FFE940) ganz oben als Scroll-Fortschrittsbalken */
 .site-header::before {
   content: '';
   position: absolute;
@@ -280,7 +280,24 @@ button:focus-visible,
   left: 0;
   right: 0;
   height: 3px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(250, 0, 108, 0.14) 0%, rgba(250, 0, 108, 0.14) 70%, rgba(255, 233, 64, 0.34) 70%, rgba(255, 233, 64, 0.34) 100%);
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 2;
+  pointer-events: none;
   background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-primary) 70%, var(--accent-secondary) 70%, var(--accent-secondary) 100%);
+  transform-origin: left center;
+  transform: scaleX(var(--scroll-progress, 0));
+  will-change: transform;
 }
 
 .header-inner {
