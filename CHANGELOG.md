@@ -3,6 +3,13 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.8.0] - 2026-11-17
+
+### Hinzugefügt
+- **Scroll-Fortschrittsbalken in der oberen Team-Trikot-Leiste**:
+  - Die 3px-Pink/Gelb-Akzentlinie ganz oben in `.site-header` (`src/styles/global.css`) reagiert nun dynamisch auf das Scrollen: `.site-header::before` bildet den dezenten Hintergrund-Track, während `.site-header::after` den Team-Trikot-Verlauf per GPU-beschleunigtem `transform: scaleX(var(--scroll-progress, 0))` synchron zum Scroll-Fortschritt (`0–100 %`) füllt – ohne Veränderung am Header selbst und mit `0` Layout-Shift.
+  - Leichtgewichtiger, über `requestAnimationFrame` gedrosselter passiver Scroll-/Resize-Listener (`initScrollProgress`) in `src/components/Header.astro`.
+
 ## [2.7.0] - 2026-11-17
 
 ### Geändert
