@@ -3,6 +3,15 @@
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/), und dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
+## [2.7.0] - 2026-11-17
+
+### Geändert
+- **Radsport-Offset-Design & Print-Medien-Synergie (`v2.3.0` + Illustrator-Medien)**:
+  - Wiedereinführung des handgefertigten Radsport-Offset-Button-Systems aus `v2.3.0` (4px-Ecken, klare `#0F172A`-Konturen, markante Pink/Dark-Schlagschatten und taktile Klick-Physik beim Hovern und Drücken) auf allen CTA-, Zurück-, Outline-, Formular- und Download-Buttons sowie beim Header-CTA und Mobile-Menü-Schalter in `src/styles/global.css`.
+  - Kompakter `Mitglied werden`-Header-Button ohne Zusatz-Pfeil in `src/components/Header.astro`, exakt abgestimmt auf den freigegebenen Design-Screenshot.
+  - Direkt benannte Download-Buttons (`Beitrittserklärung 2025 (PDF)` / `Beitragsordnung (PDF)`) mit vorangestelltem Download-Icon in `src/pages/mitglied-werden.astro`.
+  - Angleichung der Highlight-Badges und Teaser-Boxen (`.poster-banner`, `.poster-kicker`, `.termin-card--highlight .termin-date-badge`, `.social-callout`) an das angepasste Gelb/Pink/Slate-Grafikdesign der Vereinsmedien bei vollständigem Erhalt aller WCAG-AA-Kontraste, Lighthouse-100-Werte und SEO-Strukturen aus `v2.6.0`.
+
 ## [2.6.0] - 2026-11-14
 
 ### Hinzugefügt

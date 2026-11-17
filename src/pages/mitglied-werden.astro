@@ -34,15 +34,15 @@ const feeRegulationTitle = verein.membership.feeRegulationPdfLabel.replace(/^↓
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
             </span>
             <div>
-              <div class="download-card-title">{applicationTitle}</div>
-              <p class="download-card-meta">Aufnahmeantrag zum Ausfüllen · PDF-Dokument</p>
+              <div class="download-card-title">Aufnahmeantrag 2025</div>
+              <p class="download-card-meta">Ausfüllen und an den Verein senden · PDF-Dokument</p>
             </div>
           </div>
           <a href={verein.membership.applicationPdfUrl} class="btn-download" download>
-            <span>PDF herunterladen<span class="sr-only"> ({applicationTitle})</span></span>
             <span class="btn-icon" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </span>
+            <span>{applicationTitle}</span>
           </a>
         </div>
       </div>
@@ -91,15 +91,15 @@ const feeRegulationTitle = verein.membership.feeRegulationPdfLabel.replace(/^↓
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
             </span>
             <div>
-              <div class="download-card-title">{feeRegulationTitle}</div>
-              <p class="download-card-meta">Offizielle Beitragsordnung des Vereins · PDF-Dokument</p>
+              <div class="download-card-title">Offizielle Beitragsordnung</div>
+              <p class="download-card-meta">Satzungsgemäße Beitragsregelung des Vereins · PDF-Dokument</p>
             </div>
           </div>
           <a href={verein.membership.feeRegulationPdfUrl} class="btn-download" download>
-            <span>PDF herunterladen<span class="sr-only"> ({feeRegulationTitle})</span></span>
             <span class="btn-icon" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </span>
+            <span>{feeRegulationTitle}</span>
           </a>
         </div>
       </div>
